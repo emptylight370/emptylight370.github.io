@@ -65,6 +65,10 @@
     }
 }
 
-a:hover a:active {
+a,
+a:hover,
+a:active,
+a:visited {
     color: midnightblue;
+    text-decoration: dashed;
 }
