@@ -65,8 +65,16 @@
     }
 }
 
-a,
-a:hover,
+a {
+    color: midnightblue;
+    text-decoration: dashed;
+}
+
+a:hover {
+    color: midnightblue;
+    text-decoration: underline;
+}
+
 a:active,
 a:visited {
     color: midnightblue;
