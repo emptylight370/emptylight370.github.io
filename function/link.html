@@ -11,6 +11,29 @@
             var url = document.getElementById("in").value;
             window.open(url);
         }
+        window.onpageshow = function ()
+        {
+            var geturl = location.search;
+            geturl = geturl.split("?")[1];
+            let params = geturl.split('&');
+            // console.log(params);
+            let obj = {};
+            for (let i = 0; i < params.length; i++)
+            {
+                let param = params[i].split('=');
+                obj[param[0]] = param[1];
+            }
+            // console.log(obj);
+            var target = decodeURIComponent(obj.target);
+            document.getElementById("in").value = target;
+        }
+        function summon()
+        {
+            var url = document.getElementById("in").value;
+            var encodeurl = encodeURIComponent(url);
+            var target = "https://lingfengyu-dreaming.github.io/function/link.html?target=" + encodeurl;
+            navigator.clipboard.writeText(target).then(function () { alert("已复制"); }, function () { alert("复制失败"); });
+        }
     </script>
     <style>
         #in {
@@ -23,6 +46,7 @@
     <p>请输入访问链接：</p>
     <input type="text" id="in">
     <button onclick="load()">点击访问</button>
+    <button onclick="summon()">生成当前链接并复制</button>
 </body>
 
 </html>
