@@ -29,15 +29,7 @@ function decode()
 function copy()
 {
     var output_text = document.getElementById('output');
-    try
-    {
-        navigator.clipboard.writeText(output_text.value);
-        notification("Copied!", "success", 1200);
-    }
-    catch
-    {
-        notification("Failed!", "fail", 1200);
-    }
+    navigator.clipboard.writeText(output_text.value).then(function () { notification("Copied!", "success", 1200); }, function () { notification("Failed!", "fail", 1200); });
 }
 
 function notification(message, state, duration)
