@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link</title>
+    <script>
+        function load()
+        {
+            var url = document.getElementById("in").value;
+            window.open(url);
+        }
+    </script>
+    <style>
+        #in {
+            width: 40%;
+        }
+    </style>
+</head>
+
+<body>
+    <p>请输入访问链接：</p>
+    <input type="text" id="in">
+    <button onclick="load()">点击访问</button>
+</body>
+
+</html>
