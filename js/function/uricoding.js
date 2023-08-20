@@ -18,7 +18,7 @@ function decode()
     var output_text = document.getElementById('output');
     try
     {
-        output_text.value = Base64.decode(input_text.value);
+        output_text.value = decodeURIComponent(input_text.value);
     }
     catch
     {
