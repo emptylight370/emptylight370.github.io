@@ -119,10 +119,13 @@ search:
   adapter:
     range:
       - post
+      - about
+      - function
       - page
 menu:
   主页: /
   关于: /about
+  功能: /function
   归档: /archives
   Github: https://github.com/lingfengyu-dreaming
 sns:
