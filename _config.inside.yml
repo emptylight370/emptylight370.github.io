@@ -5,7 +5,7 @@
 # Site
 title: 无光之域
 subtitle: 'EmptyLight'
-description: '光暗'
+description: ''
 keywords:
 author: EmptyLight
 language: zh-CN
@@ -111,11 +111,18 @@ deploy:
 profile:
   email: '1378990254@qq.com'
   avatar: "https://avatars.githubusercontent.com/u/61617417?v=4"
-  bio: "光暗交界"
+  bio: "光暗交界之地"
 page:
   copyright: true
+search:
+  fab: true
+  adapter:
+    range:
+      - post
+      - page
 menu:
   主页: /
+  关于: /about
   归档: /archives
   Github: https://github.com/lingfengyu-dreaming
 sns:
