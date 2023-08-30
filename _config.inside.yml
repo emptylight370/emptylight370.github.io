@@ -110,7 +110,7 @@ deploy:
 # 自定义设置
 profile:
   email: '1378990254@qq.com'
-  avatar: "https://outio-1320253797.cos.ap-guangzhou.myqcloud.com/website/img/cover.jpg?q-sign-algorithm=sha1&q-ak=AKIDOv4pJoqVY4XhE3QRDi3xBaR4pU0ELREjPjm9mAAuIofyR1vGAED6HBBQH4IJNStb&q-sign-time=1693221949;1693225549&q-key-time=1693221949;1693225549&q-header-list=host&q-url-param-list=ci-process&q-signature=ed9026d1497dd37744253f74390cf31341a1792b&x-cos-security-token=gVINDdjtIIm5RhfeZreiF54nl4boxkpa68a8f501adc5ffc43a43637685ae7b1fUcp_N1KPl07r7nGXUbHfDTm9FngxJ2zjq2QkfkaYRAoqyW7UObdRfHeSBDxQRKqhE8NIXfsZhjkDqXAkvr1x9njefuVRX6JJCCChlUkD4n2rTs8pY2N6Lx71c_D9rGqZkp7Y2xW5S_6l2RR8-JmUGdRfMFXTDIJREXjkK2qfM1A2d5s4pqZfOlhKA7oHUE7w&ci-process=originImage"
+  avatar: 'https://outio-1320253797.cos.ap-guangzhou.myqcloud.com/website/img/cover.jpg'
   bio: "光暗交界之地"
 page:
   copyright: true
