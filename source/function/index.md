@@ -11,3 +11,4 @@ tags:
 # 支持列表
 - [Base64](https://outio-1320253797.cos.ap-guangzhou.myqcloud.com/website/function/base64.html)
 - [EncodeURI](https://outio-1320253797.cos.ap-guangzhou.myqcloud.com/website/function/uricoding.html)
+- [LinkTo](https://outio-1320253797.cos.ap-guangzhou.myqcloud.com/website/function/link.html)
