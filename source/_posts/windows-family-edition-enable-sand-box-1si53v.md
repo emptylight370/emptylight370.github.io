@@ -1,7 +1,7 @@
 ---
 title: windows家庭版启用沙盒
 date: '2023-10-17 23:23:19'
-updated: '2023-10-17 23:33:07'
+updated: '2023-10-17 23:48:11'
 permalink: /post/windows-family-edition-enable-sand-box-1si53v.html
 comments: true
 toc: true
@@ -17,10 +17,15 @@ Windows家庭版没有办法在Windows功能中开启沙盒，需要采取特殊
 2. 复制下列内容并创建为`.bat`​文件
 
     ```bat
+    作者：高永远
+    链接：https://www.zhihu.com/question/395333820/answer/2484466700
+    来源：知乎
+    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
     @echo off
 
     echo Checking for permissions
-    >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe""%SYSTEMROOT%\system32\config\system"
+    >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 
     echo Permission check result: %errorlevel%
 
@@ -28,7 +33,7 @@ Windows家庭版没有办法在Windows功能中开启沙盒，需要采取特殊
     if '%errorlevel%' NEQ '0' (
     echo Requesting administrative privileges...
     goto UACPrompt
-    ) else (goto gotAdmin)
+    ) else ( goto gotAdmin )
 
     :UACPrompt
     echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
@@ -40,12 +45,12 @@ Windows家庭版没有办法在Windows功能中开启沙盒，需要采取特殊
     exit /B
 
     :gotAdmin
-    if exist "%temp%\getadmin.vbs"(del "%temp%\getadmin.vbs")
+    if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
     pushd "%CD%"
-    CD /D "%~dp0"
+    CD /D "%~dp0" 
 
     echo Batch was successfully started with admin privileges
-    echo.
+    echo .
     cls
     Title Sandbox Installer
 
@@ -53,7 +58,7 @@ Windows家庭版没有办法在Windows功能中开启沙盒，需要采取特殊
 
     dir /b %SystemRoot%\servicing\Packages\*Containers*.mum >sandbox.txt
 
-    for /f %%i in ('findstr /i. sandbox.txt 2^>nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
+    for /f %%i in ('findstr /i . sandbox.txt 2^>nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
 
     del sandbox.txt
 
