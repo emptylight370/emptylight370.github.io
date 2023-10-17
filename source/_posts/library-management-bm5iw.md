@@ -1,11 +1,12 @@
 ---
 title: 库管理
 date: '2023-08-22 20:50:55'
-updated: '2023-09-05 09:34:12'
+updated: '2023-10-17 22:22:29'
 permalink: /post/library-management-bm5iw.html
 comments: true
 toc: true
 ---
+
 
 
 # 库管理
@@ -28,11 +29,11 @@ toc: true
 
 # 管理
 
-使用 `pip list`​ 即可查看当前安装的所有库。显示效果为平铺，显示当前版本号。  
-​![image](assets/image-20230822210807-219e2zz.png "pip list")​
+使用 `pip list`​​ 即可查看当前安装的所有库。显示效果为平铺，显示当前版本号。  
+​![image](https://outio-1320253797.cos.ap-guangzhou.myqcloud.com/share/img/image-20230822210807-219e2zz.png "pip")​
 
-在[安装](siyuan://blocks/20230822205101-yzof3le)了 `pipdeptree`​ 库后可以通过命令 `pipdeptree`​ 查看当前安装的库的依赖关系。显示效果为分层嵌套，显示当前版本号。  
-​![image](assets/image-20230822210901-vh7ipbs.png "pipdeptree")​
+在[安装](siyuan://blocks/20230822205101-yzof3le)了 `pipdeptree`​​ 库后可以通过命令 `pipdeptree`​​ 查看当前安装的库的依赖关系。显示效果为分层嵌套，显示当前版本号。  
+​![image](https://outio-1320253797.cos.ap-guangzhou.myqcloud.com/share/img/image-20230822210901-vh7ipbs.png "pipdeptree")​
 
 # 更新
 
