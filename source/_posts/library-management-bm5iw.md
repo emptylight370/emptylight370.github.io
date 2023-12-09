@@ -1,7 +1,7 @@
 ---
 title: 库管理
 date: '2023-08-22 20:50:55'
-updated: '2023-10-17 22:22:29'
+updated: '2023-12-09 11:59:20'
 permalink: /post/library-management-bm5iw.html
 comments: true
 toc: true
@@ -32,7 +32,7 @@ toc: true
 使用 `pip list`​​ 即可查看当前安装的所有库。显示效果为平铺，显示当前版本号。  
 ​![image](https://outio-1320253797.cos.ap-guangzhou.myqcloud.com/share/img/image-20230822210807-219e2zz.png "pip")​
 
-在[安装](siyuan://blocks/20230822205101-yzof3le)了 `pipdeptree`​​ 库后可以通过命令 `pipdeptree`​​ 查看当前安装的库的依赖关系。显示效果为分层嵌套，显示当前版本号。  
+在安装了 `pipdeptree`​​​ 库后可以通过命令 `pipdeptree`​​​ 查看当前安装的库的依赖关系。显示效果为分层嵌套，显示当前版本号。  
 ​![image](https://outio-1320253797.cos.ap-guangzhou.myqcloud.com/share/img/image-20230822210901-vh7ipbs.png "pipdeptree")​
 
 # 更新
@@ -55,4 +55,12 @@ toc: true
 
 安装了`python3-pip-autoremove`​库之后可以使用指令`pip3-autoremove`​后加库名卸载库。这个方法可以一并卸载掉不使用的依赖库。
 
+使用`pip3-autoremove`​库也可以。
+
 参数`-l`​可以列出当前不使用的库并选择卸载。
+
+# 导出已安装的软件包
+
+pip提供了导出已安装包的方法，使用`pip freeze > requirements.txt`​即可导出为文本文件。
+
+> <span style="font-weight: bold;" data-type="strong">特别注意：</span> 更新python版本需要<span style="font-weight: bold;" data-type="strong">首先备份</span>pip安装的软件包，在更新后的python<span style="font-weight: bold;" data-type="strong">再次安装！！！</span>
