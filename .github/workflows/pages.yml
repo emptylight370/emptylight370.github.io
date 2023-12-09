@@ -15,7 +15,7 @@ jobs:
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           # submodules: recursive
       - name: Use Node.js 18.x
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
       - name: Cache NPM dependencies
@@ -26,13 +26,11 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
-        run: npm install
-      - name: Clean
-        run: hexo clean
+        run: sudo npm install
       - name: Build
         run: npm run build
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
   deploy:
