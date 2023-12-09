@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main # default branch
-    paths:
-      - "**.md"
-      - "**.yml"
 
 jobs:
   build:
@@ -30,6 +27,8 @@ jobs:
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: npm install
+      - name: Clean
+        run: hexo clean
       - name: Build
         run: npm run build
       - name: Upload Pages artifact
