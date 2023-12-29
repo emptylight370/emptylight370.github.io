@@ -26,11 +26,11 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
-        run: sudo npm install
+        run: npm install
       # - name: Hexo Clean Cache
       #   run: hexo clean
       - name: Build
-        run: sudo npm run build
+        run: npm run build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
