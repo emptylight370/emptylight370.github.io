@@ -27,10 +27,10 @@ jobs:
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: sudo npm install
-      - name: Hexo Clean Cache
-        run: hexo clean
+      # - name: Hexo Clean Cache
+      #   run: hexo clean
       - name: Build
-        run: npm run build
+        run: sudo npm run build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
