@@ -33,6 +33,15 @@ git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch files
 git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch -r dirs_name' --prune-empty --tagname-filter cat -- --all
 ```
 
+值得注意的是，因为需要先行提交才能删除文件，所以在删除时也会修改最新一次提交导致本地文件被删除。所以在运行命令前建议先备份工作区文件夹。
+
+# 移动
+
+```java
+# 在git中移动文件
+git mv file new_file
+```
+
 # 变基
 
 ```bash
