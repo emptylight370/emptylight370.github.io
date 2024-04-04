@@ -87,6 +87,4 @@ jobs:
           REGION: ${{ secrets.TCLOUD_REGION }}
         run: coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
       - name: Upload COS files
-        run: |
-          coscmd upload -rs --delete ./public/ /
-          y
+        run: coscmd -s upload -rs --delete ./public/ /
