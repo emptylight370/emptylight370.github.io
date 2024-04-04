@@ -54,6 +54,7 @@ jobs:
   sendCOS:
     needs: build
     runs-on: ubuntu-latest
+    environment: COS
     steps:
      # - name: Upload COS
      #   env:
@@ -77,6 +78,7 @@ jobs:
          SECRET_ID: ${{ secrets.TCLOUD_ID }}
          SECRET_KEY: ${{ secrets.TCLOUD_KEY }}
          BUCKET: ${{ secrets.TCLOUD_BUCKET }}
+         REGION: ${{ secrets.TCLOUD_REGION }}
        run: |
-          coscmd config -a "$SECRET_ID" -s "$SECRET_KEY" -b "$BUCKET" -r ap-guangzhou
+          coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
           coscmd upload -rs --delete ./public/ /
