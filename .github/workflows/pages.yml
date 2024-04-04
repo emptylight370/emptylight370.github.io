@@ -67,7 +67,7 @@ jobs:
           secret_key: $SECRET_KEY
           cos_bucket: $BUCKET
           cos_region: $REGION
-          local_path: public/
+          local_path: ./public/
           remote_path: /
           clean: true
       # - name: Install COS deps
