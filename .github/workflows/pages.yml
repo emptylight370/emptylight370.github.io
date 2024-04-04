@@ -56,16 +56,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install COS deps
-        run: sudo pip install coscmd
-      - name: Set COS deps
+        run: pip install coscmd
+      - name: Set COS deps & Upload COS
         env:
           SECRET_ID: ${{ secrets.TCLOUD_ID }}
           SECRET_KEY: ${{ secrets.TCLOUD_KEY }}
           BUCKET: ${{ secrets.TCLOUD_BUCKET }}
           REGION: ${{ secrets.TCLOUD_REGION }}
-        run: coscmd config -a "$SECRET_ID" -s "$SECRET_KEY" -b "$BUCKET" -r "$REGION"
-      - name: Upload COS files
-        env:
-          BUCKET: ${{ secrets.TCLOUD_BUCKET }}
-          REGION: ${{ secrets.TCLOUD_REGION }}
-        run: coscmd -b "$BUCKET" -r "$REGION" upload -rs --delete ./public/ /
+        run: |
+          coscmd config -a "$SECRET_ID" -s "$SECRET_KEY" -b "$BUCKET" -r "$REGION"
+          coscmd -b "$BUCKET" -r "$REGION" upload -rs --delete ./public/ /
