@@ -9,10 +9,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: read
     steps:
       - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        # with:
+          # token: ${{ secrets.GITHUB_TOKEN }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           # submodules: recursive
       - name: Use Node.js 14.x
@@ -61,6 +63,6 @@ jobs:
           SECRET_KEY: ${{ secrets.TCLOUD_KEY }}
           BUCKET: ${{ secrets.TCLOUD_BUCKET }}
           REGION: ${{ secrets.TCLOUD_REGION }}
-        run: coscmd config -a $SECRET_ID -s $SECRET_KEY -b BUCKET -r REGION
+        run: coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
       - name: Upload COS files
         run: coscmd upload -rfs --delete ./public/ /
