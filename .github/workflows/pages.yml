@@ -55,29 +55,29 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Upload COS
-        env:
-          SECRET_ID: ${{ secrets.TCLOUD_ID }}
-          SECRET_KEY: ${{ secrets.TCLOUD_KEY }}
-          BUCKET: ${{ secrets.TCLOUD_BUCKET }}
-          REGION: ${{ secrets.TCLOUD_REGION }}
-        uses: sylingd/tencent-cos-and-cdn-action@v1.0.2
-        with:
-          secret_id: $SECRET_ID
-          secret_key: $SECRET_KEY
-          cos_bucket: $BUCKET
-          cos_region: $REGION
-          local_path: ./public
-          remote_path: /
-          clean: true
-      # - name: Install COS deps
-        # run: pip install coscmd
-      # - name: Set COS deps & Upload COS
-        # env:
-         # SECRET_ID: ${{ secrets.TCLOUD_ID }}
-         # SECRET_KEY: ${{ secrets.TCLOUD_KEY }}
-         # BUCKET: ${{ secrets.TCLOUD_BUCKET }}
-         # REGION: ${{ secrets.TCLOUD_REGION }}
-       # run: |
-         # coscmd config -a "$SECRET_ID" -s "$SECRET_KEY" -b "$BUCKET" -r "$REGION"
-         # coscmd upload -rs --delete ./public/ /
+     # - name: Upload COS
+     #   env:
+     #     SECRET_ID: ${{ secrets.TCLOUD_ID }}
+     #     SECRET_KEY: ${{ secrets.TCLOUD_KEY }}
+     #     BUCKET: ${{ secrets.TCLOUD_BUCKET }}
+     #     REGION: ${{ secrets.TCLOUD_REGION }}
+     #   uses: sylingd/tencent-cos-and-cdn-action@v1.0.2
+     #   with:
+     #     secret_id: $SECRET_ID
+     #     secret_key: $SECRET_KEY
+     #     cos_bucket: $BUCKET
+     #     cos_region: $REGION
+      #    local_path: ./public
+     #     remote_path: /
+     #     clean: true
+     - name: Install COS deps
+       run: pip install coscmd
+     - name: Set COS deps & Upload COS
+       env:
+         SECRET_ID: ${{ secrets.TCLOUD_ID }}
+         SECRET_KEY: ${{ secrets.TCLOUD_KEY }}
+         BUCKET: ${{ secrets.TCLOUD_BUCKET }}
+         REGION: ${{ secrets.TCLOUD_REGION }}
+       run: |
+          coscmd config -a "$SECRET_ID" -s "$SECRET_KEY" -b "$BUCKET" -r "$REGION"
+          coscmd upload -rs --delete ./public/ /
