@@ -23,7 +23,7 @@ pretty_urls:
 # Directory
 source_dir: source
 public_dir: public
-tag_dir: tags
+tag_dir: 标签
 archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
@@ -132,5 +132,5 @@ sns:
   email: 1378990254@qq.com
   github: https://github.com/lingfengyu-dreaming
 footer:
-  copyright: '&copy; 2023 ❤️ <a href="https://github.com/lingfengyu-dreaming">EmptyLight</a>'
+  copyright: '&copy; 2023 - 2024 ❤️ <a href="https://github.com/lingfengyu-dreaming">EmptyLight</a>'
   custom: Hosted by <a target="_blank" href="https://github.com/lingfengyu-dreaming/lingfengyu-dreaming.github.io">Github Pages</a>
