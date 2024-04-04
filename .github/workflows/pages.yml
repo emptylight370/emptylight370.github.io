@@ -28,6 +28,17 @@ jobs:
           key: ${{ runner.OS }}-npm-cache
           restore-keys: |
             ${{ runner.OS }}-npm-cache
+      # Caching public
+      - name: cache public
+        id: cache-public
+        uses: actions/cache@v3
+        with:
+          path: |
+            public
+            db.json
+          key: ${{ runner.os }}-public-${{ hashFiles('**/db.json') }}
+          restore-keys: |
+            ${{ runner.os }}-public-
       - name: Install Dependencies
         run: npm install
       # - name: Hexo Clean Cache
