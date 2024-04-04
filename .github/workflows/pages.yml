@@ -61,13 +61,15 @@ jobs:
           SECRET_KEY: ${{ secrets.TCLOUD_KEY }}
           BUCKET: ${{ secrets.TCLOUD_BUCKET }}
           REGION: ${{ secrets.TCLOUD_REGION }}
-        uses: zkqiang/tencent-cos-action@v0.1.0
+        uses: TencentCloud/cos-action@v1
         with:
-          args: upload -rs --delete ./public/ /
           secret_id: $SECRET_ID
           secret_key: $SECRET_KEY
-          bucket: $BUCKET
-          region: $REGION
+          cos_bucket: $BUCKET
+          cos_region: $REGION
+          local_path: ./public/
+          remote_path: /
+          clean: true
       # - name: Install COS deps
         # run: pip install coscmd
       # - name: Set COS deps & Upload COS
