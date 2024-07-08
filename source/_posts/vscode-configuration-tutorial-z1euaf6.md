@@ -71,7 +71,17 @@ Kotlin可以通过安装扩展支持，体验不算好。
 
 HTML无需过多配置，本身有一定的支持。安装一些别的扩展能够提升使用体验。
 
-Colorize(by YuTengjing)：颜色高亮显示。Image preview(by Kiss Tamas)：在行号左边显示图片。HTML CSS Support(by ecmel)：CSS的自动补全。IntellSense for CSS class names in HTML(by Styleguide Intellisense)：HTML的自动补全。Tailwind CSS IntelliSense(by Tailwind Labs)：Tailwind CSS支持。XML(by Red Hat)：XML的语法高亮、格式化等。
+Colorize(by YuTengjing)：颜色高亮显示。
+
+Image preview(by Kiss Tamas)：在行号左边显示图片。
+
+HTML CSS Support(by ecmel)：CSS的自动补全。
+
+IntellSense for CSS class names in HTML(by Styleguide Intellisense)：HTML的自动补全。
+
+Tailwind CSS IntelliSense(by Tailwind Labs)：Tailwind CSS支持。
+
+XML(by Red Hat)：XML的语法高亮、格式化等。
 
 # 设置篇
 
@@ -165,7 +175,7 @@ Auto Detect Color Scheme根据系统主题切换VSCode颜色主题
 
 Auto Detect High Contrast根据系统高对比度主题切换VSCode高对比度主题
 
-Double Click Icon To Close双击标签页关闭标签页
+Double Click Icon To Close双击VSC图标关闭VSCode窗口
 
 Restore Fullscreen重新打开后保持全屏（或不全屏）
 
