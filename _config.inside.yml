@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://lingfengyu-dreaming.github.io/
+url: https://blog.emptylight.cn/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -110,7 +110,7 @@ deploy:
 # 自定义设置
 profile:
   email: '1378990254@qq.com'
-  avatar: 'https://outio-1320253797.cos.ap-guangzhou.myqcloud.com/website/img/cover.jpg'
+  avatar: 'https://cdn-res.emptylight.cn/website/img/cover.jpg'
   bio: "光暗交界之地"
 page:
   copyright: true
