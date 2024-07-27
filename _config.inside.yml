@@ -10,6 +10,7 @@ keywords:
 author: EmptyLight
 language: zh-CN
 timezone: ''
+favicon: https://cdn-res.emptylight.cn/website/img/favicon-96.jpg
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -114,6 +115,11 @@ profile:
   bio: "光暗交界之地"
 page:
   copyright: true
+copyright:
+  author: true
+  link: true
+  published: true
+  updated: true
 search:
   fab: true
   adapter:
