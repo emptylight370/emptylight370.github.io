@@ -79,10 +79,7 @@ jobs:
           name: github-pages
           path: ./public
       - name: Unpack the Artifact
-        run: |
-          ls .
-          ls ./public
-          tar xf ./public/artifact.tar -C ./public
+        run: tar xf ./public/artifact.tar -C ./public
       - name: Delete the tar
         run: rm -f ./public/atrifact.tar
       - name: Install COS deps
