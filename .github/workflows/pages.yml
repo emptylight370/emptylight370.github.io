@@ -49,11 +49,11 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: pageFiles
-          path: ./public
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: pageFiles
+      #     path: ./public
   deploy:
     needs: build
     permissions:
@@ -73,7 +73,7 @@ jobs:
   #   environment: COS
   #   steps:
   #     - name: Download Artifact
-  #       uses: actions/download-artifact@v3
+        # uses: actions/download-artifact@v4
   #       with:
   #         name: pageFiles
   #         path: ./public
