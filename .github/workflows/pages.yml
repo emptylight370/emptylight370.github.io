@@ -77,9 +77,9 @@ jobs:
         with:
           # name: pageFiles
           name: github-pages
-          path: ./public
+          # path: ./public
       - name: Unpack the Artifact
-        run: tar xf artifact.tar
+        run: tar xf artifact.tar -C ./public
       - name: Delete the tar
         run: rm -f atrifact.tar
       - name: Install COS deps
