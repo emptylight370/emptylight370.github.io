@@ -76,6 +76,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           # name: pageFiles
+          name: github-pages
           path: ./public
       - name: Install COS deps
         run: pip install coscmd
