@@ -12,7 +12,7 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         # with:
           # token: ${{ secrets.GITHUB_TOKEN }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: '18'
       - name: Cache NPM dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.OS }}-npm-cache
@@ -31,7 +31,7 @@ jobs:
       # Caching public
       - name: cache public
         id: cache-public
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             public
@@ -67,24 +67,24 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-  # sendCOS:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   environment: COS
-  #   steps:
-  #     - name: Download Artifact
-        # uses: actions/download-artifact@v4
-  #       with:
-  #         name: pageFiles
-  #         path: ./public
-  #     - name: Install COS deps
-  #       run: pip install coscmd
-  #     - name: Set COS deps
-  #       env:
-  #         SECRET_ID: ${{ secrets.TCLOUD_ID }}
-  #         SECRET_KEY: ${{ secrets.TCLOUD_KEY }}
-  #         BUCKET: ${{ secrets.TCLOUD_BUCKET }}
-  #         REGION: ${{ secrets.TCLOUD_REGION }}
-  #       run: coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
-  #     - name: Upload COS files
-  #       run: coscmd upload -rfs --delete ./public/ /
+  sendCOS:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: COS
+    steps:
+      - name: Download the only Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: pageFiles
+          path: ./public
+      - name: Install COS deps
+        run: pip install coscmd
+      - name: Set COS deps
+        env:
+          SECRET_ID: ${{ secrets.TCLOUD_ID }}
+          SECRET_KEY: ${{ secrets.TCLOUD_KEY }}
+          BUCKET: ${{ secrets.TCLOUD_BUCKET }}
+          REGION: ${{ secrets.TCLOUD_REGION }}
+        run: coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
+      - name: Upload COS files
+        run: coscmd upload -rfs --delete ./public/ /
