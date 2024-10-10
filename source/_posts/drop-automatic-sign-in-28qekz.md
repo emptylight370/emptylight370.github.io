@@ -13,7 +13,12 @@ toc: true
 
 基于[分享链滴自动签到 puppeteer 脚本 - 链滴 (ld246.com)](https://ld246.com/article/1724548513173)脚本实现。具体为自己添加了一点totp验证代码。
 
-请先看原版文章了解使用方式。
+请先看原版文章了解使用方式。更新脚本只需要修改脚本内容。
+
+# 更新日志
+
+* 2024-10-10 首次修改实现2fa验证
+* 2024-10-10 修改log日志地址
 
 # 环境依赖
 
@@ -72,15 +77,15 @@ const hasSignInSelector = "a.btn[href$='points']";
 const fs = require('fs');
 const puppeteer = require(chromePath ? 'puppeteer-core' : 'puppeteer');
 
-// 创建一个写入流对象，用于向日志文件写入数据
-const logStream = fs.createWriteStream('log.txt', { flags: 'a' });
-
 // 获取临时文件夹路径
 //const os = require('os');
 //const tempDir = os.tmpdir();
 const path = require('path');
 const tempDir = path.join(__dirname, "ldtmp");
 if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir);
+// 创建一个写入流对象，用于向日志文件写入数据
+const logPath = path.join(tempDir, "ldlogin.log");
+const logStream = fs.createWriteStream(logPath, { flags: 'a' });
 const lockFilePath = path.join(tempDir, '~~ld246' + username + new Date().toLocaleDateString().replace(/\//g, '') + '~~signin.lock');
 if (DEBUG) console.log("lockFilePath: ", lockFilePath);
 const cookieFilePath = path.join(tempDir, `~~ld246${username}~~cookies.json`);
@@ -289,6 +294,7 @@ if (fs.existsSync(lastLockFilePath)) {
         if (delay && typeof delay === 'number') await sleep(delay);
         // 关闭写入流
         logStream.end();
+        // 删除临时目录
         // 关闭浏览器
         if (!DEBUG) {
             console.log("已关闭浏览器");
