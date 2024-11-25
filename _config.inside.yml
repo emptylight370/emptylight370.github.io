@@ -161,7 +161,7 @@ page:
   # toc: false
 
   # Display reward, default to `false`
-  # reward: true
+  reward: true
 
   # Display copyright notice, default to `false`
   copyright: true
@@ -276,6 +276,11 @@ reward:
   #     url: https://paypal.me/imelmore
   #     text: This is a paypal payment link
   #     color: '#09bb07'
+  methods:
+    - name: paypal
+      url: https://afdian.com/a/tingyuting
+      text: This is a afdian payment link
+      color: '#b75353'
 
 # Copyright notice
 # It is possible to use front matter `copyright` to override this setting.
@@ -329,7 +334,7 @@ data_prefix:
 data_dir:
 
 # Favicon, default to `favicon.ico`
-favicon:
+favicon: https://cdn-res.emptylight.cn/website/img/favicon-96.jpg
 
 # Google analytics
 # ga: UA-00000000-0
