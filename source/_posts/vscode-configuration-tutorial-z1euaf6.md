@@ -9,7 +9,6 @@ toc: true
 
 
 
-# VSCode配置教程
 
 <iframe sandbox="allow-top-navigation-by-user-activation allow-same-origin allow-forms allow-scripts allow-popups" src="https://player.bilibili.com/player.html?bvid=BV1WLaFe1EPa&amp;page=1&amp;high_quality=1&amp;as_wide=1&amp;allowfullscreen=true&amp;autoplay=0" data-src="" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="height: 321px; width: 608px;"></iframe>
 

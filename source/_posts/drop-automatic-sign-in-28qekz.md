@@ -9,7 +9,6 @@ toc: true
 
 
 
-# 链滴自动签到
 
 基于[分享链滴自动签到 puppeteer 脚本 - 链滴 (ld246.com)](https://ld246.com/article/1724548513173)脚本实现。具体为自己添加了一点totp验证代码。
 
