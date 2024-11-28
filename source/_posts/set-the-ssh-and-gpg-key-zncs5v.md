@@ -5,6 +5,10 @@ updated: '2024-11-09 00:08:34'
 permalink: /post/set-the-ssh-and-gpg-key-zncs5v.html
 comments: true
 toc: true
+tags:
+  - Windows
+  - Linux
+  - Git
 ---
 
 

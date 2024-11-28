@@ -5,6 +5,8 @@ updated: '2024-11-20 14:19:59'
 permalink: /post/vscode-single-binding-multi-language-debugging-mqplh.html
 comments: true
 toc: true
+tags:
+  - VSCode
 ---
 
 

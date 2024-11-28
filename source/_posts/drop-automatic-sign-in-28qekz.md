@@ -5,6 +5,9 @@ updated: '2024-10-10 13:14:39'
 permalink: /post/drop-automatic-sign-in-28qekz.html
 comments: true
 toc: true
+tags:
+  - 思源笔记
+  - Windows
 ---
 
 

@@ -6,6 +6,8 @@ permalink: /post/git-operation-z1k24je.html
 comments: true
 toc: true
 tags:
+  - Windows
+  - Git
 ---
 
 
