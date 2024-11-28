@@ -17,10 +17,12 @@ jobs:
           # token: ${{ secrets.GITHUB_TOKEN }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           # submodules: recursive
+
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+
       - name: Cache NPM dependencies
         uses: actions/cache@v4
         with:
@@ -28,6 +30,7 @@ jobs:
           key: ${{ runner.OS }}-npm-cache
           restore-keys: |
             ${{ runner.OS }}-npm-cache
+
       # Caching public
       - name: cache public
         id: cache-public
@@ -39,21 +42,36 @@ jobs:
           key: ${{ runner.os }}-public-${{ hashFiles('**/db.json') }}
           restore-keys: |
             ${{ runner.os }}-public-
+
       - name: Install Dependencies
         run: npm install
+
+      - name: Clone and install custom fix
+        run: |
+          git clone https://github.com/emptylight370/hexo-theme-inside.git
+          cd hexo-theme-inside
+          npm install  # 安装修复版本所需的依赖
+          npm pack  # 打包修复版本为.tgz文件
+          cd ..
+          npm install ./hexo-theme-inside/*.tgz  # 使用本地打包的文件安装修复版本
+
       # - name: Hexo Clean Cache
       #   run: hexo clean
+
       - name: Build
         run: npm run build
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
+
       # - name: Upload artifact
       #   uses: actions/upload-artifact@v4
       #   with:
       #     name: pageFiles
       #     path: ./public
+
   deploy:
     needs: build
     permissions:
@@ -78,12 +96,16 @@ jobs:
           # name: pageFiles
           name: github-pages
           path: ./public
+
       - name: Unpack the Artifact
         run: tar xf ./public/artifact.tar -C ./public
+
       - name: Delete the tar
         run: rm -f ./public/atrifact.tar
+
       - name: Install COS deps
         run: pip install coscmd
+
       - name: Set COS deps
         env:
           SECRET_ID: ${{ secrets.TCLOUD_ID }}
@@ -91,5 +113,6 @@ jobs:
           BUCKET: ${{ secrets.TCLOUD_BUCKET }}
           REGION: ${{ secrets.TCLOUD_REGION }}
         run: coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
+
       - name: Upload COS files
         run: coscmd upload -rfs --delete ./public/ /
