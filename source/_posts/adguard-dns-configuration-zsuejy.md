@@ -38,7 +38,7 @@ AdGuard 的 DNS 服务器可以用公用的，也可以私有配置一个。免�
 
 免费版服务支持最多 2 个服务器，5 个用户，100 条高级设置的访问规则。
 
-​![PixPin_2024-12-16_23-57-25](https://cdn-res.emptylight.cn/share/img/PixPin_2024-12-16_23-57-25-20241216235728-odedhu4.png "AdGuard")​
+​![PixPin_2024-12-16_23-57-25](https://cdn-res.emptylight.cn/share/img/2024/PixPin_2024-12-16_23-57-25-20241216235728-odedhu4.png "AdGuard")​
 
 要看的地方主要是拦截列表、设备。首先根据你的意愿设置若干拦截列表，这个默认有启用一个 AdGuard DNS 过滤器。
 
@@ -46,15 +46,15 @@ AdGuard 的 DNS 服务器可以用公用的，也可以私有配置一个。免�
 
 接着设置好之后就可以着手添加设备。进入设备管理页面，选择连接新设备。
 
-​![PixPin_2024-12-16_23-59-42](https://cdn-res.emptylight.cn/share/img/PixPin_2024-12-16_23-59-42-20241216235943-i4kaf4i.png "连接新设备")​
+​![PixPin_2024-12-16_23-59-42](https://cdn-res.emptylight.cn/share/img/2024/PixPin_2024-12-16_23-59-42-20241216235943-i4kaf4i.png "连接新设备")​
 
 选择设备类型并输入设备名称，点击下一个进入下一步。之后你就会根据选中的设备类型看到对应的设备连接页面。
 
-​![PixPin_2024-12-17_00-00-43](https://cdn-res.emptylight.cn/share/img/PixPin_2024-12-17_00-00-43-20241217000131-zke9spe.png "添加Windows设备")​
+​![PixPin_2024-12-17_00-00-43](https://cdn-res.emptylight.cn/share/img/2024/PixPin_2024-12-17_00-00-43-20241217000131-zke9spe.png "添加Windows设备")​
 
 这里以 Windows 为例，点击使用 AdGuard 应用程序，展开后点击 AdGuard 广告拦截程序的连接按钮，就能拉起本地的 AdGuard 广告拦截程序并默认填入 DoH 地址。之后你可以点击手动连接说明查看所有的连接地址，包括 DoH、DoT、DoQ。如果你想的话挨个复制到 AdGuard 广告拦截器的输入框中，每个占一行。不过电脑的访问默认走的是 DoH，这个我不知道怎么回事，我的配置是从 quic 到 tls 再到 DoH 的，应该从上往下应用才对。
 
-​![PixPin_2024-12-17_00-03-24](https://cdn-res.emptylight.cn/share/img/PixPin_2024-12-17_00-03-24-20241217000325-oy1jr7v.png "连接AdGuard应用程序")​
+​![PixPin_2024-12-17_00-03-24](https://cdn-res.emptylight.cn/share/img/2024/PixPin_2024-12-17_00-03-24-20241217000325-oy1jr7v.png "连接AdGuard应用程序")​
 
 对于安卓应用，在连接界面可以看到多一个二维码，不过我配置的时候二维码不显示，点击连接会拉起电脑的 AdGuard，所以只能手动配置。这里同样点击手动连接说明，找到你的连接链接，按照说明挨个往手机 AdGuard DNS 配置里填，按照 quic 到 tls 到 DoH 的顺序从上往下填，手机就会先用 quic 访问 DNS。
 
@@ -62,7 +62,7 @@ AdGuard 的 DNS 服务器可以用公用的，也可以私有配置一个。免�
 
 ## 服务器高级设置
 
-​![PixPin_2024-12-17_00-19-10](https://cdn-res.emptylight.cn/share/img/PixPin_2024-12-17_00-19-10-20241217001912-8diacg7.png)​
+​![PixPin_2024-12-17_00-19-10](https://cdn-res.emptylight.cn/share/img/2024/PixPin_2024-12-17_00-19-10-20241217001912-8diacg7.png)​
 
 接着看服务器设置，有一个对阻止域名的响应，默认是返回零地址。可以设置成 REFUSED 或 NXDOMAIN，比较适配本地 AdGuard 拦截的默认设定。至于 TTL 是请求的超时时间，可以自行设置一个比较折中的值，默认的 10 秒还会频繁请求服务器。根据描述，如果你想要降低对 DNS 服务器的请求，并且认为拦截的请求不需要手动放行并且快速应用更改，那么你就可以设置一个比较高的值。我记得在哪里的 TTL 默认值是 600 秒就是 10 分钟来着，这里我就直接套用了。
 

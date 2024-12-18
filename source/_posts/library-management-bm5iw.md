@@ -31,10 +31,10 @@ tags:
 # 管理
 
 使用 `pip list`​​ 即可查看当前安装的所有库。显示效果为平铺，显示当前版本号。  
-​![image](https://cdn-res.emptylight.cn/share/img/image-20230822210807-219e2zz.png "pip")​
+​![image](https://cdn-res.emptylight.cn/share/img/2023/image-20230822210807-219e2zz.png "pip")​
 
 在安装了 `pipdeptree`​​​ 库后可以通过命令 `pipdeptree`​​​ 查看当前安装的库的依赖关系。显示效果为分层嵌套，显示当前版本号。  
-​![image](https://cdn-res.emptylight.cn/share/img/image-20230822210901-vh7ipbs.png "pipdeptree")​
+​![image](https://cdn-res.emptylight.cn/share/img/2023/image-20230822210901-vh7ipbs.png "pipdeptree")​
 
 # 更新
 
