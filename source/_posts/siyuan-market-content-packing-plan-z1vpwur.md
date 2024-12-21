@@ -5,9 +5,6 @@ updated: '2024-11-15 19:21:47'
 permalink: /post/siyuan-market-content-packing-plan-z1vpwur.html
 comments: true
 toc: true
-tags:
-  - 思源笔记
-  - GitHub
 ---
 
 
@@ -160,7 +157,7 @@ jobs:
 
 ​`${{ secrets }}`​是你这个仓库设置的机密信息，通常只有仓库管理员可设置和查看。用到的账号密码可以往里面放，基本不会意外泄漏。`token: ${{ secrets.GITHUB_TOKEN }}`​用于为需要权限操作仓库的步骤赋予权限。
 
-## 推送`plugin.json`​文件触发
+## 推送`theme.json`​文件触发
 
 上面介绍了通过推送带有tag的提交触发打包流程，下面我介绍一下通过推送`plugin.json`​、`theme.json`​、`widget.json`​等配置文件来触发打包流程的过程。
 
@@ -214,6 +211,70 @@ jobs:
 5. 使用现成的发布actions，创建一个tag为前面读取的版本号、附加文件为`package.zip`​的Release。
 
 这一个工作流文件和前面的文件大有不同，因为这个仓库并没有任何需要编译的环节，所有工作只是机械地打包文件并创建发布。所以只需要最原始的方式来完成就好。
+
+## 推送`plugin.json`​文件触发
+
+在实际上手之后才发现原来还能简化。上面给出的方法是建立在主题不需要什么打包的基础上的。这里用我自己的方法写了一个打包工作流，发现比起社区的工作流还能简化。
+
+下面给出的代码是我的[format-helper](https://github.com/emptylight370/sy-format-helper/blob/main/.github/workflows/package.yml)插件的打包工作流，这次是用的官方插件示例，打包流程也是官方的流程，于是我拿上来介绍一下。
+
+```yml
+name: Package
+
+on: 
+  push:
+    paths: 
+      - 'plugin.json' # 在推送plugin.json时触发工作流
+  workflow_dispatch: # 手动触发工作流
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4 # 检出仓库
+
+      - uses: pnpm/action-setup@v4 # 配置pnpm，不需要自己安装
+        with:
+          version: 9 # 印象里这个是只有pnpm，因为不需要配套的那个什么东西，也没有npm
+                     # 如果需要npm就添加另一个uses
+
+      - name: install deps # 用pnpm安装依赖
+        run: pnpm i
+
+      - name: install jq # 安装jq
+        run: sudo apt-get install jq
+
+      - name: create tag # 获取当前的版本号
+        run: echo "VERSION=$(jq -r ".version" plugin.json)" >> $GITHUB_ENV
+
+      - name: package # 用pnpm打包，这个命令就是官方插件的打包命令
+        run: pnpm build
+
+      - name: Release # 用tag创建一个发布版，上传package.zip作为附件
+        uses: softprops/action-gh-release@v2
+        with:
+          files: package.zip
+          name: Release ${{ env.VERSION }}
+          tag_name: ${{ env.VERSION }}
+          make_latest: true
+```
+
+原谅我再次没有给仓库文件写注释，这里我补上了一点注释。
+
+1. 切换到仓库。
+2. 加载pnpm环境（不需要自己安装）。
+3. 安装pnpm依赖。
+4. 安装`jq`​工具。
+5. 读取当前的版本号。
+6. 使用pnpm打包。
+7. 使用现成的发布actions，创建一个tag为前面读取的版本号、附加文件为`package.zip`​的Release。
+
+这次的流程因为需要打包，所以比单纯的主题要麻烦一点。不过官方的示例有pnpm打包的代码，这里只需要调用一下就好。在actions里用pnpm和npm环境并不需要自己安装，可以用uses来引入这个环境，就像用uses来引入仓库一样。后面的其他步骤基本上都和前面的主题打包一样，我就不多分析。
 
 ## 补充内容
 
