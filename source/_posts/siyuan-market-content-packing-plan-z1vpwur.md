@@ -2,6 +2,9 @@
 title: 思源集市内容打包方案
 date: '2024-11-15 17:52:03'
 updated: '2024-11-15 19:21:47'
+tags:
+  - 思源笔记
+  - GitHub
 permalink: /post/siyuan-market-content-packing-plan-z1vpwur.html
 comments: true
 toc: true
@@ -214,7 +217,7 @@ jobs:
 
 ## 推送`plugin.json`​文件触发
 
-在实际上手之后才发现原来还能简化。上面给出的方法是建立在主题不需要什么打包的基础上的。这里用我自己的方法写了一个打包工作流，发现比起社区的工作流还能简化。
+在实际上手之后才发现原来还能简化。上面给出的方法是建立在主题不需要什么打包的基础上的。这里用我自己的方法写了一个打包工作流。
 
 下面给出的代码是我的[format-helper](https://github.com/emptylight370/sy-format-helper/blob/main/.github/workflows/package.yml)插件的打包工作流，这次是用的官方插件示例，打包流程也是官方的流程，于是我拿上来介绍一下。
 
