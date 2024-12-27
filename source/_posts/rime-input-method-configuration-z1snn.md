@@ -1,7 +1,7 @@
 ---
 title: rime输入法配置
 date: '2024-12-26 14:56:52'
-updated: '2024-12-27 19:53:58'
+updated: '2024-12-27 19:55:29'
 tags:
   - Android
   - Windows
@@ -168,6 +168,13 @@ patch:
 
 ```yml
 patch:
+  punctuator:
+    full_shape:
+      __include: default:/punctuator/full_shape  # 从 default.yaml 导入配置
+    half_shape:
+      __include: default:/punctuator/half_shape  # 从 default.yaml 导入配置
+    symbols:
+      __include: symbols_caps_v:/symbols         # 从 symbols_caps_v.yaml 导入配置
   recognizer/patterns/punct: "^V([0-9]|10|[A-Za-z]+)$"    # 响应 symbols_caps_v.yaml 的 symbols
 ```
 
@@ -175,6 +182,13 @@ patch:
 
 ```yml
 patch:
+  punctuator:
+    full_shape:
+      __include: default:/punctuator/full_shape  # 从 default.yaml 导入配置
+    half_shape:
+      __include: default:/punctuator/half_shape  # 从 default.yaml 导入配置
+    symbols:
+      __include: symbols_v:/symbols              # 从 symbols_v.yaml 导入配置
   recognizer/patterns/punct: "^v([0-9]|10|[A-Za-z]+)$"    # 响应 symbols_v.yaml 的 symbols
 ```
 
