@@ -192,4 +192,23 @@ patch:
   recognizer/patterns/punct: "^v([0-9]|10|[A-Za-z]+)$"    # 响应 symbols_v.yaml 的 symbols
 ```
 
-‍
+## 添加词库
+
+在网上找到合适的词库，比如游戏词库什么的，然后下载到本地，使用深蓝词库转换工具，把词库转成rime的格式，然后按照你用的方案将词库转成yaml格式最好。放在你的词库的地方。这里用薄荷作说明。
+
+首先下载词库，转换好之后放到dicts文件夹下，注意将元信息改成文件对应的格式，就是文件开头的那个：
+
+```yml
+# Rime dictionary
+# encoding: utf-8
+#
+# 个性化词语 - by @Mintimate
+# 建议自定义短语或者词语追加在这里
+---
+name: custom_simple
+version: "2023.11.30"
+sort: by_weight
+...
+```
+
+把这部分内容放进你词库的开头，并且视情况将sort改为`original`​，之后打开你的`rime_mint.dict.yaml`​文件，把你的词库添加进列表的后面，在`-`​同级的位置多写一行`-`​并把你的词库按名字写进去，比如`dict/name`​，这里的`name`​就是`name.dict.yaml`​部分的名称。添加好之后重新配置你的输入法就可以了。后面检查一下有没有成功添加，如果在这里再添加引入形式的词库会不生效。
