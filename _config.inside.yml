@@ -178,7 +178,7 @@ post:
   # The following settings are the same as the page
   # toc: false
   # reward: true
-  # copyright: true
+  copyright: true
 
 # Archive
 archive:
@@ -265,6 +265,7 @@ toc:
 reward:
   # Text which shows at the top.
   # text: Buy me a cup of coffee ☕.
+  text: Use Afdian to support me.
 
   # Payment Methods
   # qrcode, url and text must be set at least one
