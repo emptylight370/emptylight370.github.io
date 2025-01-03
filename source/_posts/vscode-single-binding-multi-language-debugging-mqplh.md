@@ -1,7 +1,7 @@
 ---
 title: VSCode单键绑定多语言调试
 date: '2024-11-20 13:33:24'
-updated: '2024-11-20 14:19:59'
+updated: '2024-11-20 20:22:10'
 permalink: /post/vscode-single-binding-multi-language-debugging-mqplh.html
 comments: true
 toc: true

@@ -1,7 +1,7 @@
 ---
 title: rime输入法配置
 date: '2024-12-26 14:56:52'
-updated: '2024-12-27 19:55:29'
+updated: '2024-12-28 21:49:13'
 tags:
   - Android
   - Windows
