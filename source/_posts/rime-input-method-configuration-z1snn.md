@@ -1,7 +1,7 @@
 ---
 title: rime输入法配置
 date: '2024-12-26 14:56:52'
-updated: '2024-12-28 21:49:13'
+updated: '2025-01-07 12:06:01'
 tags:
   - Android
   - Windows
@@ -149,6 +149,39 @@ patch:
 之后只需要通过应用里的设置调一下外观，默认输入方法之类的，就可以了。
 
 同时手机上还有一个雨燕输入法可以选用。
+
+## 配置语法
+
+rime专门在YAML的基础上添加了一些配置语法，用来更好地调整配置文件。
+
+这里是一些介绍。同时也可以看这里：[Rime 配置文件 | RimeInn](https://rimeinn.github.io/rime/configuration.html)。
+
+```yaml
+patch:
+  label/label:
+    __include: default:/label/label # 从默认配置文件导入
+    __append: some texts # 在当前配置项下追加内容,只能用在__include
+    __patch: patch your config # 跟上面的patch用法一样
+    __merge: merge into include # 使用include之后可以合并内容到前面
+```
+
+上述特别提到`__append`​和`__merge`​就是因为之前配置符号输入的时候，如果只用`__include`​就没事，一旦新增自己的配置项就会编译错误回退，因此研究出了`__append`​和`__merge`​的使用场合：向`__include`​中添加和修改内容。
+
+同时还有一些方法可以直接对列表进行操作。
+
+```yaml
+patch:
+  name/list/+:
+    - add # 向列表中添加内容
+  name/list/=:
+    - cover # 将这个配置项覆盖为这里的配置
+  name/list/@0:
+    - new value # 将下标为0的元素(即第一个元素)修改,编号同其他编程语言
+  name/list/@last:
+    - new value # 将最后一个元素修改
+```
+
+这里还有一些其他的定位标签没有讲，不过在补丁里有点不方便，也不推荐在补丁中使用那些标签，所以这里不列出了。
 
 # 输入法同步
 
