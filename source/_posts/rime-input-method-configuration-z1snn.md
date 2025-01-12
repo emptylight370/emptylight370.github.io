@@ -245,3 +245,7 @@ sort: by_weight
 ```
 
 把这部分内容放进你词库的开头，并且视情况将sort改为`original`​，之后打开你的`rime_mint.dict.yaml`​文件，把你的词库添加进列表的后面，在`-`​同级的位置多写一行`-`​并把你的词库按名字写进去，比如`dict/name`​，这里的`name`​就是`name.dict.yaml`​部分的名称。添加好之后重新配置你的输入法就可以了。后面检查一下有没有成功添加，如果在这里再添加引入形式的词库会不生效。
+
+# 尾注
+
+目前本文的配置已经部分上传至[GitHub](https://github.com/emptylight370/rime-settings)和[Gitee](https://gitee.com/emptylight370/rime-settings)留档，可以前往查看。双方互为镜像站，进度统一。
