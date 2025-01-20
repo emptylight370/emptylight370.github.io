@@ -108,6 +108,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Install Python Basics
+        run: python -m pip install -u pip setuptools
+
       - name: Install COS deps
         run: |
           git clone https://github.com/tencentyun/coscmd.git
