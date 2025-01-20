@@ -103,8 +103,17 @@ jobs:
       - name: Delete the tar
         run: rm -f ./public/atrifact.tar
 
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
       - name: Install COS deps
-        run: pip install coscmd
+        run: |
+          git clone https://github.com/tencentyun/coscmd.git
+          cd coscmd
+          python setup.py install
+          cd ..
 
       - name: Set COS deps
         env:
