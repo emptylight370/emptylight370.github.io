@@ -432,3 +432,17 @@ plugins:
     # template: <script>...</script>
     # Or a path relative to `hexo.base_dir`
     # template: snippets/snippet-1.html
+  - position: head_end
+    template: |
+      <script>
+        window.immersiveTranslateConfig = {
+        pageRule: {
+          selectors: ["h1.φfp","div.φe","nav.φdi"],
+          excludeSelectorMatches: ["img"],
+          translationClasses: ["imstranslated"],
+          injectedCss: [".imstranslated{text-decoration:underline dashed #72ece9;}"]
+        },
+        };
+      </script>
+  - position: head_end
+    template: <script async src="https://download.immersivetranslate.com/immersive-translate-sdk-latest.js"></script>
