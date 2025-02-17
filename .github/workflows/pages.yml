@@ -55,8 +55,8 @@ jobs:
           cd ..
           npm install ./hexo-theme-inside/*.tgz  # 使用本地打包的文件安装修复版本
 
-      # - name: Hexo Clean Cache
-      #   run: hexo clean
+      - name: Hexo Clean Cache
+        run: npm run clean
 
       - name: Build
         run: npm run build

@@ -177,7 +177,7 @@ post:
 
   # The following settings are the same as the page
   # toc: false
-  # reward: true
+  reward: true
   copyright: true
 
 # Archive
