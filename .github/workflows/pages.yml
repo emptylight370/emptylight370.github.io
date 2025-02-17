@@ -66,11 +66,11 @@ jobs:
         with:
           path: ./public
 
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: pageFiles
-      #     path: ./public
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cos-file
+          path: ./public
 
   deploy:
     needs: build
@@ -85,6 +85,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
   sendCOS:
     needs: build
     runs-on: ubuntu-latest
@@ -93,30 +94,20 @@ jobs:
       - name: Download the only Artifact
         uses: actions/download-artifact@v4
         with:
-          # name: pageFiles
-          name: github-pages
+          name: cos-file
           path: ./public
 
-      - name: Unpack the Artifact
-        run: tar xf ./public/artifact.tar -C ./public
-
-      - name: Delete the tar
-        run: rm -f ./public/artifact.tar
-
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+          cache: 'pip'
 
-      - name: Install Python Basics
-        run: python -m pip install --upgrade pip setuptools
-
-      - name: Install COS deps
+      - name: Setup deps
         run: |
+          python -m pip install --upgrade pip setuptools
           git clone https://github.com/tencentyun/coscmd.git
-          cd coscmd
-          python setup.py install
-          cd ..
+          python ./coscmd/setup.py install
 
       - name: Set COS deps
         env:
