@@ -46,15 +46,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Clone and install custom fix
-        run: |
-          git clone https://github.com/emptylight370/hexo-theme-inside.git
-          cd hexo-theme-inside
-          npm install  # 安装修复版本所需的依赖
-          npm pack  # 打包修复版本为.tgz文件
-          cd ..
-          npm install ./hexo-theme-inside/*.tgz  # 使用本地打包的文件安装修复版本
-
       - name: Hexo Clean Cache
         run: npm run clean
 
