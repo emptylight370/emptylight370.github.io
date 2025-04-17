@@ -7,7 +7,7 @@ tags:
   - Windows
   - AdGuard
   - DNS
-permalink: /post/adguard-dns-configuration-zsuejy.html
+permalink: /post/2024/12/adguard-dns-configuration-zsuejy.html
 comments: true
 toc: true
 ---

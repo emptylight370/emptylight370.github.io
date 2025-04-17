@@ -5,7 +5,7 @@ updated: '2025-01-20 22:16:47'
 tags:
   - JavaScript
   - Browser
-permalink: /post/use-immersive-translation-in-blogs-z1m6lf2.html
+permalink: /post/2025/01/use-immersive-translation-in-blogs-z1m6lf2.html
 comments: true
 toc: true
 ---

@@ -2,7 +2,7 @@
 title: git操作
 date: '2023-10-25 18:39:54'
 updated: '2023-11-07 22:04:43'
-permalink: /post/git-operation-z1k24je.html
+permalink: /post/2023/11/git-operation-z1k24je.html
 comments: true
 toc: true
 tags:

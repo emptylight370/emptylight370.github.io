@@ -2,7 +2,7 @@
 title: VSCode配置教程
 date: '2024-07-07 11:24:43'
 updated: '2024-07-31 23:47:00'
-permalink: /post/vscode-configuration-tutorial-z1euaf6.html
+permalink: /post/2024/07/vscode-configuration-tutorial-z1euaf6.html
 comments: true
 toc: true
 tags:

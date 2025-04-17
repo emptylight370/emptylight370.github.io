@@ -6,7 +6,7 @@ tags:
   - Windows
   - Rime
   - VSCode
-permalink: /post/completely-disable-the-ctrl-space-hotkey-for-input-method-z8rvxa.html
+permalink: /post/2025/02/completely-disable-the-ctrl-space-hotkey-for-input-method-z8rvxa.html
 comments: true
 toc: true
 ---

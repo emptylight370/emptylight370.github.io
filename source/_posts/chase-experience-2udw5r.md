@@ -2,7 +2,7 @@
 title: 追番体验
 date: '2023-12-29 23:25:02'
 updated: '2023-12-30 00:35:02'
-permalink: /post/chase-experience-2udw5r.html
+permalink: /post/2023/12/chase-experience-2udw5r.html
 comments: true
 toc: true
 tags:

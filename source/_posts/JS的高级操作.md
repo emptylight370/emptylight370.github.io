@@ -2,6 +2,7 @@
 title: JS的高级操作
 date: 2023-08-20T23:21:13Z
 lastmod: 2023-08-21T14:25:20Z
+permalink: /post/2023/08/advance-operation-of-js.html
 tags:
   - JavaScript
   - Browser

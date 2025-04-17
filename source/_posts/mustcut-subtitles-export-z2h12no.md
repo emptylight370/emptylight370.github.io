@@ -4,7 +4,7 @@ date: '2025-02-23 19:39:46'
 updated: '2025-02-23 19:56:23'
 tags:
   - Windows
-permalink: /post/mustcut-subtitles-export-z2h12no.html
+permalink: /post/2025/02/mustcut-subtitles-export-z2h12no.html
 comments: true
 toc: true
 ---

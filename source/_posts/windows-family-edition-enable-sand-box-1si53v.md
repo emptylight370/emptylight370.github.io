@@ -2,7 +2,7 @@
 title: windows家庭版启用沙盒
 date: '2023-10-17 23:23:19'
 updated: '2023-10-17 23:49:19'
-permalink: /post/windows-family-edition-enable-sand-box-1si53v.html
+permalink: /post/2023/10/windows-family-edition-enable-sand-box-1si53v.html
 comments: true
 toc: true
 tags:

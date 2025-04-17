@@ -5,7 +5,7 @@ updated: '2025-02-14 14:19:13'
 tags:
   - 思源笔记
 permalink: >-
-  /post/about-siyuan-notes-3121-synchronization-error-processing-process-z1uzayx.html
+  /post/2025/02/about-siyuan-notes-3121-synchronization-error-processing-process-z1uzayx.html
 comments: true
 toc: true
 ---

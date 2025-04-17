@@ -7,7 +7,7 @@ tags:
   - Windows
   - macOS
   - Rime
-permalink: /post/rime-input-method-configuration-z1snn.html
+permalink: /post/2024/12/rime-input-method-configuration-z1snn.html
 comments: true
 toc: true
 ---

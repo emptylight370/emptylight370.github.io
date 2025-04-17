@@ -2,7 +2,7 @@
 title: 设置SSH和GPG密钥
 date: '2024-11-08 22:39:41'
 updated: '2024-11-14 10:10:48'
-permalink: /post/set-the-ssh-and-gpg-key-zncs5v.html
+permalink: /post/2024/11/set-the-ssh-and-gpg-key-zncs5v.html
 comments: true
 toc: true
 tags:

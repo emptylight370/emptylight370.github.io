@@ -9,7 +9,7 @@ tags:
   - DNS
   - macOS
 permalink: >-
-  /post/a-domain-name-resolution-and-modification-method-based-on-adguard-1qztq.html
+  /post/2025/04/a-domain-name-resolution-and-modification-method-based-on-adguard-1qztq.html
 comments: true
 toc: true
 ---

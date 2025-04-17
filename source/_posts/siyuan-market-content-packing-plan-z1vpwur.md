@@ -5,7 +5,7 @@ updated: '2024-12-21 13:56:15'
 tags:
   - 思源笔记
   - GitHub
-permalink: /post/siyuan-market-content-packing-plan-z1vpwur.html
+permalink: /post/2024/11/siyuan-market-content-packing-plan-z1vpwur.html
 comments: true
 toc: true
 ---
