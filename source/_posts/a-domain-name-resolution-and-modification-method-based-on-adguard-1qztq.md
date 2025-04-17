@@ -1,7 +1,7 @@
 ---
 title: 一种基于AdGuard的域名解析修改方法
 date: '2025-04-14 21:05:09'
-updated: '2025-04-14 21:32:37'
+updated: '2025-04-17 12:26:00'
 tags:
   - Android
   - Windows
