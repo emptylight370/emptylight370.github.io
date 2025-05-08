@@ -2,7 +2,11 @@
 title: AdGuard Android出站代理
 date: '2025-05-07 21:55:52'
 updated: '2025-05-07 23:37:18'
-permalink: /post/adguard-android-outbound-proxy-1ad1jn.html
+tags:
+  - Android
+  - AdGuard
+  - DNS
+permalink: /post/2025/05/adguard-android-outbound-proxy-1ad1jn.html
 comments: true
 toc: true
 ---
