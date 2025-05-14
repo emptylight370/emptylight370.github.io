@@ -1,7 +1,7 @@
 ---
 title: AdGuard Android出站代理
 date: '2025-05-07 21:55:52'
-updated: '2025-05-07 23:37:18'
+updated: '2025-05-14 23:07:45'
 tags:
   - Android
   - AdGuard
@@ -50,6 +50,8 @@ toc: true
 ![VPN 系统代理关闭](https://cdn-res.emptylight.cn/share/img/2025/05476454e8171d756e59fc52550390d2.jpg "VPN系统代理")
 
 与无 root 模式不同，AdGuard 使用自动代理模式无需添加代理设置，可直接同时启用 AdGuard 过滤和代理应用，出站流量会自动通过 AdGuard 和代理应用。
+
+但是如果启用了代理应用的访问控制，又无法在日志中看到 AdGuard 之外的连接日志，可以尝试为 AdGuard 开启代理功能，这样可以在代理应用中看到其他应用的请求日志。不开启 AdGuard 的代理功能不影响正常使用代理，但是可能导致访问控制不显示其他应用。不过实际用起来感觉没差。
 
 ## DNS 设置
 
