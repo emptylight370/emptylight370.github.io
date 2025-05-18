@@ -1,7 +1,7 @@
 ---
 title: AdGuard Android出站代理
 date: '2025-05-07 21:55:52'
-updated: '2025-05-14 23:07:45'
+updated: '2025-05-18 11:37:27'
 tags:
   - Android
   - AdGuard
@@ -46,6 +46,8 @@ toc: true
 ![AdGuard 路由模式](https://cdn-res.emptylight.cn/share/img/2025/33950c3004179c40f8b3550b2d481698.jpg "过滤-网络-路由模式")
 
 之后在代理应用中关闭 VPN 服务的系统代理（HTTP 代理），让 HTTP 代理由 AdGuard 处理，否则 AdGuard 过滤不会生效。
+
+> 在代理应用更新后，在测试中启用系统代理，AdGuard 中仍能看到访问记录，不过不确定是否正常过滤。启用系统代理后代理应用性能提高，关闭系统代理后代理应用对连接的管理可能出现问题。
 
 ![VPN 系统代理关闭](https://cdn-res.emptylight.cn/share/img/2025/05476454e8171d756e59fc52550390d2.jpg "VPN系统代理")
 
