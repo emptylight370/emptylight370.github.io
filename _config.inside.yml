@@ -126,6 +126,9 @@ sns:
   - icon: github
     title: GitHub
     url: https://github.com/emptylight370
+  - title: Afdian
+    url: https://afdian.com/a/tingyuting
+    template: <img src="https://static.afdiancdn.com/static/img/logo/logo.png" style="width:16.8px;height:16.8px;"></img>
 
   # custom icon
   # - title: Email me
