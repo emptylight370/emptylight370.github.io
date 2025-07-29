@@ -1,15 +1,14 @@
 ---
 title: 链滴自动签到
 date: '2024-10-10 13:03:27'
-updated: '2024-10-10 21:38:30'
-permalink: /post/2024/10/drop-automatic-sign-in-28qekz.html
-comments: true
-toc: true
+updated: '2025-07-30 00:50:48'
 tags:
   - 思源笔记
   - Windows
+permalink: /post/2024/10/drop-automatic-sign-in-28qekz.html
+comments: true
+toc: true
 ---
-
 
 
 
@@ -17,16 +16,17 @@ tags:
 
 请先看原版文章了解使用方式。更新脚本只需要修改脚本内容。
 
-# 更新日志
 
-* 2024-10-10 首次修改实现2fa验证
-* 2024-10-10 修改log日志地址
+
+- 2024-10-10 首次修改实现2fa验证
+- 2024-10-10 修改log日志地址
+- 2025-07-30 因为服务器开启了安全防护，添加了一种无法签到的情况
 
 # 环境依赖
 
-* node 18+
-* puppeteer-core
-* otpauth
+- node 18+
+- puppeteer-core
+- otpauth
 
 # 代码实现
 
@@ -158,6 +158,15 @@ if (fs.existsSync(lastLockFilePath)) {
         // 判断是否已登录
         const hasLogin = await page.$(logoutButtonSelector);
         if (!hasLogin) {
+            // 判断是否有安全验证
+            let title = await page.$("div.title");
+            let titleText = title ? await page.evaluate(el => el.textContent, title) : null;
+            if (titleText === "请完成以下操作，验证您是真人") {
+                console.log("需要安全认证，脚本无法签到");
+                logStream.write("[" + (new Date().toLocaleString()) + "] " + username + " 签到失败，网站开启了安全验证。\n");
+                alert(username + " 签到失败，网站开启了安全验证。");
+                await exit(1);
+            }
             // 模拟登录
             console.log("检测到未登录，正在打开登录页面", loginUrl);
             await page.goto(loginUrl, { timeout: 30000 });
@@ -385,5 +394,5 @@ function sleep(ms) {
 3. 点击右侧“操作”的创建任务
 4. 填写任务名称（例如链滴自动登录）
 5. 设置触发器（切换到触发器面板，点击新建）
-6. 新建操作，程序或脚本就写`node`​，添加参数写你的文件全地址，起始于写你的文件路径（或许可以不用？）
+6. 新建操作，程序或脚本就写`node`，添加参数写你的文件全地址，起始于写你的文件路径（或许可以不用？）
 7. 后面的条件和设置可视情况而定
