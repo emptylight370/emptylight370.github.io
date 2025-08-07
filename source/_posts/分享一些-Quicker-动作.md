@@ -1,9 +1,12 @@
 ---
 title: 分享一些Quicker动作
 date: '2025-08-07 10:52:07'
-updated: '2025-08-07 11:46:15'
+updated: '2025-08-07 22:27:09'
 tags:
   - Windows
+  - 思源笔记
+  - Browser
+  - VSCode
 permalink: /post/share-some-quicker-actions-zulhol.html
 comments: true
 toc: true
@@ -69,7 +72,7 @@ toc: true
 
 动作地址：[思源工具箱 - by Emptylight - 动作信息 - Quicker](https://getquicker.net/Sharedaction?code=da24bc48-a6c3-4b53-eb24-08ddcb62c590&fromMyShare=true)
 
-虽然叫这个名字，但其实还没写什么功能。
+虽然叫这个名字，但其实还没写什么功能。之后如果有功能更新不会再修改这里的列表。
 
 现在有的功能为：
 
@@ -77,6 +80,8 @@ toc: true
 
     1. 粘贴为数据库
     2. 粘贴为链接
+    3. 粘贴着重号
+    4. 粘贴上划线
 2. 修改标题层级
 
 粘贴为数据库：通过[这个方法](https://ld246.com/article/1736255616534/comment/1753178849535?r=EmptyLight#comments)，输入数据库 id 之后可以粘贴出一个数据库。适合把未引用的数据库添加到文档中进行显示。
