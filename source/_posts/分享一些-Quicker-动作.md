@@ -7,7 +7,7 @@ tags:
   - 思源笔记
   - Browser
   - VSCode
-permalink: /post/share-some-quicker-actions-zulhol.html
+permalink: /post/2025/08/share-some-quicker-actions-zulhol.html
 comments: true
 toc: true
 ---
