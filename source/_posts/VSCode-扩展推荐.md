@@ -2,7 +2,7 @@
 title: VSCode扩展推荐
 date: '2025-10-12 21:30:37'
 updated: '2025-10-12 23:54:26'
-permalink: /post/:year/:month/vscode-extension-recommendation-1nv7sh.html
+permalink: /post/2025/10/vscode-extension-recommendation-1nv7sh.html
 tags:
   - VSCode
 comments: true
