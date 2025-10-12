@@ -14,16 +14,16 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         # with:
         # token: ${{ secrets.GITHUB_TOKEN }}
         # If your repository depends on submodule, please see: https://github.com/actions/checkout
         # submodules: recursive
 
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@v4
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Cache NPM dependencies
         uses: actions/cache@v4
@@ -55,7 +55,7 @@ jobs:
         run: npm run build
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./public
 
@@ -92,7 +92,7 @@ jobs:
 
     steps:
       - name: Download the only Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: cos-file
           path: ./public
