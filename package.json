@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "volta": {
-    "node": "20.19.4",
-    "npm": "10.8.2"
+    "node": "22.20.0",
+    "npm": "10.9.3"
   },
   "scripts": {
     "build": "hexo generate",
@@ -13,7 +13,7 @@
     "server": "hexo server"
   },
   "hexo": {
-    "version": "7.3.0"
+    "version": "8.0.0"
   },
   "dependencies": {
     "hexo": "^8.0.0",
