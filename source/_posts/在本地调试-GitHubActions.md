@@ -1,7 +1,7 @@
 ---
 title: 在本地调试GitHub Actions
 date: '2025-08-20 11:19:22'
-updated: '2025-08-20 14:59:10'
+updated: '2025-10-18 17:46:06'
 tags:
   - Windows
   - GitHub
@@ -87,6 +87,10 @@ toc: true
 
 现在，需要在 VSCode 的设置中配置所使用的 act 命令，如果你没有在环境变量中配置 act 就需要使用完整路径，如果你前面拉取了本地镜像就需要配置下方的命令。
 
+#### 设置 act 命令行参数
+
+方法 1：
+
 这是插件的设置项，可以在设置中搜索此选项：
 
 ```
@@ -106,6 +110,10 @@ act --action-offline-mode
 ```
 
 具体命令的解释请在此页 [Runners - act - User Guide | Manual | Docs | Documentation](https://nektosact.com/usage/runners.html) 底部查看。
+
+方法 2：
+
+在 VSCode 左侧的 GitHub Local Actions 面板中找到 settings 部分，在 options 选项中添加 `--pull`​ 并且选择 `false`​，之后展开 options 并勾选 `pull false`​ 一行。之后运行即可看见 act 命令行中添加了 `--pull="false"` 参数。参数含义与方法 1 相同。
 
 # 使用 act 在本地运行 GitHub Actions
 
@@ -136,6 +144,8 @@ act --action-offline-mode
 详细介绍请看：[Settings | GitHub Local Actions Docs](https://sanjulaganepola.github.io/github-local-actions-docs/usage/settings/)
 
 这里的密钥部分需要自己手动填入，变量部分可以从 GitHub 导入。每个项前面的复选框应该是控制这个项是否启用。具体内容因为我不需要通过 GitHub token 发布版本之类的没有进行测试。
+
+最下面的 options 是向 act 添加的命令行参数，打勾启用。
 
 # 完成
 
