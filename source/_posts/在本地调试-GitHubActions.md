@@ -115,6 +115,8 @@ act --action-offline-mode
 
 在 VSCode 左侧的 GitHub Local Actions 面板中找到 settings 部分，在 options 选项中添加 `--pull`​ 并且选择 `false`​，之后展开 options 并勾选 `pull false`​ 一行。之后运行即可看见 act 命令行中添加了 `--pull="false"` 参数。参数含义与方法 1 相同。
 
+需要注意这个参数是跟项目或文件夹走的，适合不同项目/文件夹中需要不同参数的情况，可以将通用参数写进设置项里面，然后每个项目自行控制当前项目特定的参数。
+
 # 使用 act 在本地运行 GitHub Actions
 
 ## 运行工作流
