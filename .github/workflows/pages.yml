@@ -20,10 +20,8 @@ jobs:
         # If your repository depends on submodule, please see: https://github.com/actions/checkout
         # submodules: recursive
 
-      - name: Use Node.js 22.x
-        uses: actions/setup-node@v5
-        with:
-          node-version: "22"
+      - name: Use Volta
+        uses: volta-cli/action@v4
 
       - name: Cache NPM dependencies
         uses: actions/cache@v4
