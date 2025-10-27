@@ -103,6 +103,7 @@ jobs:
           cos_bucket: ${{ secrets.TCLOUD_BUCKET }}
           cos_region: ${{ secrets.TCLOUD_REGION }}
           cos_replace_file: crc64ecma
+          cdn_prefix: ${{ vars.TCLOUD_CDN_PREFIX }}
           local_path: public
           remote_path: ""
           clean: true
