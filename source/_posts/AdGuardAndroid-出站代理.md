@@ -29,11 +29,11 @@ toc: true
 
 这种情况下，根据 AdGuard 知识库所说，应该在 AdGuard 设置中启用代理（过滤-网络-代理），并且在其中新建一个代理，填入本地的代理地址（请注意端口）。
 
-![过滤-网络-代理](https://cdn-res.emptylight.cn/share/img/2025/0a867892a68e31bb55ded1b65c1f6ecc.jpg "过滤-网络-代理")
+![过滤-网络-代理](https://res.emptylight.cn/share/img/2025/0a867892a68e31bb55ded1b65c1f6ecc.jpg "过滤-网络-代理")
 
 之后在代理应用中关闭 VpnService（不占用系统 VPN 服务），并且检查是否能通过代理端口访问到代理（通过 AdGuard 代理设置检查），如有需要可启用代理应用中的局域网代理选项（通过局域网访问代理，本地访问应该不需要）。
 
-![VpnService 关](https://cdn-res.emptylight.cn/share/img/2025/a8dfd4f5bfe9bda5f414e5ee2c861c36.jpg "VpnService关")
+![VpnService 关](https://res.emptylight.cn/share/img/2025/a8dfd4f5bfe9bda5f414e5ee2c861c36.jpg "VpnService关")
 
 在需要通过代理访问网络时，确保目标应用在 AdGuard 设置中通过代理访问网络，随后启用代理应用和 AdGuard 过滤，在 AdGuard 设置或通知栏中启用代理。等待通知栏中 AdGuard 通知更新成『正在通过代理服务器访问网络』即可正常使用 AdGuard 和代理应用。
 
@@ -43,13 +43,13 @@ toc: true
 
 这种情况下，应当在 AdGuard 设置中将路由模式设置为自动代理（过滤-网络-路由模式，通过 HTTP 代理网络）。
 
-![AdGuard 路由模式](https://cdn-res.emptylight.cn/share/img/2025/33950c3004179c40f8b3550b2d481698.jpg "过滤-网络-路由模式")
+![AdGuard 路由模式](https://res.emptylight.cn/share/img/2025/33950c3004179c40f8b3550b2d481698.jpg "过滤-网络-路由模式")
 
 之后在 FlClash 中关闭 VPN 服务的系统代理（HTTP 代理），让 HTTP 代理由 AdGuard 处理，否则 AdGuard 过滤不会生效。ClashMetaForAndroid 只需要设置好 AdGuard 即可使用。
 
 > 在 FlClash 中启用系统代理，AdGuard 中仍能看到访问记录，不过都是 tcp 连接，并且没有域名，不确定是否正常过滤。启用系统代理后 FlClash 性能提高，关闭系统代理后 FlClash 对连接的管理可能出现问题。感觉是 FlClash 对 Meta 内核进行的修改导致了一些问题。
 
-![VPN 系统代理关闭](https://cdn-res.emptylight.cn/share/img/2025/05476454e8171d756e59fc52550390d2.jpg "VPN系统代理")
+![VPN 系统代理关闭](https://res.emptylight.cn/share/img/2025/05476454e8171d756e59fc52550390d2.jpg "VPN系统代理")
 
 与无 root 模式不同，AdGuard 使用自动代理模式无需添加代理设置，可直接同时启用 AdGuard 过滤和代理应用，出站流量会自动通过 AdGuard 和代理应用。
 
@@ -59,7 +59,7 @@ toc: true
 
 如果在 AdGuard 中启用了 DNS 过滤，并且配置了 DNS 服务器，则可以启用代理应用中的 DNS 覆写，但是关闭 DNS 设置，交由 AdGuard 处理相关的 DNS 连接。这样可以避免在代理应用中重复配置相关设置项并导致潜在问题。
 
-![VPN 覆写 DNS 开，使用系统 DNS](https://cdn-res.emptylight.cn/share/img/2025/ef0d453560fbe3f4ed2a0750efcd8f77.jpg "VPN覆写DNS")
+![VPN 覆写 DNS 开，使用系统 DNS](https://res.emptylight.cn/share/img/2025/ef0d453560fbe3f4ed2a0750efcd8f77.jpg "VPN覆写DNS")
 
 以下列出两边的名词比较。
 

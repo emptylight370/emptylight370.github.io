@@ -10,7 +10,7 @@ keywords:
 author: EmptyLight
 language: zh-CN
 timezone: ''
-favicon: https://cdn-res.emptylight.cn/website/img/favicon-96.jpg
+favicon: https://res.emptylight.cn/website/img/favicon-96.jpg
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -111,7 +111,7 @@ deploy:
 # 自定义设置
 profile:
   email: '1378990254@qq.com'
-  avatar: 'https://cdn-res.emptylight.cn/website/img/cover.jpg'
+  avatar: 'https://res.emptylight.cn/website/img/cover.jpg'
   bio: "光暗交界之地"
 page:
   copyright: true

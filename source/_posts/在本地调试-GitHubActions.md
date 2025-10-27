@@ -45,7 +45,7 @@ toc: true
 
 使用后端的 act 服务运行 GitHub Actions，并在前端直观显示运行结果。
 
-![GitHub Local Actions 扩展界面](https://cdn-res.emptylight.cn/share/img/2025/2ffdb64087624ab890291f09156ba71f.png "GitHub")
+![GitHub Local Actions 扩展界面](https://res.emptylight.cn/share/img/2025/2ffdb64087624ab890291f09156ba71f.png "GitHub")
 
 # 安装所需工具
 
@@ -59,7 +59,7 @@ toc: true
 
 组件相关介绍看此处：[Components | GitHub Local Actions Docs](https://sanjulaganepola.github.io/github-local-actions-docs/usage/components/)。
 
-![Docker 已启动](https://cdn-res.emptylight.cn/share/img/2025/633539647877822657932a55e85d6d07.png "Docker已启动")
+![Docker 已启动](https://res.emptylight.cn/share/img/2025/633539647877822657932a55e85d6d07.png "Docker已启动")
 
 ## 安装 act
 
@@ -69,11 +69,11 @@ toc: true
 
 此处为了尽量轻量化地运行功能尽量完整的镜像，此处选用 medium 镜像。根据仓库名，在 Docker Desktop 中搜索 `catthehacker/ubuntu`，之后在详情页中选用自己需要的镜像。这里需要的镜像取决于你在 Workflow 文件中指定使用什么镜像运行。
 
-![在 Docker Desktop 中搜索](https://cdn-res.emptylight.cn/share/img/2025/82d5f5db0da5dba2362da171f1452190.png "在")
+![在 Docker Desktop 中搜索](https://res.emptylight.cn/share/img/2025/82d5f5db0da5dba2362da171f1452190.png "在")
 
-![镜像的详情页](https://cdn-res.emptylight.cn/share/img/2025/53c43e94b2c33e9522f1354919c23a7a.png "镜像的详情页")
+![镜像的详情页](https://res.emptylight.cn/share/img/2025/53c43e94b2c33e9522f1354919c23a7a.png "镜像的详情页")
 
-![拉取合适的镜像](https://cdn-res.emptylight.cn/share/img/2025/019f39516c0cfb768fb49c7fb1f92010.png "拉取合适的镜像")
+![拉取合适的镜像](https://res.emptylight.cn/share/img/2025/019f39516c0cfb768fb49c7fb1f92010.png "拉取合适的镜像")
 
 这边不同的架构旁边的拉取有什么区别还不确定，有可能并不影响实际拉取的镜像。问了 AI 说是只有命令行能指定拉取什么架构的镜像。
 
@@ -125,7 +125,7 @@ act --action-offline-mode
 
 在 VSCode 中打开一个具有 GitHub Actions 的仓库文件夹，就可以在左侧选择一个动作运行了。
 
-![本地运行 GitHub Actions](https://cdn-res.emptylight.cn/share/img/2025/617cc8090dc66ef3f3bf52c5feda6b03.png "本地运行")
+![本地运行 GitHub Actions](https://res.emptylight.cn/share/img/2025/617cc8090dc66ef3f3bf52c5feda6b03.png "本地运行")
 
 如果运行之后显示需要选择一个镜像并且运行失败，就需要手动在 VSCode 的终端中运行一次 `act --pull=false` ​或者 `act` ​命令（取决于你需要如何运行）。在此处选择 medium（默认选项），之后如果是不拉取镜像，会直接进入到上次失败的动作的运行，并且输出运行结果。也可以去 `%LOCALAPPDATA%` ​中设置默认使用的镜像。使用任一方法设置完成后，后续不会再提示这个选项，可以直接运行。
 

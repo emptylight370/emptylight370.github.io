@@ -10,6 +10,6 @@ tags:
 请注意，这里的链接都是外链，并且托管在腾讯云上。请确认自己到腾讯云服务器的连接速度。
 
 # 支持列表
-- [Base64](https://cdn-res.emptylight.cn/website/function/base64.html)
-- [EncodeURI](https://cdn-res.emptylight.cn/website/function/uricoding.html)
-- [LinkTo](https://cdn-res.emptylight.cn/website/function/link.html)(不可用)
+- [Base64](https://res.emptylight.cn/website/function/base64.html)
+- [EncodeURI](https://res.emptylight.cn/website/function/uricoding.html)
+- [LinkTo](https://res.emptylight.cn/website/function/link.html)(不可用)

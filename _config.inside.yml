@@ -103,7 +103,7 @@ profile:
   email: 1378990254@qq.com
 
   # You can set Avatar URL directly
-  avatar: https://cdn-res.emptylight.cn/website/img/cover.jpg
+  avatar: https://res.emptylight.cn/website/img/cover.jpg
 
   bio: 光暗交界之地
 
@@ -338,7 +338,7 @@ data_prefix:
 data_dir:
 
 # Favicon, default to `favicon.ico`
-favicon: https://cdn-res.emptylight.cn/website/img/favicon-96.jpg
+favicon: https://res.emptylight.cn/website/img/favicon-96.jpg
 
 # Google analytics
 # ga: UA-00000000-0

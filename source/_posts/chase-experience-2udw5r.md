@@ -82,13 +82,13 @@ bt下载不同于http下载。我个人的理解：http下载通常指从服务�
 
 在release里面可以选择下载不同平台的安装包，如图。
 
-​![Github release](https://cdn-res.emptylight.cn/share/img/2024/8191cac06f3948e731c46c4b0020ad67.png)​
+​![Github release](https://res.emptylight.cn/share/img/2024/8191cac06f3948e731c46c4b0020ad67.png)​
 
 其中，`win-install`​是Windows版本的安装包，`windows.zip`​是Windows版本的便携版，`android.apk`​是安卓32位的安装包，现在不建议安装，`arm64-v8a`​是安卓64位的安装包，现在的手机都只建议安装这个。
 
 在安装好之后，使用Windows版本的示例图作为示例演示。
 
-![windows example](https://cdn-res.emptylight.cn/share/img/2024/05513dacafa6debe834410c943d6d48c.png)​
+![windows example](https://res.emptylight.cn/share/img/2024/05513dacafa6debe834410c943d6d48c.png)​
 
 左侧的按钮是首页、搜索、观看历史、笔记、更多设置。
 
@@ -106,7 +106,7 @@ bt下载不同于http下载。我个人的理解：http下载通常指从服务�
 
 下面对番剧具体内容设置进行讲解。
 
-​![image](https://cdn-res.emptylight.cn/share/img/2024/a56ff82160e482afb2109087145fb599.png)​
+​![image](https://res.emptylight.cn/share/img/2024/a56ff82160e482afb2109087145fb599.png)​
 
 如图是番剧的详情页面，点击编辑可以进入详细的编辑页面。右上角的按钮分别是外观设置和更多，更多里面的更新动漫是使用填写的动漫链接更新动漫信息，迁移动漫可以使用你启用的动漫源搜索这个动漫，可以选择使用不同网址的信息组成你的动漫信息。
 
