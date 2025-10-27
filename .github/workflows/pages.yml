@@ -96,7 +96,7 @@ jobs:
           path: ./public
 
       - name: Upload to COS
-        uses: sylingd/tencent-cos-and-cdn-action@v1.4.2
+        uses: sylingd/tencent-cos-and-cdn-action@v1
         with:
           secret_id: ${{ secrets.TCLOUD_ID }}
           secret_key: ${{ secrets.TCLOUD_KEY }}
