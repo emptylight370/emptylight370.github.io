@@ -58,7 +58,7 @@ jobs:
           path: ./public
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: cos-file
           path: ./public
@@ -96,12 +96,13 @@ jobs:
           path: ./public
 
       - name: Upload to COS
-        uses: TencentCloud/cos-action@v1
+        uses: sylingd/tencent-cos-and-cdn-action@v1.4.2
         with:
           secret_id: ${{ secrets.TCLOUD_ID }}
           secret_key: ${{ secrets.TCLOUD_KEY }}
           cos_bucket: ${{ secrets.TCLOUD_BUCKET }}
           cos_region: ${{ secrets.TCLOUD_REGION }}
+          cos_replace_file: crc64ecma
           local_path: public
           remote_path: ""
           clean: true
