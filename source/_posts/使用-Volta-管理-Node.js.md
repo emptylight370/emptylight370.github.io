@@ -1,7 +1,7 @@
 ---
 title: 使用Volta管理Node.js
 date: '2025-08-18 23:13:36'
-updated: '2025-10-27 23:32:11'
+updated: '2025-10-28 12:21:54'
 tags:
   - Windows
   - JavaScript
@@ -153,10 +153,12 @@ volta ls prettier
 另一种方法是，在命令行中通过 `pin` ​命令指定要使用的版本。
 
 ```powershell
+volta pin node@22
 volta pin npm@11.5.2
+volta pin npm@bundled
 ```
 
-根据文档，这里输入的版本号支持多种格式，具体参考安装 npm 包时的版本号。在安装好之后会在 `package.json`​ 写入具体的版本号。`pin`​ 命令会将对应版本写入最近的 `package.json` 文件。实际测试中不输入完整版本号会出现报错，无法写入文件。
+根据文档，这里输入的版本号支持多种格式，具体参考安装 npm 包时的版本号。在安装好之后会在 `package.json`​ 写入具体的版本号。`pin`​ 命令会将对应版本写入最近的 `package.json`​ 文件。不设置 npm 版本号或者 `pin npm@bundled` ​会使用当前 node 自带的 npm，无需专门设置对应版本号。
 
 如果项目中嵌套文件夹中含有多个 `package.json` ​文件，可以通过引用的方式指定使用的版本号。例如，项目根目录含有一个 `package.json` ​文件指定了 Volta 使用的版本号，可以在下一层文件夹的 `package.json` ​中引用这个文件来定义版本。
 
