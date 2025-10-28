@@ -449,4 +449,4 @@ plugins:
         };
       </script>
   - position: head_end
-    template: <script async src="https://download.immersivetranslate.com/immersive-translate-sdk-latest.js"></script>
+    template: <meta name="darkreader-lock">
