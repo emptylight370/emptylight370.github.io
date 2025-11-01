@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "volta": {
-    "node": "22.21.0"
+    "node": "22.21.1"
   },
   "scripts": {
     "build": "hexo generate",
@@ -12,7 +12,7 @@
     "server": "hexo server"
   },
   "hexo": {
-    "version": "8.0.0"
+    "version": "8.1.1"
   },
   "dependencies": {
     "hexo": "^8.1.1",
