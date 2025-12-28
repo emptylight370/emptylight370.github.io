@@ -14,14 +14,14 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         # with:
         # token: ${{ secrets.GITHUB_TOKEN }}
         # If your repository depends on submodule, please see: https://github.com/actions/checkout
         # submodules: recursive
 
-      - name: Use Volta
-        uses: volta-cli/action@v4
+      - name: Use mise
+        uses: jdx/mise-action@v3
 
       - name: Cache NPM dependencies
         uses: actions/cache@v4
