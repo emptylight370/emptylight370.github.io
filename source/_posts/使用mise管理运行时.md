@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2025-12-29 14:43:27'
+updated: '2025-12-30 14:36:54'
 tags:
   - Windows
   - macOS
@@ -168,6 +168,8 @@ python -m ensurepip --upgrade --default-pip
 
 > [!IMPORTANT] ❗ 
 > 需要注意的是，在 mise 版本 2025.12.12 中，存在无法在 Python 安装完成之后自动安装 pip 包的问题，并且同时也存在未创建 python3 别名、pip 别名、pip3 别名等问题。详见[在 Windows 11 上通过 mise 安装 Python 后无法运行 pip · jdx/mise · 讨论 #3821](https://github.com/jdx/mise/discussions/3821)。对于在命令行中输入 python、python3 会打开应用商店的问题，可以在 Windows 设置 > 应用 > 应用执行别名里面关掉 Python 解决。对于无法使用 pip 问题，可以将 Scripts 添加到 PATH 解决。
+>
+> 目前没搞明白到底怎么折腾 Python，还是用 Miniconda 解决。或许应该搭配 uv 使用，但是我实在没这方面经验，还是得用传统方法管理环境。用 `mise i python@anaconda` 也没能安装到 Anaconda 那边的 Python。
 
 因为 mise 直接管理的 Python 版本，所以需要为不同项目创建虚拟环境。一般来说，可以使用以下命令：
 
@@ -280,7 +282,7 @@ mise registry flutter
 vfox:mise-plugins/vfox-flutter
 ```
 
-这就表明 flutter 由这个插件提供支持。
+这就表明 flutter 由这个插件提供支持。需要补充说明：vfox 这个插件不支持读取环境变量作为请求地址，只会固定请求 Google 地址，如果想要使用自定义的地址需要自己改源码。mise 仓库里面另一个插件支持读取环境变量，但是只支持 Linux 和 macOS，目前 Windows 仍然推荐自行安装 flutter。
 
 直接运行 `mise regisrty` ​会输出全部可以直接安装的包，以及提供支持的后端。
 
