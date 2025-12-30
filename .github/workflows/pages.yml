@@ -6,6 +6,10 @@ on:
       - main # default branch
   workflow_dispatch:
 
+concurrency:
+  group: build-pages
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,7 +28,7 @@ jobs:
         uses: jdx/mise-action@v3
 
       - name: Cache NPM dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: node_modules
           key: ${{ runner.OS }}-npm-cache
@@ -34,7 +38,7 @@ jobs:
       # Caching public
       - name: cache public
         id: cache-public
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             public
@@ -58,7 +62,7 @@ jobs:
           path: ./public
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: cos-file
           path: ./public
@@ -90,7 +94,7 @@ jobs:
 
     steps:
       - name: Download the only Artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: cos-file
           path: ./public
