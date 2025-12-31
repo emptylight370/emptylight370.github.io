@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2025-12-30 14:36:54'
+updated: '2025-12-31 19:19:41'
 tags:
   - Windows
   - macOS
@@ -23,12 +23,12 @@ toc: true
 
 1. mise 和 Volta 比较
 
-    1. mise 可以管理 Node.js 版本，对 npm 的全局支持未知，说是可以将 npm 安装的包在配置文件中确定版本，但 npm 自身的版本未说明；实际测试中可以将 npm 包全局安装，npm 包使用的是安装时的 Node.js 还是全局 Node.js 版本未说明，但是 npm 自身应该是随全局 Node.js 切换
-    2. Volta 能够管理 Node.js 版本，可以单独管理 npm、pnpm 版本，能够接管全局安装的 npm 包并且固定包版本和运行时版本
+   1. mise 可以管理 Node.js 版本，对 npm 的全局支持未知，说是可以将 npm 安装的包在配置文件中确定版本，但 npm 自身的版本未说明；实际测试中可以将 npm 包全局安装，npm 包使用的是安装时的 Node.js 还是全局 Node.js 版本未说明，但是 npm 自身应该是随全局 Node.js 切换
+   2. Volta 能够管理 Node.js 版本，可以单独管理 npm、pnpm 版本，能够接管全局安装的 npm 包并且固定包版本和运行时版本
 2. mise 和 miniconda 比较
 
-    1. mise 建议直接管理 Python 版本自身，pip 的全局支持未知，同一个 Python 版本在不同项目中的环境靠 `venv` 控制；实际测试中发现对 pip 支持存在问题，Python 支持不够完整，期待后续修复
-    2. miniconda 可以创建不同环境，在不同环境中可以安装相同、不同的 Python 版本，不同环境是相互独立的，可以在不同项目中切换不同环境
+   1. mise 建议直接管理 Python 版本自身，pip 的全局支持未知，同一个 Python 版本在不同项目中的环境靠 `venv` 控制；实际测试中发现对 pip 支持存在问题，Python 支持不够完整，期待后续修复
+   2. miniconda 可以创建不同环境，在不同环境中可以安装相同、不同的 Python 版本，不同环境是相互独立的，可以在不同项目中切换不同环境
 
 # 配置 mise
 
@@ -39,37 +39,37 @@ toc: true
 1. 首先配置环境变量 `MISE_DATA_DIR`，配置到预期存储 mise 数据的地方
 2. 根据使用的系统包管理器安装 mise，比如通过 winget 安装 mise
 
-    ```powershell
-    winget install jdx.mise
-    ```
+   ```powershell
+   winget install jdx.mise
+   ```
 
-    此处安装 mise 的路径应为 winget 默认安装软件位置，后续 mise 数据会存储到先前配置的地方
+   此处安装 mise 的路径应为 winget 默认安装软件位置，后续 mise 数据会存储到先前配置的地方
 3. 安装完成之后，重启终端运行以下任意命令，应能正确输出 mise 版本
 
-    ```powershell
-    mise --version
-    mise version
-    mise v
-    ```
+   ```powershell
+   mise --version
+   mise version
+   mise v
+   ```
 4. 运行 `mise doctor`，检查是否存在问题，并修复
 5. 通过以下命令安装 Node.js，并输出 Node.js 版本
 
-    ```powershell
-    mise x node@24 -- node -v
-    mise exec node@24 -- node -v
-    ```
+   ```powershell
+   mise x node@24 -- node -v
+   mise exec node@24 -- node -v
+   ```
 6. 现在应能在 mise 中看到安装的 Node.js 版本，并且如未安装其他 Node.js 版本管理器，直接运行 `node -v` ​是无结果的
 
-    ```powershell
-    mise ls
-    mise list
-    ```
+   ```powershell
+   mise ls
+   mise list
+   ```
 7. 如需安装其他内容，可以通过以下命令运行
 
-    ```powershell
-    mise i node@24
-    mise install node@24
-    ```
+   ```powershell
+   mise i node@24
+   mise install node@24
+   ```
 
 ## 使用 mise 配置 Node.js
 
@@ -79,22 +79,22 @@ toc: true
 
 1. 设置一个全局版本，为免版本变动，指定刚才安装的确切版本
 
-    ```powershell
-    mise use -g node@24.12.0
-    # 在Windows下不需要加 -g 参数也能全局启用，详见文档
-    ```
+   ```powershell
+   mise use -g node@24.12.0
+   # 在Windows下不需要加 -g 参数也能全局启用，详见文档
+   ```
 2. 现在可以直接通过 `node` 运行这个版本
 3. 对于 npm 包，可以通过以下方法进行安装或直接运行
 
-    ```powershell
-    mise x npm:prettier -- prettier --version
-    mise i npm:prettier
-    ```
+   ```powershell
+   mise x npm:prettier -- prettier --version
+   mise i npm:prettier
+   ```
 4. 设置 Prettier 全局启用，这里没有设置版本，默认的版本号为 `latest`，如果不事先安装，直接运行这个命令也能自动安装
 
-    ```powershell
-    mise use -g npm:prettier
-    ```
+   ```powershell
+   mise use -g npm:prettier
+   ```
 
 根据 [npm 后端 | mise-en-place](https://mise.jdx.dev/dev-tools/backends/npm.html) 文档，如需安装或使用 pnpm 可以通过以下命令进行：
 
@@ -241,6 +241,8 @@ mise i java@zulu-8
 虽然手动安装没问题，但是出于通过 mise 更新的角度考虑，我更推荐使用第三方维护的 1.8 版本，这些版本能够通过 mise 安装，也能通过 mise 更新，比起手动安装好好一点
 
 对于 `JAVA_HOME`​，没有进行过实际测试，通过 `mise use -g java@25`​ 设置的 Java 25 版本可以在命令行中直接调用，但是无法被 EXE4J 编译的应用直接调用，需要设置 `EXE4J_JAVA_HOME`。在 VSCode 中使用 mise 安装的 Java 请见下方标题。
+
+经测试 PCL2 不能识别 mise 安装的 Java，但是可以手动添加。看起来 `mise use`​ 设定 Java 版本对非命令行程序有一定的问题，但是可以通过手动指定其他环境变量以避免设置 `JAVA_HOME`​，例如可以设置 `EXE4J_JAVA_HOME`​ 或 `HMCL_JAVA_HOME`​ 这些。Windows 下环境变量似乎不能运行某些程序，但是在 Linux 等系统下应该可以指定 `JAVA_HOME`​ 为 mise 输出的全局 Java 地址，如 `mise where java`。
 
 ## 确认可用的后端
 
