@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2025-12-31 19:19:41'
+updated: '2025-12-31 20:17:11'
 tags:
   - Windows
   - macOS
@@ -73,7 +73,7 @@ toc: true
 
 ## 使用 mise 配置 Node.js
 
-文档：[Node | mise-en-place](https://mise.jdx.dev/lang/node.html)
+文档：[Node | mise-en-place](https://mise.jdx.dev/lang/node.html)，[Node.JS 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/node/)
 
 前面已经安装好了 Node.js 24 版本，后续进行其他配置。
 
@@ -112,7 +112,7 @@ mise x npm:pnpm -- pnpm --version
 
 ## 使用 mise 配置 GoLang
 
-文档：[Go | mise-en-place](https://mise.jdx.dev/lang/go.html)
+文档：[Go | mise-en-place](https://mise.jdx.dev/lang/go.html)，[Go 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/golang/)
 
 使用 mise 配置 Go 非常简单，直接使用以下命令就能在本地获取 Go：
 
@@ -140,7 +140,7 @@ mise config set settings.go_skip_checksum true
 
 ## 使用 mise 配置 Python
 
-文档：[Python | mise-en-place](https://mise.jdx.dev/lang/python.html)
+文档：[Python | mise-en-place](https://mise.jdx.dev/lang/python.html)，[Python 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/python/)
 
 需要注意，默认情况下 mise 安装的是预编译的 Python 包，如果想要本地编译 Python 包，可以添加以下设置：
 
@@ -216,7 +216,7 @@ mise run install
 
 ## 使用 mise 配置 Java
 
-文档：[Java | mise-en-place](https://mise.jdx.dev/lang/java.html)
+文档：[Java | mise-en-place](https://mise.jdx.dev/lang/java.html)，[Java 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/java/)
 
 默认情况下版本号的简写指向 OpenJDK，可以通过前缀指向其他供应商。具体可以安装的 Java 版本可通过 `mise ls-remote java` ​查看。通过以下命令可以获取或安装 Java：
 
@@ -257,6 +257,8 @@ mise i java@zulu-8
 在 VSCode 中，通过插件添加的按钮、命令打开设置面板，之后点击右边的编辑按钮，输入、选择要设置的值，然后保存配置到项目的配置文件中，就能修改项目设置。
 
 ## 配置 VSCode 环境
+
+文档：[mise VS Code | mise | VSCode](https://hverlin.github.io/mise-vscode/)
 
 对于 VSCode，在 Java 扩展包里面有个设置：`java.configuration.runtimes`​，可以在不设置 `JAVA_HOME` ​的情况下指定 Java 版本的位置，在使用 mise 之前我是通过这个设置指定各个 Java 版本的路径，在换用 mise 之后我从 settings.json 里面删掉了这个设置，VSCode 和 Java 扩展（在 Project Settings 查看）能够加载到全局启用的 Java 25 还有内置的 Java 21，使用 `mise use java@21` ​指定一个 21 版本再重启 VSCode 也不能看到这个版本。
 
