@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2025-12-31 20:17:11'
+updated: '2026-01-06 14:11:55'
 tags:
   - Windows
   - macOS
@@ -140,6 +140,8 @@ mise config set settings.go_skip_checksum true
 
 ## 使用 mise 配置 Python
 
+### core:python
+
 文档：[Python | mise-en-place](https://mise.jdx.dev/lang/python.html)，[Python 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/python/)
 
 需要注意，默认情况下 mise 安装的是预编译的 Python 包，如果想要本地编译 Python 包，可以添加以下设置：
@@ -169,7 +171,7 @@ python -m ensurepip --upgrade --default-pip
 > [!IMPORTANT] ❗ 
 > 需要注意的是，在 mise 版本 2025.12.12 中，存在无法在 Python 安装完成之后自动安装 pip 包的问题，并且同时也存在未创建 python3 别名、pip 别名、pip3 别名等问题。详见[在 Windows 11 上通过 mise 安装 Python 后无法运行 pip · jdx/mise · 讨论 #3821](https://github.com/jdx/mise/discussions/3821)。对于在命令行中输入 python、python3 会打开应用商店的问题，可以在 Windows 设置 > 应用 > 应用执行别名里面关掉 Python 解决。对于无法使用 pip 问题，可以将 Scripts 添加到 PATH 解决。
 >
-> 目前没搞明白到底怎么折腾 Python，还是用 Miniconda 解决。或许应该搭配 uv 使用，但是我实在没这方面经验，还是得用传统方法管理环境。用 `mise i python@anaconda` 也没能安装到 Anaconda 那边的 Python。
+> 目前没搞明白到底怎么折腾 Python，还是用 Miniconda 解决。用 `mise i python@anaconda` 也没能安装到 Anaconda 那边的 Python。或许应该搭配 uv 使用，但是我实在没这方面经验，从其他地方看了点参考写了点东西，具体见下文，没实际测试过，不知道可不可行。
 
 因为 mise 直接管理的 Python 版本，所以需要为不同项目创建虚拟环境。一般来说，可以使用以下命令：
 
@@ -213,6 +215,30 @@ freeze = ".venv\\Scripts\\pip freeze > requirements.txt"  # Windows
 mise run venv
 mise run install
 ```
+
+### uv:python
+
+这个方案并不是使用 uv 作为后端安装 Python，而是使用 mise 安装 uv 之后通过 uv 安装 Python。具体的区别请注意。直接通过 mise 运行此命令是无效的。
+
+文档：[uv 中文文档](https://uv.doczh.com/)，[rft: devcontainer 从 conda 迁移至 mise/uv · 拉取请求 #15251](https://github.com/MaaAssistantArknights/MaaAssistantArknights/pull/15251)，[新一代 Python 管理 UV 完全使用指南 ｜ 附实际体验与效果对比 - 知乎](https://zhuanlan.zhihu.com/p/1897568987136640818)，[Python uv 简明教程 - thxis0 - 博客园](https://www.cnblogs.com/thxiso/p/19412801)
+
+首先通过 mise 安装 uv：
+
+```powershell
+mise use -g uv
+```
+
+然后在项目文件夹中使用 uv 初始化环境：（具体命令未经测试，仅模仿有效命令结构，请结合文档了解详情）
+
+```powershell
+uv init # 初始化？
+
+uv venv --python 3.12 # 创建特定Python版本的虚拟环境
+
+uv python install python3.12 # 安装特定版本Python？
+```
+
+后续的命令还请自行探索，没用过实在是不知道怎么回事，但是看起来比直接用 mise 管理 Python 要好，实际上孰优孰劣还请自行测试。
 
 ## 使用 mise 配置 Java
 
