@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-01-06 23:27:11'
+updated: '2026-01-07 00:16:46'
 tags:
   - Windows
   - macOS
@@ -220,7 +220,7 @@ mise run install
 
 这个方案并不是使用 uv 作为后端安装 Python，而是使用 mise 安装 uv 之后通过 uv 安装 Python。具体的区别请注意。直接通过 mise 运行此命令是无效的。
 
-文档：[uv - Astral 文档](https://docs.astral.org.cn/uv/)，[uv 中文文档](https://uv.doczh.com/)，[rft: devcontainer 从 conda 迁移至 mise/uv · 拉取请求 #15251](https://github.com/MaaAssistantArknights/MaaAssistantArknights/pull/15251)
+文档：[uv - Astral 文档](https://docs.astral.org.cn/uv/)，[uv 中文文档](https://uv.doczh.com/)，[rft: devcontainer 从 conda 迁移至 mise/uv · 拉取请求 #15251](https://github.com/MaaAssistantArknights/MaaAssistantArknights/pull/15251)，[Mise + Python Cookbook | mise-en-place](https://mise.jdx.dev/mise-cookbook/python.html)
 
 首先通过 mise 安装 uv：
 
