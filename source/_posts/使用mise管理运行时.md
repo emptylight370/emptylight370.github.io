@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-01-13 16:40:43'
+updated: '2026-01-13 16:58:42'
 tags:
   - Windows
   - macOS
@@ -352,6 +352,8 @@ xxx = "xxx"
 xxx.xxx = "xxx"
 ```
 
+## 常用设置
+
 目前在 Windows 上，在 `mise.toml` ​的 `[tasks]` ​中定义的 `run` ​命令一般是用 `cmd` ​执行的，见 [Settings | mise-en-place](https://mise.jdx.dev/configuration/settings.html#windows_default_inline_shell_args)。在实际使用中遇到过一些问题，因此最好覆写为 PowerShell，根据设备上使用的是 PowerShell 5.1 还是 PowerShell 7 来运行下方的命令。
 
 ```powershell
@@ -362,3 +364,15 @@ mise settings set windows_default_file_shell_args "powershell -f"
 mise settings set windows_default_inline_shell_args "pwsh -c"
 mise settings set windows_default_file_shell_args "pwsh -f"
 ```
+
+---
+
+在 Windows 上无法直接通过 mise 安装 pipx，手动安装需要使用 scoop，如果不使用 scoop 就无法安装 pipx。因此可以使用 uvx 作为后端代替 pipx，详见 [Settings | mise-en-place](https://mise.jdx.dev/configuration/settings.html#pipx.uvx "Settings | mise-en-place")。可以通过以下命令在 Windows 上使用 uvx 安装全局 pip 包，例如：
+
+```powershell
+mise use -g uv
+mise settings set pipx.uvx true
+mise use -g pipx:yapf
+```
+
+首先安装 uv，然后开启后端替换，之后就能使用 uvx 安装 pipx 包，并且在 Linux、macOS 上正常使用 `mise i pipx:yapf` 也不会有问题。
