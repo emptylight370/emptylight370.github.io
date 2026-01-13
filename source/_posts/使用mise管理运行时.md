@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-01-07 00:16:46'
+updated: '2026-01-13 16:40:43'
 tags:
   - Windows
   - macOS
@@ -340,6 +340,25 @@ mise ls-remote flutter
 
 对于有插件提供支持的语言，显示远程可用版本会自动安装缺失的插件，安装好之后会打印可用的版本。之后自行安装即可。
 
-## `settings` ​和 `config` ​的区别
+## `settings`​ 和 `config`
 
-在测试中，`settings` ​会自动写入全局配置文件，`config` ​可以写入项目配置文件，在 `config` ​中通过 `settings.xxx` ​可以覆写配置文件。具体区别详见：[mise settings | mise-en-place](https://mise.jdx.dev/cli/settings.html) 和 [mise config | mise-en-place](https://mise.jdx.dev/cli/config.html)。
+在测试中，`settings`​ 会自动写入全局配置文件，`config`​ 可以写入项目配置文件，在 `config`​ 中通过 `settings.xxx`​ 可以覆写配置文件。具体区别详见：[mise settings | mise-en-place](https://mise.jdx.dev/cli/settings.html) 和 [mise config | mise-en-place](https://mise.jdx.dev/cli/config.html)。
+
+在 config 中覆写 settings 的语法如下：
+
+```toml
+[settings]
+xxx = "xxx"
+xxx.xxx = "xxx"
+```
+
+目前在 Windows 上，在 `mise.toml` ​的 `[tasks]` ​中定义的 `run` ​命令一般是用 `cmd` ​执行的，见 [Settings | mise-en-place](https://mise.jdx.dev/configuration/settings.html#windows_default_inline_shell_args)。在实际使用中遇到过一些问题，因此最好覆写为 PowerShell，根据设备上使用的是 PowerShell 5.1 还是 PowerShell 7 来运行下方的命令。
+
+```powershell
+# PowerShell 5.1
+mise settings set windows_default_inline_shell_args "powershell -c"
+mise settings set windows_default_file_shell_args "powershell -f"
+# PowerShell 7
+mise settings set windows_default_inline_shell_args "pwsh -c"
+mise settings set windows_default_file_shell_args "pwsh -f"
+```
