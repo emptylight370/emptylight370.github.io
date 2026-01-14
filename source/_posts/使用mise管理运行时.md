@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-01-13 16:58:42'
+updated: '2026-01-14 14:43:01'
 tags:
   - Windows
   - macOS
@@ -239,6 +239,21 @@ uv python install python3.12 # 安装特定版本Python？
 ```
 
 后续的命令还请自行探索，没用过实在是不知道怎么回事，但是看起来比直接用 mise 管理 Python 要好，实际上孰优孰劣还请自行测试。
+
+可以在全局的配置文件中添加以下任务，来为当前项目创建 venv 环境，使用时只需在项目根目录运行 `mise run venv` ​即可。
+
+```toml
+[tasks.venv]
+confirm = "确认要在当前项目文件夹创建虚拟环境吗？"
+description = "在当前项目创建venv环境"
+dir = "{{cwd}}"
+run = [
+  "mise use uv",
+  "mise settings set -l python.uv_venv_auto true",
+  "mise set _.python.venv=\"{path=\".venv\"}\"",
+  "uv venv .venv"
+]
+```
 
 ## 使用 mise 配置 Java
 
