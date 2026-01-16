@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-01-16 21:38:55'
+updated: '2026-01-17 00:13:24'
 tags:
   - Windows
   - macOS
@@ -289,6 +289,8 @@ mise i java@zulu-8
 >
 > 这个方法使用 mise 提供的功能添加本地安装，详见后文介绍
 
+使用 `java@25` ​安装的 Java 默认是 OpenJDK 的，我自己喜欢用 Oracle 和 Dragonwell 的，就自行安装了几个版本并且设置了别名，将 25 对应到 Oracle-25，21 对应到 Oracle-21，8 对应到 Dragonwell-8，如此使用 `java@25` ​就能使用 Oracle 的 25 版本。设置别名的方法详见后文介绍。
+
 对于 `JAVA_HOME`​，没有进行过实际测试，通过 `mise use -g java@25`​ 设置的 Java 25 版本可以在命令行中直接调用，但是无法被 EXE4J 编译的应用直接调用，需要设置 `EXE4J_JAVA_HOME`。在 VSCode 中使用 mise 安装的 Java 请见下方标题。
 
 经测试 PCL2 不能识别 mise 安装的 Java，但是可以手动添加。看起来 `mise use`​ 设定 Java 版本对非命令行程序有一定的问题，但是可以通过手动指定其他环境变量以避免设置 `JAVA_HOME`​，例如可以设置 `EXE4J_JAVA_HOME`​ 或 `HMCL_JAVA_HOME`​ 这些。Windows 下环境变量似乎不能运行某些程序，但是在 Linux 等系统下应该可以指定 `JAVA_HOME`​ 为 mise 输出的全局 Java 地址，如 `mise where java`。
@@ -405,3 +407,24 @@ mise use -g pipx:yapf
 文档：[mise link | mise-en-place](https://mise.jdx.dev/cli/link.html)
 
 根据文档，可以使用 `mise link` ​将外部工具添加到 mise 中，比如 Java 的 Oracle 8 版本，mise 不提供下载，但是可以手动下载到本地并链接到 mise 中，比如 `mise link java@8 /path/to/java`，具体的版本号可能写详细一点比较好，在示例中 Node.js 的版本号精确到了 20.0.0，但是 Java 的版本号比较难确定。
+
+## 设置别名
+
+文档：[Tool Aliases | mise-en-place](https://mise.jdx.dev/dev-tools/aliases.html)，[mise tool-alias | mise-en-place](https://mise.jdx.dev/cli/tool-alias.html)
+
+根据文档，使用 `mise tool-alias java 25 oracle-25` ​可以将 25 指向 oracle-25，使用这个方法可以设置全局的别名。在设置了别名之后查看全局设置，观察到以下设置项：
+
+```toml
+[tool_alias]
+
+[tool_alias.java]
+
+[tool_alias.java.versions]
+17 = "dragonwell-17"
+21 = "oracle-21"
+25 = "oracle-25"
+8 = "dragonwell-8"
+11 = "dragonwell-11"
+```
+
+因此可以手动往 `mise.local.toml` ​添加这个格式以指定别名，这样可以实现在项目中指定 tools 为 java@25，本地使用 Oracle、OpenJDK 或 Dragonwell 之类的不同架构。使用 `mise.local.toml` ​也可以为不同的项目使用不同的 Java，比如项目 A 使用 Oracle，项目 B 使用 OpenJDK 这样的。详见 [Make ](https://github.com/jdx/mise/discussions/6266)​[`mise use java@21`](https://github.com/jdx/mise/discussions/6266)​[ use _any_ version 21 that is installed · jdx/mise · Discussion #6266](https://github.com/jdx/mise/discussions/6266)。
