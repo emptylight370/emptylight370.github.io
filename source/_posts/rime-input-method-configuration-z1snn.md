@@ -1,12 +1,13 @@
 ---
 title: rime输入法配置
 date: '2024-12-26 14:56:52'
-updated: '2025-01-12 10:41:00'
+updated: '2026-01-20 21:49:52'
 tags:
   - Android
   - Windows
   - macOS
   - Rime
+  - Linux
 permalink: /post/2024/12/rime-input-method-configuration-z1snn.html
 comments: true
 toc: true
@@ -16,7 +17,7 @@ toc: true
 
 rime输入法的配置过程真是难以理解，并且其中充斥着许多数不胜数的坑。要一点点细品之后才能理解到底如何配置。
 
-
+# 输入法安装
 
 安装输入法的过程就是下载前端界面然后安装的过程。在[RIME | 中州韻輸入法引擎](https://rime.im/ "RIME | 中州韻輸入法引擎")下载当前系统可用的前端界面，然后安装。
 

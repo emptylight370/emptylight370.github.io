@@ -1,10 +1,11 @@
 ---
 title: 使用Volta管理Node.js
 date: '2025-08-18 23:13:36'
-updated: '2025-10-28 12:21:54'
+updated: '2026-01-20 21:56:45'
 tags:
   - Windows
   - JavaScript
+  - Node.js
 permalink: /post/2025/08/manage-nodejs-with-volta-1258nc.html
 comments: true
 toc: true
@@ -16,7 +17,7 @@ toc: true
 
 在切换到 Volta 之前，最好清理干净之前的 Node.js 安装或者版本管理器。
 
-
+# 了解 Volta
 
 Volta 的中文文档官网为：[Volta - 无痛的 JavaScript 工具管理器 | Volta](https://zh.voltajs.com/)
 

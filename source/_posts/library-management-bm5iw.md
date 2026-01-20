@@ -1,12 +1,15 @@
 ---
 title: 库管理
 date: '2023-08-22 20:50:55'
-updated: '2023-12-09 11:59:20'
+updated: '2026-01-20 21:48:54'
 permalink: /post/2023/12/library-management-bm5iw.html
 comments: true
 toc: true
 tags:
   - Windows
+  - Python
+  - macOS
+  - Linux
 ---
 
 

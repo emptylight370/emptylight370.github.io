@@ -1,11 +1,12 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-01-17 00:13:24'
+updated: '2026-01-20 22:03:06'
 tags:
   - Windows
   - macOS
   - Linux
+  - mise
 permalink: /post/2025/12/using-mise-to-manage-the-runtime-z21mtgf.html
 comments: true
 toc: true
@@ -13,7 +14,7 @@ toc: true
 
 
 
-
+# 切换到 mise 的原因
 
 因为 [Volta](https://github.com/volta-cli/volta) 上次发版还是 24 年 2 月的事情，最近又宣布停更，在 README 里面写了建议更换到 [mise](https://github.com/jdx/mise)；电脑上安装有多个版本的 Java，但是没有靠谱的 Java 版本管理器，干脆不设置 `JAVA_HOME` ​环境变量，直接在 VSCode 配置多个 Java 包的位置，但仍有局限；目前使用 miniconda 管理 Python 环境，但是不知道哪里有问题，`conda activate` ​之后永远无法通过 `conda deactivate` ​返回 `base`，怎么都是报错；以上种种原因导致我想要找到一个靠谱的运行时管理器，但是怎么对比都没有觉得能够完美满足需求的运行时，之前的想法都是为每个语言找到自己的运行时管理器，现在来试试一个管理器管理多语言。
 

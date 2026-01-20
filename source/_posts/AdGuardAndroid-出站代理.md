@@ -1,7 +1,7 @@
 ---
 title: AdGuard Android出站代理
 date: '2025-05-07 21:55:52'
-updated: '2025-06-21 11:38:00'
+updated: '2026-01-20 22:05:11'
 tags:
   - Android
   - AdGuard
@@ -13,7 +13,7 @@ toc: true
 
 
 
-
+# 前言
 
 通过 AdGuard 可以过滤广告，但是在未设置的情况下无法与代理应用共存。经过合适的设置之后，可以让 AdGuard 过滤广告，同时代理应用路由流量。
 

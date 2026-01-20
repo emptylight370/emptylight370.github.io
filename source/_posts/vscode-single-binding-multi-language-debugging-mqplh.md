@@ -1,7 +1,7 @@
 ---
 title: VSCode单键绑定多语言调试
 date: '2024-11-20 13:33:24'
-updated: '2024-11-20 20:22:10'
+updated: '2026-01-20 22:10:29'
 permalink: /post/2024/11/vscode-single-binding-multi-language-debugging-mqplh.html
 comments: true
 toc: true
@@ -15,7 +15,7 @@ VSCode的快捷键功能十分强大，合理设置可以实现许多强大的�
 
 比如本文要说的单键绑定多语言调试功能。在本文的介绍中，使用`F5`​快捷键来进行调试，使用`F6`​快捷键来运行而不调试。通过设置，可以让`F5`​根据当前使用的语言来自动匹配调试插件，比如C/C++下自动使用C/C++插件来调试，在Java下自动使用Debugger for Java进行调试。
 
-
+# 安装调试插件
 
 根据你所用的语言，自行安装所需使用的调试插件，这里选用微软提供的C/C++插件和Debugger for Java插件来分别进行C/C++和Java的调试。
 

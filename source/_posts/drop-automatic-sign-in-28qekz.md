@@ -1,10 +1,11 @@
 ---
 title: 链滴自动签到
 date: '2024-10-10 13:03:27'
-updated: '2025-07-30 00:50:48'
+updated: '2026-01-20 22:07:05'
 tags:
   - 思源笔记
   - Windows
+  - Node.js
 permalink: /post/2024/10/drop-automatic-sign-in-28qekz.html
 comments: true
 toc: true
@@ -16,7 +17,7 @@ toc: true
 
 请先看原版文章了解使用方式。更新脚本只需要修改脚本内容。
 
-
+# 更新日志
 
 - 2024-10-10 首次修改实现2fa验证
 - 2024-10-10 修改log日志地址

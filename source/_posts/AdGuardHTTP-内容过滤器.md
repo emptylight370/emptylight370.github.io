@@ -1,7 +1,7 @@
 ---
 title: AdGuard HTTP内容过滤器
 date: '2025-05-08 20:55:27'
-updated: '2025-05-09 00:06:26'
+updated: '2026-01-20 22:05:28'
 tags:
   - Android
   - Windows
@@ -17,7 +17,7 @@ toc: true
 
 本文根据 [How to create your own ad filters | AdGuard Knowledge Base](https://adguard.com/kb/zh-CN/general/ad-filtering/create-own-filters/) 知识库写成。基本上是对知识库文章的翻译。不过因为目前（2025 年 05 月 08 日）还没将 Crowdin 的翻译应用到知识库中，所以是直接看着英文文本翻译的，部分地方的用语可能和翻译版本不同。如有出入请自行理解。
 
-
+# 前言
 
 为了描述过滤规则的语法，AdGuard 使用了扩展的巴科斯范式（Augmented BNF）进行语法规范说明，但并不总是严格遵循这一规范。以下的代码块使用 `adblock` ​作为语言标识，但是基本上无法获得正确的语法高亮，只有少数编辑器支持显示这个语法高亮。
 

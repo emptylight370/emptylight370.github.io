@@ -1,7 +1,7 @@
 ---
 title: 博客中使用沉浸式翻译
 date: '2025-01-20 21:07:07'
-updated: '2025-10-28 12:24:31'
+updated: '2026-01-20 22:08:32'
 tags:
   - JavaScript
   - Browser
@@ -16,7 +16,7 @@ toc: true
 
 正好折腾沉浸式翻译呢，看到文档里面有个 [JS SDK](https://immersivetranslate.com/zh-Hans/docs/js-sdk/)，就考虑将沉浸式翻译直接整个作为插件引入到博客里面，让读者自己翻译网页。沉浸式翻译给出的翻译器选项和翻译语言都非常丰富，正好省了我的事。注意，沉浸式翻译最近更新了 js SDK，最新地址需要联系客服接入，目前网站已经弃用沉浸式翻译。
 
-
+# 引入插件
 
 我使用的是 Hexo 的主题 [ikeq/hexo-theme-inside](https://github.com/ikeq/hexo-theme-inside)，里面有一个插件功能，可以在多个位置插入插件，语法支持 `<scripts>`。这样，我通过在 header 底部加入沉浸式翻译的 js 引用，成功导入了沉浸式翻译。目前最新地址需要联系沉浸式翻译客服接入，文档中地址已无法访问。
 

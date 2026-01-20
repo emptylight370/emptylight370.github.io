@@ -1,11 +1,13 @@
 ---
 title: 在本地调试GitHub Actions
 date: '2025-08-20 11:19:22'
-updated: '2025-10-18 17:46:06'
+updated: '2026-01-20 22:03:50'
 tags:
   - Windows
   - GitHub
   - VSCode
+  - Linux
+  - macOS
 permalink: /post/2025/08/debug-github-actions-locally-9tzrs.html
 comments: true
 toc: true
@@ -13,7 +15,7 @@ toc: true
 
 
 
-
+# 前置条件
 
 这些部分请自行配置好：
 

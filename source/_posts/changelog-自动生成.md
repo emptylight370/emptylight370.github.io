@@ -1,9 +1,13 @@
 ---
 title: changelog自动生成
 date: '2025-10-20 22:36:39'
-updated: '2025-11-02 18:25:05'
+updated: '2026-01-20 21:47:42'
 tags:
   - JavaScript
+  - Node.js
+  - Windows
+  - macOS
+  - Linux
 permalink: /post/2025/10/changelog-automatically-generated-lpisq.html
 comments: true
 toc: true

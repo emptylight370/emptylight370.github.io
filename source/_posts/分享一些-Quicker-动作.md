@@ -1,12 +1,13 @@
 ---
 title: 分享一些Quicker动作
 date: '2025-08-07 10:52:07'
-updated: '2025-08-07 22:27:09'
+updated: '2026-01-20 21:42:04'
 tags:
   - Windows
   - 思源笔记
   - Browser
   - VSCode
+  - Quicker
 permalink: /post/2025/08/share-some-quicker-actions-zulhol.html
 comments: true
 toc: true
