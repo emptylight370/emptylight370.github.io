@@ -35,23 +35,8 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-cache
 
-      # Caching public
-      - name: cache public
-        id: cache-public
-        uses: actions/cache@v5
-        with:
-          path: |
-            public
-            db.json
-          key: ${{ runner.os }}-public-${{ hashFiles('**/db.json') }}
-          restore-keys: |
-            ${{ runner.os }}-public-
-
       - name: Install Dependencies
         run: npm install
-
-      - name: Hexo Clean Cache
-        run: npm run clean
 
       - name: Build
         run: npm run build
@@ -111,5 +96,5 @@ jobs:
           cdn_type: eo
           eo_zone: ${{ secrets.TCLOUD_EO_ZONE }}
           local_path: public
-          remote_path: ""
+          remote_path: ''
           clean: true
