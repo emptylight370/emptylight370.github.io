@@ -1,12 +1,11 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-01-20 22:03:06'
+updated: '2026-01-28 15:17:22'
 tags:
   - Windows
   - macOS
   - Linux
-  - mise
 permalink: /post/2025/12/using-mise-to-manage-the-runtime-z21mtgf.html
 comments: true
 toc: true
@@ -296,11 +295,44 @@ mise i java@zulu-8
 
 经测试 PCL2 不能识别 mise 安装的 Java，但是可以手动添加。看起来 `mise use`​ 设定 Java 版本对非命令行程序有一定的问题，但是可以通过手动指定其他环境变量以避免设置 `JAVA_HOME`​，例如可以设置 `EXE4J_JAVA_HOME`​ 或 `HMCL_JAVA_HOME`​ 这些。Windows 下环境变量似乎不能运行某些程序，但是在 Linux 等系统下应该可以指定 `JAVA_HOME`​ 为 mise 输出的全局 Java 地址，如 `mise where java`。
 
+## 使用 mise 配置 Flutter
+
+文档：[flutter | mise versions](https://mise-versions.jdx.dev/tools/flutter)
+
+在刚写这份文档的时候，在 macOS 和 Linux 上安装 Flutter 可以用一个支持 `FLUTTER_STORAGE_BASE_URL` ​的后端进行安装，而 Windows 上只有 vfox 后端。vfox 后端的请求地址是写死的谷歌的地址，国内用不了。因此在 Windows 上想要通过 mise 安装 Flutter 只能用这两种方式：
+
+1. 在 `/mise/plugins/flutter` ​里面找到地址然后修改为国内镜像站的网址
+2. 自行安装改为国内镜像站的 vfox 插件用作后端：[chen3/vfox-flutter-cn: Flutter plugin for vfox](https://github.com/chen3/vfox-flutter-cn)
+
+   ```powershell
+   mise p i flutter https://github.com/chen3/vfox-flutter-cn
+   mise i flutter
+   mise use flutter -g
+   ```
+
+操作相当繁琐，并且当时失败了好多次，没能成功安装，所以就没写。现在成功了就写上来。
+
 ## 确认可用的后端
 
-可以通过 `mise doctor` ​打印出信息，然后从中找到 `backends` ​这部分，确认可用的后端。
+可以通过 `mise doctor`​ 打印出信息，然后从中找到 `backends`​ 这部分，确认可用的后端。或者直接使用 `mise backends` ​命令打印所有后端。
 
-比如说 Node.js 就可以用 npm，Python 就可以用 pipx、conda，安装 Node.js、Python 等是内置的 core，安装 GitHub 包可以用 GitHub 等。详见[后端架构 | mise-en-place](https://mise.jdx.dev/dev-tools/backend_architecture.html)、[后端 | mise-en-place](https://mise.jdx.dev/dev-tools/backends/) 文档。
+详见[后端架构 | mise-en-place](https://mise.jdx.dev/dev-tools/backend_architecture.html)、[后端 | mise-en-place](https://mise.jdx.dev/dev-tools/backends/) 文档。
+
+可以通过 `mise registry TOOL_NAME`​ 查看工具所支持的后端，比如 `mise registry node`​ 可以看到后端为 core，`mise registry prettier`​ 可以看到后端为 `npm`​。对于存在多个后端的工具，比如 pnpm，最靠前的后端是默认使用的后端，其他后端可以通过指定的方式使用。例如 `mise i pnpm`​ 是直接安装 pnpm 程序，`mise i npm:pnpm`​ 是通过 npm 安装 pnpm 包。但是 mise 做了防止不同后端重复安装工具的限制，如果是团队合作，我推荐项目的工具只写工具不写后端，具体通过什么后端安装由本地通过 tool_alias 指定。详见 [Tool Aliases | mise-en-place](https://mise.jdx.dev/dev-tools/aliases.html)。
+
+例如项目的 mise.toml：
+
+```toml
+[tools]
+pnpm = "latest"
+```
+
+在全局的配置文件中（可通过命令行设置）：
+
+```toml
+[tool_alias]
+pnpm = "npm:pnpm"
+```
 
 ## 可视化配置
 
