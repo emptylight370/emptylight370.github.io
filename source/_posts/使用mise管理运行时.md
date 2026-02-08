@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-01-28 15:17:22'
+updated: '2026-02-08 13:34:19'
 tags:
   - Windows
   - macOS
@@ -461,3 +461,26 @@ mise use -g pipx:yapf
 ```
 
 因此可以手动往 `mise.local.toml` ​添加这个格式以指定别名，这样可以实现在项目中指定 tools 为 java@25，本地使用 Oracle、OpenJDK 或 Dragonwell 之类的不同架构。使用 `mise.local.toml` ​也可以为不同的项目使用不同的 Java，比如项目 A 使用 Oracle，项目 B 使用 OpenJDK 这样的。详见 [Make ](https://github.com/jdx/mise/discussions/6266)​[`mise use java@21`](https://github.com/jdx/mise/discussions/6266)​[ use _any_ version 21 that is installed · jdx/mise · Discussion #6266](https://github.com/jdx/mise/discussions/6266)。
+
+## 创建垫片（shims）
+
+文档：[Shims | mise-en-place](https://mise.jdx.dev/dev-tools/shims.html)，[Settings | mise-en-place](https://mise.jdx.dev/configuration/settings.html#windows_shim_mode)
+
+默认情况下，在 Windows 中使用 mise 需要使用 shim。在首次安装 mise 之后，立即运行 `mise doctor` ​会看到一条报错信息，是说 shim 目录没有在 path 中，需要添加到 path。操作方法就是在系统变量或者用户变量的 path 里加上 `%MISE_DATA_DIR%/shims` ​目录。之后重启终端再运行 `mise doctor` ​就不会报这个错误了。
+
+原先，mise 在 Windows 上提供的 shims 是文件模式（即 `windows_shim_mode` ​的默认值为 `file`​），它的描述为：为 Git Bash/Cygwin 创建一个 `.cmd`​ 批处理文件 shim 和一个无扩展名的 bash 脚本。后来，在 mise v2026.2.7 版本中，新增了一个 exe 模式（即 `windows_shim_mode` ​的默认值切换到了 `exe`​），它的描述为：将原生可执行 shim（`mise-shim.exe`​）复制为 `<tool>.exe`​。推荐。适用于所有 shell、包管理器和 `where.exe`​。需要 `mise-shim.exe`​ 与 `mise.exe` 配合使用。
+
+这一修改主要是在 shims 目录下的 exe 文件里实现了通过文件名调用 mise 对应工具，这样就能实现与 Volta、Chocolate 等管理器一样的逻辑，并且适配需要在 path 里找到 exe 可执行文件的程序，如 bun、npm 等。得益于此，可以通过命令将 Cherry Studio 目录下的 uv 和 bun 指向 mise 全局安装的版本，而无需单独为 Cherry Studio 安装或复制程序文件。（详见相关引入 Pull Request）
+
+在更新到 v2026.2.7 版本之后，默认情况下应该能正常切换到 exe 模式，可打开文件夹确认。如果 shims 下的文件不是 exe，可以尝试使用 `mise reshim -f` ​或 `mise reshim --force` ​强制重建 shims。
+
+此处给出 PowerShell 创建软链接的方法，参考运行环境为 PowerShell 7，参考文档为 [New-Item (Microsoft.PowerShell.Management) - PowerShell | Microsoft Learn](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/new-item?view=powershell-7.5&amp;WT.mc_id=ps-gethelp#7)、[MCP 环境安装 | Cherry Studio](https://docs.cherry-ai.com/advanced-basic/mcp/install)
+
+```powershell
+New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uv.exe -Target $MISE_DATA_DIR\shims\uv.exe
+New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvx.exe -Target $MISE_DATA_DIR\shims\uvx.exe
+New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvw.exe -Target $MISE_DATA_DIR\shims\uvw.exe
+New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\bun.exe -Target $MISE_DATA_DIR\shims\bun.exe
+```
+
+运行命令之前需要先删除或重命名原有的文件，并且退出 Cherry Studio。推荐将原有的文件重命名为 xx.bak，等操作完成后启动 Cherry Studio 确认可用后再删除。
