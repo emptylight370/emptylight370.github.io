@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-02-08 13:34:19'
+updated: '2026-02-09 00:12:16'
 tags:
   - Windows
   - macOS
@@ -319,6 +319,8 @@ mise i java@zulu-8
 详见[后端架构 | mise-en-place](https://mise.jdx.dev/dev-tools/backend_architecture.html)、[后端 | mise-en-place](https://mise.jdx.dev/dev-tools/backends/) 文档。
 
 可以通过 `mise registry TOOL_NAME`​ 查看工具所支持的后端，比如 `mise registry node`​ 可以看到后端为 core，`mise registry prettier`​ 可以看到后端为 `npm`​。对于存在多个后端的工具，比如 pnpm，最靠前的后端是默认使用的后端，其他后端可以通过指定的方式使用。例如 `mise i pnpm`​ 是直接安装 pnpm 程序，`mise i npm:pnpm`​ 是通过 npm 安装 pnpm 包。但是 mise 做了防止不同后端重复安装工具的限制，如果是团队合作，我推荐项目的工具只写工具不写后端，具体通过什么后端安装由本地通过 tool_alias 指定。详见 [Tool Aliases | mise-en-place](https://mise.jdx.dev/dev-tools/aliases.html)。
+
+在测试了几天下来，发现 tool_alias 或许还存在一些局限，平时指定工具别名或许就够用了，但是 lockfile（`mise lock`​）会锁定工具使用的版本和后端，比如 Java 就可能出现 `21.0.0` ​和 `oracle-21.0.0` ​这些版本，如果遵守锁定文件就会出现版本冲突，但是 tool-alias 确实将 `mise.toml` ​里使用的 `java@21` ​指向了 `oracle-21`​，这时候这种冲突怎么办？或许就需要通过 `mise.local.toml` ​指定使用 `java@oracle-21`​（如果直接使用 `java@21` ​无效的话），后续再生成锁文件（`mise lock --local`​）就能得到 `mise.local.lock`，这时候遵照本地配置覆盖的原则就能确定使用的版本。
 
 例如项目的 mise.toml：
 
