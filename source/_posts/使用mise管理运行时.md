@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-02-09 00:12:16'
+updated: '2026-02-09 12:40:53'
 tags:
   - Windows
   - macOS
@@ -479,10 +479,10 @@ mise use -g pipx:yapf
 此处给出 PowerShell 创建软链接的方法，参考运行环境为 PowerShell 7，参考文档为 [New-Item (Microsoft.PowerShell.Management) - PowerShell | Microsoft Learn](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/new-item?view=powershell-7.5&amp;WT.mc_id=ps-gethelp#7)、[MCP 环境安装 | Cherry Studio](https://docs.cherry-ai.com/advanced-basic/mcp/install)
 
 ```powershell
-New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uv.exe -Target $MISE_DATA_DIR\shims\uv.exe
-New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvx.exe -Target $MISE_DATA_DIR\shims\uvx.exe
-New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvw.exe -Target $MISE_DATA_DIR\shims\uvw.exe
-New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\bun.exe -Target $MISE_DATA_DIR\shims\bun.exe
+New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uv.exe -Target $env:MISE_DATA_DIR\shims\uv.exe
+New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvx.exe -Target $env:MISE_DATA_DIR\shims\uvx.exe
+New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvw.exe -Target $env:MISE_DATA_DIR\shims\uvw.exe
+New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\bun.exe -Target $env:MISE_DATA_DIR\shims\bun.exe
 ```
 
 运行命令之前需要先删除或重命名原有的文件，并且退出 Cherry Studio。推荐将原有的文件重命名为 xx.bak，等操作完成后启动 Cherry Studio 确认可用后再删除。
