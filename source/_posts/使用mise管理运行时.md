@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-02-12 15:53:23'
+updated: '2026-02-12 18:39:38'
 tags:
   - Windows
   - macOS
@@ -476,13 +476,12 @@ mise use -g pipx:yapf
 
 在更新到 v2026.2.7 版本之后，默认情况下应该能正常切换到 exe 模式，可打开文件夹确认。如果 shims 下的文件不是 exe，可以尝试使用 `mise reshim -f` ​或 `mise reshim --force` ​强制重建 shims。
 
-此处给出 PowerShell 创建软链接的方法，参考运行环境为 PowerShell 7，参考文档为 [New-Item (Microsoft.PowerShell.Management) - PowerShell | Microsoft Learn](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/new-item?view=powershell-7.5&amp;WT.mc_id=ps-gethelp#7)、[MCP 环境安装 | Cherry Studio](https://docs.cherry-ai.com/advanced-basic/mcp/install)
-
-```powershell
-New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uv.exe -Target $env:MISE_DATA_DIR\shims\uv.exe
-New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvx.exe -Target $env:MISE_DATA_DIR\shims\uvx.exe
-New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvw.exe -Target $env:MISE_DATA_DIR\shims\uvw.exe
-New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\bun.exe -Target $env:MISE_DATA_DIR\shims\bun.exe
-```
-
-运行命令之前需要先删除或重命名原有的文件，并且退出 Cherry Studio。推荐将原有的文件重命名为 xx.bak，等操作完成后启动 Cherry Studio 确认可用后再删除。如果因为 Cherry Studio 占用文件导致 `mise reshim` ​运行失败，可以在 bin 里面对着符号链接复制然后粘贴，将 mise 生成的 exe 文件直接复制到这里来，删掉原本的符号链接，用 exe 文件替换。
+> 此处给出 PowerShell 创建软链接的方法，参考运行环境为 PowerShell 7，参考文档为 [New-Item (Microsoft.PowerShell.Management) - PowerShell | Microsoft Learn](https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.management/new-item?view=powershell-7.5&amp;WT.mc_id=ps-gethelp#7)、[MCP 环境安装 | Cherry Studio](https://docs.cherry-ai.com/advanced-basic/mcp/install)
+>
+> ```powershell
+> New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uv.exe -Target $env:MISE_DATA_DIR\shims\uv.exe
+> New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvx.exe -Target $env:MISE_DATA_DIR\shims\uvx.exe
+> New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvw.exe -Target $env:MISE_DATA_DIR\shims\uvw.exe
+> New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\bun.exe -Target $env:MISE_DATA_DIR\shims\bun.exe
+> ```
+> 运行命令之前需要先删除或重命名原有的文件，并且退出 Cherry Studio。推荐将原有的文件重命名为 xx.bak，等操作完成后启动 Cherry Studio 确认可用后再删除。如果因为 Cherry Studio 占用文件导致 `mise reshim` 运行失败，推荐回到原本的复制文件方法。我推荐写好复制文件脚本，在更新全局版本后运行脚本复制文件。
