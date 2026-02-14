@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-02-14 13:34:34'
+updated: '2026-02-14 14:47:22'
 tags:
   - Windows
   - macOS
@@ -484,4 +484,4 @@ mise use -g pipx:yapf
 > New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvw.exe -Target $env:MISE_DATA_DIR\shims\uvw.exe
 > New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\bun.exe -Target $env:MISE_DATA_DIR\shims\bun.exe
 > ```
-> 运行命令之前需要先删除或重命名原有的文件，并且退出 Cherry Studio。推荐将原有的文件重命名为 xx.bak，等操作完成后启动 Cherry Studio 确认可用后再删除。如果因为 Cherry Studio 占用文件导致 `mise reshim` 运行失败，推荐回到原本的复制文件方法。我推荐写好复制文件脚本，在更新全局版本后运行脚本复制文件。
+> 运行命令之前需要先删除或重命名原有的文件，并且退出 Cherry Studio。推荐将原有的文件重命名为 xx.bak，等操作完成后启动 Cherry Studio 确认可用后再删除。如果因为 Cherry Studio 占用文件导致 `mise reshim` 运行失败，推荐回到原本的复制文件方法。我推荐写好复制文件脚本，在更新全局版本后运行脚本复制文件。在使用 Cherry Studio v1.7.18 版本时，发现会优先使用全局的 uv 和 bun 安装，不管 Cherry Studio 目录里的 bin 文件夹有没有 uv 和 bun 都是优先使用全局的，这会导致涉及 mise、uv 与 bun 的版本切换操作失败，比如 WinGet 更新 mise、mise 更新 uv、bun 等。目前文档没写这个修改，更新日志里好像也没看到。
