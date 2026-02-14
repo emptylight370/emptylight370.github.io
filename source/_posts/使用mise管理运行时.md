@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-02-12 18:39:38'
+updated: '2026-02-14 13:34:34'
 tags:
   - Windows
   - macOS
@@ -257,7 +257,7 @@ run = [
 
 ## 使用 mise 配置 Java
 
-文档：[Java | mise-en-place](https://mise.jdx.dev/lang/java.html)，[Java 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/java/)
+文档：[Java | mise-en-place](https://mise.jdx.dev/lang/java.html)，[Java 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/java/)，[Settings | mise-en-place](https://mise.jdx.dev/configuration/settings.html#java.shorthand_vendor)
 
 默认情况下版本号的简写指向 OpenJDK，可以通过前缀指向其他供应商。具体可以安装的 Java 版本可通过 `mise ls-remote java` ​查看。通过以下命令可以获取或安装 Java：
 
@@ -289,7 +289,7 @@ mise i java@zulu-8
 >
 > 这个方法使用 mise 提供的功能添加本地安装，详见后文介绍
 
-使用 `java@25` ​安装的 Java 默认是 OpenJDK 的，我自己喜欢用 Oracle 和 Dragonwell 的，就自行安装了几个版本并且设置了别名，将 25 对应到 Oracle-25，21 对应到 Oracle-21，8 对应到 Dragonwell-8，如此使用 `java@25` ​就能使用 Oracle 的 25 版本。设置别名的方法详见后文介绍。
+使用 `java@25`​ 安装的 Java 默认是 OpenJDK 的，可通过设置别名方式指向其他发行版，详见下文标题。在 2026.2.12 版本中新加了设置项 `java.shorthand_vendor`​，可以指定版本号缩写使用的发行版，默认为 `openjdk`，详见上方链接。
 
 对于 `JAVA_HOME`​，没有进行过实际测试，通过 `mise use -g java@25`​ 设置的 Java 25 版本可以在命令行中直接调用，但是无法被 EXE4J 编译的应用直接调用，需要设置 `EXE4J_JAVA_HOME`。在 VSCode 中使用 mise 安装的 Java 请见下方标题。
 
