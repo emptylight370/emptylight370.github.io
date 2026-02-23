@@ -9,7 +9,7 @@ description: ''
 keywords:
 author: EmptyLight
 language: zh-CN
-timezone: ''
+timezone: 'Asia/Shanghai'
 favicon: https://res.emptylight.cn/website/img/favicon-96.jpg
 
 # URL
