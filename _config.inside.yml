@@ -295,7 +295,7 @@ reward:
       text: This is a afdian payment link. TO NEW SITE
       color: '#b75353'
     - name: wechat
-      qrcode: https://res.emptylight.cn/share/img/2026/ec189928bd938bc9220b0bf145523dde.png
+      qrcode: https://res.emptylight.cn/share/img/2026/84c12f17caf6859a9cfb6990a3366865.png
       text: This is a WeChat sponsor qrcode
       color: '#14c468'
 
