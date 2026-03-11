@@ -14,7 +14,7 @@ appearance:
   # body background, default '#f5f7fa'
   background:
   # Sidebar background (when opened), default to accent_color
-  sidebar_background:
+  sidebar_background: '#2a2b33'
   # Card background, default '#fff'
   card_background:
 
