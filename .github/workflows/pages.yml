@@ -25,7 +25,7 @@ jobs:
         # submodules: recursive
 
       - name: Use mise
-        uses: jdx/mise-action@v3
+        uses: jdx/mise-action@v4
 
       - name: Cache NPM dependencies
         uses: actions/cache@v5
@@ -44,7 +44,7 @@ jobs:
         run: npm run build
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5.0.0 # https://github.com/actions/upload-pages-artifact/issues/143
         with:
           path: ./public
 
@@ -70,7 +70,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   sendCOS:
     needs: build
