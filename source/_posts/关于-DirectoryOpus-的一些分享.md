@@ -5,7 +5,7 @@ updated: '2026-01-20 21:39:10'
 tags:
   - Windows
   - Directory Opus
-permalink: /post/some-sharing-about-directory-opus-29ghxa.html
+permalink: /post/2026/01/some-sharing-about-directory-opus-29ghxa.html
 comments: true
 toc: true
 ---
