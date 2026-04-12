@@ -1,7 +1,7 @@
 ---
 title: 检查GitHub Actions工作流版本更新
 date: '2026-04-12 15:01:08'
-updated: '2026-04-12 15:32:23'
+updated: '2026-04-12 15:36:40'
 tags:
   - GitHub
 permalink: /post/2026/04/check-for-github-actions-workflow-version-updates-z1udlzv.html
@@ -47,7 +47,7 @@ MISE_GITHUB_TOKEN = ""
 
 ```toml
 [tasks.github_actions_detect]
-env.GHACU_GITHUB_TOKEN = "{{ exec(gh auth token) }}"
+env.GHACU_GITHUB_TOKEN = "{{ exec(command='gh auth token') }}"
 ```
 
 上述方法未经测试，但是应该可行。具体执行的命令可以按需替换。
