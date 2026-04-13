@@ -1,7 +1,7 @@
 ---
 title: changelog自动生成
 date: '2025-10-20 22:36:39'
-updated: '2026-01-20 21:47:42'
+updated: '2026-04-14 00:32:35'
 tags:
   - JavaScript
   - Node.js
@@ -19,7 +19,9 @@ toc: true
 
 ## 选用工具
 
-用的是 [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)，全局安装 conventional-changelog-cli 工具代替每项目单独安装，缺点是通过项目的 package.json 不会自动安装这个包，不过鉴于目前没人协作不管这种问题，反正文件里写着调用 conventional-changelog，到时候调用不了会有解决方案从地里长出来的。
+用的是 [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)，~~全局安装 conventional-changelog-cli 工具代替每项目单独安装，~~ 全局安装 conventional-changelog 工具代替项目中单独安装，缺点是通过项目的 package.json 不会自动安装这个包，不过鉴于目前没人协作不管这种问题，反正文件里写着调用 conventional-changelog，到时候调用不了会有解决方案从地里长出来的。
+
+全局安装的目的是直接通过命令行直接调用工具，如果只是在项目中自动化调用，也可以在项目中安装，然后通过 `npm run` ​或者 `pnpm run` ​自动化调用。因为现在的环境由 mise 管理，此处使用 mise 安装。
 
 下文会将 conventional-changelog 简写为 cc。
 
@@ -32,7 +34,13 @@ toc: true
 安装 cc-cli。通过 npm 命令全局安装，我本地有 Volta，就用 Volta 安装了。具体的安装命令如下：
 
 ```powershell
-npm i -g conventional-changelog-cli
+npm i -g conventional-changelog
+```
+
+换用 mise 之后，命令变为如下：
+
+```powershell
+mise use npm:conventional-changelog
 ```
 
 ### 配置
@@ -41,18 +49,18 @@ npm i -g conventional-changelog-cli
 
 但是这个模板我又想自己自定义，不想用默认的格式，那这就难办了。在网上找了很多文章、仓库，都没有我想要的定义方法，要么安装另一个工具代替 Git 提交流程，要么就是那个工具的第三方扩展，找了半天终于从 cc 自己的仓库里看出点门道来。
 
-1. 首先，在 [conventional-changelog/packages/conventional-changelog-conventionalcommits at master · conventional-changelog/conventional-changelog](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-conventionalcommits) 文件夹里面有个 README.md 文件，写了这么一个标题：直接使用（作为基础预设以便你能自定义它）。这里给了两个代码，第一个好像是仓库里要安装有 cc 才能用，果断选第二个。第二个可以作为参数传给 cc-cli 使用。
+1. 首先，在 [conventional-changelog/packages/conventional-changelog-conventionalcommits](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-conventionalcommits) 文件夹里面有个 README.md 文件，写了这么一个标题：直接使用（作为基础预设以便你能自定义它）。这里给了两个代码，第一个好像是仓库里要安装有 cc 才能用，果断选第二个。第二个可以作为参数传给 cc-cli 使用。
 2. 在要使用 cc 的仓库里新建一个 JSON 文件，名称自定，这里用 `conventional-changelog.config.json` ​标识用途，实际项目中不一定要这么复杂。往 JSON 里面填入说明文件的 JSON 内容。
 3. 对填入的 JSON 进行自定义，首先删掉 `issuePrefixes` ​和 `issueUrlFormat`​，这个还用不上。然后根据文档给出的超链接跳转到配置文件说明：[conventional-changelog/conventional-changelog-config-spec: a spec describing the config options supported by conventional-config for upstream tooling](https://github.com/conventional-changelog/conventional-changelog-config-spec)。
 
-    1. ⚠️ 特别注意：`name` ​不要删掉，那个是标识你在哪个预设上修改的，如果想要基于别的预设修改可以改动里面的值
+   1. ⚠️ 特别注意：`name` ​不要删掉，那个是标识你在哪个预设上修改的，如果想要基于别的预设修改可以改动里面的值
 4. 在新的仓库里面选中最新版的版本号文档，进入文档去看对应的配置项。
 5. 这里想要自定义的只有提交的类型，默认配置中写入 changelog 的提交种类和生成的标题都想改，就把 `types` ​的数组复制到先前的 JSON 文件中，粘贴到原本 `issuePrefixes` ​那个层级。（在 `name` ​下面）
 
-    1. 这里需要明确，`type` ​指的是提交信息 `feat: Update code` ​前面的 `feat` ​那部分，修改这里可以匹配不同的提交信息
-    2. 后面的 `section` ​是指这个提交信息放在什么部分，代表生成的 changelog 这部分提交的标题。
-    3. ​`hidden: true` ​指的是在 changelog 中隐藏这类型提交，不会在 changelog 中写出来
-    4. ​`scope` ​指的是提交信息 `feat(core): commit` ​中 `core` ​这部分，如果一个项目文件夹中有许多实际的项目，可以通过这个部分说明提交到哪个部分，并且生成日志也可以通过 `scope` ​区分，在一个 `type` ​里也能分出不同的 `section`
+   1. 这里需要明确，`type` ​指的是提交信息 `feat: Update code` ​前面的 `feat` ​那部分，修改这里可以匹配不同的提交信息
+   2. 后面的 `section` ​是指这个提交信息放在什么部分，代表生成的 changelog 这部分提交的标题。
+   3. ​`hidden: true` ​指的是在 changelog 中隐藏这类型提交，不会在 changelog 中写出来
+   4. ​`scope` ​指的是提交信息 `feat(core): commit` ​中 `core` ​这部分，如果一个项目文件夹中有许多实际的项目，可以通过这个部分说明提交到哪个部分，并且生成日志也可以通过 `scope` ​区分，在一个 `type` ​里也能分出不同的 `section`
 6. 根据说明对 `types` ​数组进行自定义修改。到此，我的自定义基本做完了
 
 ### 使用
@@ -106,7 +114,7 @@ conventional-changelog -o temp.md -r 0 -n conventional-changelog.config.json
 conventional-changelog -i temp.md -s -n conventional-changelog.config.json
 ```
 
-这时应该会更新或者重新生成一份当前版本的更新日志到最前方（具体的我不是很确定，我的环境不是标准的 Node.js 项目），如果更新正常应当就是配置完成了。接下来不管是将 temp 转为 changelog 还是什么还请自行决定。
+这时应该会重新生成一份当前版本的更新日志到最前方，如果更新正常应当就是配置完成了。接下来不管是将 temp 转为 changelog 还是什么还请自行决定。
 
 在配置完成后，最好在 package.json 里面写入这个命令方便调用。
 
@@ -128,7 +136,10 @@ conventional-changelog -i temp.md -s -n conventional-changelog.config.json
 conventional-changelog -i changelog.md -s -n conventional-changelog.config.json -k theme.json -c theme.json
 ```
 
-这样就能获取到 theme.json 里面的 version 了（`-k`​）。将 theme.json 作为参数传入也能将目前的版本号作为标题（`-c`​），不会生成一个单独的日期标题。目前最好的实现方案是修改版本号之后先在本地不要上传，运行 changelog 之后使用 `git --amend` ​补充进提交里面，完事之后再上传云端。
+这样就能获取到 theme.json 里面的 version 了（`-k`​）。将 theme.json 作为参数传入也能将目前的版本号作为标题（`-c`​），不会生成一个单独的日期标题。目前最好的实现方案是修改版本号之后先在本地不要上传，运行 changelog 之后使用 `git --amend` 补充进提交里面，完事之后再上传云端。
+
+> [!NOTE] ✏️ 
+> 此处的三个参数：`-n`​、`-k`​ 和 `-c`​，可以按需组合，检查什么组合下能够正常工作。我这里是需要同时使用三个参数才能正常生成，后续也见到项目需要去掉 `-c` ​参数才能正常生成的，这部分需要自行多加测试。
 
 ## 总结
 
