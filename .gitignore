@@ -153,3 +153,4 @@ dist
 # mise-en-place
 mise.local.toml
 mise.local.lock
+.mise/prepare-state.toml
