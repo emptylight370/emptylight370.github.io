@@ -1,7 +1,7 @@
 ---
 title: changelog自动生成
 date: '2025-10-20 22:36:39'
-updated: '2026-04-14 00:32:35'
+updated: '2026-05-13 14:41:14'
 tags:
   - JavaScript
   - Node.js
@@ -59,11 +59,11 @@ mise use npm:conventional-changelog
 
    1. 这里需要明确，`type` ​指的是提交信息 `feat: Update code` ​前面的 `feat` ​那部分，修改这里可以匹配不同的提交信息
    2. 后面的 `section` ​是指这个提交信息放在什么部分，代表生成的 changelog 这部分提交的标题。
-   3. ​`hidden: true` ​指的是在 changelog 中隐藏这类型提交，不会在 changelog 中写出来
-   4. ​`scope` ​指的是提交信息 `feat(core): commit` ​中 `core` ​这部分，如果一个项目文件夹中有许多实际的项目，可以通过这个部分说明提交到哪个部分，并且生成日志也可以通过 `scope` ​区分，在一个 `type` ​里也能分出不同的 `section`
+   3. `hidden: true` ​指的是在 changelog 中隐藏这类型提交，不会在 changelog 中写出来
+   4. `scope` ​指的是提交信息 `feat(core): commit` ​中 `core` ​这部分，如果一个项目文件夹中有许多实际的项目，可以通过这个部分说明提交到哪个部分，并且生成日志也可以通过 `scope` ​区分，在一个 `type` ​里也能分出不同的 `section`
 6. 根据说明对 `types` ​数组进行自定义修改。到此，我的自定义基本做完了
 
-### 使用
+### 使用（旧）
 
 通过命令行可以得到以下信息：
 
@@ -128,7 +128,7 @@ conventional-changelog -i temp.md -s -n conventional-changelog.config.json
 
 以后只需要 `npm run changelog` ​就可以生成更新日志了。
 
-### 特殊场景
+#### 特殊场景
 
 我研究这个使用的场景是在思源主题的开发环境里面测试的，我的 package.json 里面版本号固定到 `0.0.0` ​不更新了，版本号要在 theme.json 里面查。好在 cc 提供了命令行参数指定 package.json 路径，只要文件里面的 `version` ​和 package.json 里面的 `version` ​层级一致就不报错，我额外添加了命令行参数适应项目环境。
 
@@ -140,6 +140,59 @@ conventional-changelog -i changelog.md -s -n conventional-changelog.config.json 
 
 > [!NOTE] ✏️ 
 > 此处的三个参数：`-n`​、`-k`​ 和 `-c`​，可以按需组合，检查什么组合下能够正常工作。我这里是需要同时使用三个参数才能正常生成，后续也见到项目需要去掉 `-c` ​参数才能正常生成的，这部分需要自行多加测试。
+
+### 使用（新）
+
+上述版本是在 `conventional-changelog-cli` ​的基础上生成的，换用 `conventional-changelog` ​之后有点变化，目前（7.2.0）版本的命令行参数为：
+
+```powershell
+PS > conventional-changelog --help
+
+  Generate a changelog from git metadata.
+
+  Usage
+    conventional-changelog
+
+  Example
+    conventional-changelog -i changelog -o CHANGELOG.md
+
+  Options
+    -i, --infile              Read the CHANGELOG from this file (default: CHANGELOG.md)
+    -o, --outfile             Write the CHANGELOG to this file (default: infile)
+    --stdout                  Output the result to stdout
+    -p, --preset              Name of the preset you want to use
+    -k, --pkg                 A filepath of where your package.json is located (default: closest package.json)
+    -a, --append              Should the newer release be appended to the older release (default: false)
+    -f, --first-release       Generate the CHANGELOG for the first time
+    -r, --release-count       How many releases to be generated from the latest (default: 1)
+                              If 0, the whole changelog will be regenerated and the outfile will be overwritten
+    --skip-unstable           If given, unstable tags will be skipped, e.g., x.x.x-alpha.1, x.x.x-rc.2
+    -u, --output-unreleased   Output unreleased changelog
+    -v, --verbose             Verbose output. Use this for debugging (default: false)
+    -n, --config              A filepath of your config script
+    -c, --context             A filepath of a json that is used to define template variables
+    -l, --lerna-package       Generate a changelog for a specific lerna package (:pkg-name@1.0.0)
+    -t, --tag-prefix          Tag prefix to consider when reading the tags
+    --commit-path             Generate a changelog scoped to a specific directory
+```
+
+可以看到，命令行参数有些变化，目前会默认将输出追加到输入文件的顶部，移除了输出到相同文件的参数。目前使用的命令行为：
+
+```powershell
+conventional-changelog -i changelog.md -n conventional-changelog.config.json
+```
+
+#### 特殊场景
+
+对于我自己的项目，可以使用 `-c` ​指定一个 JSON 文件读取版本号，命令行为：
+
+```powershell
+conventional-changelog -i changelog.md -n conventional-changelog.config.json -c theme.json
+```
+
+如果使用 `-k` ​把 `package.json` ​指向自己的配置文件，需要所有的键值对的类型和 package.json 一致，比如 `description` ​是字符串而不是别的什么东西。因为我这里这个 `description` ​的格式是 `object`​，所以不能使用 `-k`。
+
+现在不知道是哪里出错了，之前的配置文件失效了，生成的变更日志只是单纯把所有提交排列出来，原因不明，现在还在排查中。
 
 ## 总结
 
