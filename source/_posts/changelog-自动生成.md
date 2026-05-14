@@ -1,14 +1,14 @@
 ---
 title: changelog自动生成
 date: '2025-10-20 22:36:39'
-updated: '2026-05-14 01:23:59'
+updated: '2026-05-14 16:49:16'
 tags:
   - JavaScript
   - Node.js
   - Windows
   - macOS
   - Linux
-permalink: /post/2025/10/changelog-automatically-generated-lpisq.html
+permalink: /post/changelog-automatically-generated-lpisq.html
 comments: true
 toc: true
 ---
@@ -279,7 +279,7 @@ body = """
     {% if previous.version %}\
         ## [{{ version | trim_start_matches(pat="v") }}](<REPO>/compare/{{ previous.version }}...{{ version }}) ({{ timestamp | date(format="%Y-%m-%d") }})
     {% else %}\
-        ## {{ version | trim_start_matches(pat="v") }} ({{ timestamp | date(format="%Y-%m-%d") }})
+        ## [{{ version | trim_start_matches(pat="v") }}](<REPO>/compare/{{ commit_range.from }}...{{ version }}) ({{ timestamp | date(format="%Y-%m-%d") }})
     {% endif %}\
 {% else %}\
     ## [unreleased]
