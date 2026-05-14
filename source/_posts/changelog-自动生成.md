@@ -8,7 +8,7 @@ tags:
   - Windows
   - macOS
   - Linux
-permalink: /post/changelog-automatically-generated-lpisq.html
+permalink: /post/2025/10/changelog-automatically-generated-lpisq.html
 comments: true
 toc: true
 ---
