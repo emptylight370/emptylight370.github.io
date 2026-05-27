@@ -6,7 +6,7 @@
 # Appearance
 appearance:
   # Accent color, default '#2a2b33'
-  accent_color: '#539bf5'
+  accent_color: "#539bf5"
   # Font color, default '#363636'
   foreground_color:
   # Border color, default '#e0e0e0'
@@ -14,7 +14,7 @@ appearance:
   # body background, default '#f5f7fa'
   background:
   # Sidebar background (when opened), default to accent_color
-  sidebar_background: '#2a2b33'
+  sidebar_background: "#2a2b33"
   # Card background, default '#fff'
   card_background:
 
@@ -36,7 +36,7 @@ appearance:
     # Sidebar author font, fallback to `base`
     logo:
     # Sidebar menu font, fallback to `base`
-    menu: 'Baloo Bhaijaan'
+    menu: "Baloo Bhaijaan"
     # Font for:
     # - percentage on the fab button
     # - month text on archives page
@@ -84,30 +84,30 @@ appearance:
   # ]
 
   darkmode:
-    accent_color: '#539bf5'
-    foreground_color: '#adbac7'
-    border_color: '#373e47'
-    background: '#22272e'
-    sidebar_background: '#22272e'
-    card_background: '#2d333b'
+    accent_color: "#539bf5"
+    foreground_color: "#adbac7"
+    border_color: "#373e47"
+    background: "#22272e"
+    sidebar_background: "#22272e"
+    card_background: "#2d333b"
     highlight:
       [
-        '#2d333b',
-        '#444c56',
-        '#3e4451',
-        '#545862',
-        '#565c64',
-        '#abb2bf',
-        '#b6bdca',
-        '#c8ccd4',
-        '#e06c75',
-        '#d19a66',
-        '#e5c07b',
-        '#98c379',
-        '#56b6c2',
-        '#61afef',
-        '#c678dd',
-        '#be5046',
+        "#2d333b",
+        "#444c56",
+        "#3e4451",
+        "#545862",
+        "#565c64",
+        "#abb2bf",
+        "#b6bdca",
+        "#c8ccd4",
+        "#e06c75",
+        "#d19a66",
+        "#e5c07b",
+        "#98c379",
+        "#56b6c2",
+        "#61afef",
+        "#c678dd",
+        "#be5046",
       ]
 
 # Sidebar profile
@@ -125,7 +125,7 @@ profile:
 menu:
   主页: /
   关于: /about
-  功能: /function
+  # 功能: /function
   归档: /archives
   Github: https://github.com/emptylight370
 
@@ -293,11 +293,11 @@ reward:
     - name: paypal
       url: https://afdian.com/a/tingyuting
       text: This is a afdian payment link. TO NEW SITE
-      color: '#b75353'
+      color: "#b75353"
     - name: wechat
       qrcode: https://res.emptylight.cn/share/img/2026/84c12f17caf6859a9cfb6990a3366865.png
       text: This is a WeChat sponsor qrcode
-      color: '#14c468'
+      color: "#14c468"
 
 # Copyright notice
 # It is possible to use front matter `copyright` to override this setting.
