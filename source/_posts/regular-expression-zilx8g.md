@@ -6,6 +6,7 @@ permalink: /post/2023/09/regular-expression-zilx8g.html
 comments: true
 toc: true
 tags:
+mathjax: true
 ---
 
 

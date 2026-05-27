@@ -8,6 +8,7 @@ tags:
 permalink: /post/2025/01/use-immersive-translation-in-blogs-z1m6lf2.html
 comments: true
 toc: true
+mathjax: true
 ---
 
 

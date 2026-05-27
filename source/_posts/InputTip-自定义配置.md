@@ -8,6 +8,7 @@ tags:
 permalink: /post/2026/04/inputtip-custom-configuration-11mpmo.html
 comments: true
 toc: true
+mathjax: true
 ---
 
 
