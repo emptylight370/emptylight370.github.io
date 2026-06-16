@@ -1,7 +1,7 @@
 ---
 title: 检查GitHub Actions工作流版本更新
 date: '2026-04-12 15:01:08'
-updated: '2026-06-16 19:10:54'
+updated: '2026-06-16 20:03:39'
 tags:
   - GitHub
 permalink: /post/2026/04/check-for-github-actions-workflow-version-updates-z1udlzv.html
@@ -81,7 +81,7 @@ tools."github:fabasoad/ghacu" = "latest"
 description = "Pin GitHub Actions versions to hash"
 dir = "{{ cwd }}"
 env.PINACT_GITHUB_TOKEN = "{{ env.MISE_GITHUB_TOKEN }}"
-run = "pinact run"
+run = "pinact run -u"
 tools.pinact = "latest"
 ```
 
