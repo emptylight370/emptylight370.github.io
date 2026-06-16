@@ -1,7 +1,7 @@
 ---
 title: 检查GitHub Actions工作流版本更新
 date: '2026-04-12 15:01:08'
-updated: '2026-04-12 15:36:40'
+updated: '2026-06-16 19:10:54'
 tags:
   - GitHub
 permalink: /post/2026/04/check-for-github-actions-workflow-version-updates-z1udlzv.html
@@ -11,6 +11,8 @@ toc: true
 
 
 
+## 检查 semver 更新
+
 因为手动检查 GitHub Actions 使用的工作流版本更新太过繁琐，dependent bot 又不提供 GitHub Actions 的工作流版本检查，所以我一直想要找到某种方式自动检查工作流的版本更新。在问了 AI 之后找到了几个工具，从中找到了这个工具（[fabasoad/ghacu: GitHub Actions Check Updates - CLI tool to check whether all your actions are up-to-date or not.](https://github.com/fabasoad/ghacu)），并且结合到 mise 中。
 
 首先，打开 mise 的全局配置文件（`~./config/mise.toml`），往里面加入下列任务配置：
@@ -19,6 +21,7 @@ toc: true
 [tasks.github_actions_detect]
 alias = "ghad"
 description = "Detect GitHub Actions versions updates"
+dir = "{{ cwd }}"
 run = "ghacu"
 tools."github:fabasoad/ghacu" = "latest"
 ```
@@ -31,6 +34,7 @@ ghacu 工具在没有提供 GitHub token 时会以未认证用户身份请求，
 [tasks.github_actions_detect]
 alias = "ghad"
 description = "Detect GitHub Actions versions updates"
+dir = "{{ cwd }}"
 env.GHACU_GITHUB_TOKEN = "{{ env.MISE_GITHUB_TOKEN }}"
 run = "ghacu"
 tools."github:fabasoad/ghacu" = "latest"
@@ -58,7 +62,31 @@ env.GHACU_GITHUB_TOKEN = "{{ exec(command='gh auth token') }}"
 [tasks.github_actions_update]
 alias = "ghau"
 description = "Update GitHub Actions versions"
+dir = "{{ cwd }}"
 env.GHACU_GITHUB_TOKEN = "{{ env.MISE_GITHUB_TOKEN }}"
 run = "ghacu --upgrade"
 tools."github:fabasoad/ghacu" = "latest"
 ```
+
+## 检查 hash 更新
+
+不管出于何种安全原因，想要锁定 GitHub Actions 的编译代码，只能使用 sha256 固定 actions 版本，因为任何 tag 都是可以重新创建的，引用 tag 会导致不同 GitHub Actions 运行中使用的 actions 代码不一样。相关安全说明见：[安全使用指南 - GitHub 文档](https://docs.github.com/zh/actions/reference/security/secure-use#using-third-party-actions)
+
+对于固定 actions 版本到固定的 hash，有许多工具可选，我选用的是 [suzuki-shunsuke/pinact: pinact is a CLI to edit GitHub Workflow and Composite action files and pin versions of Actions and Reusable Workflows. pinact can also update their versions and verify version annotations.](https://github.com/suzuki-shunsuke/pinact)，并且结合到 mise 中。
+
+打开 mise 的全局配置文件，将以下任务加入配置中。
+
+```toml
+[tasks.github_actions_pin]
+description = "Pin GitHub Actions versions to hash"
+dir = "{{ cwd }}"
+env.PINACT_GITHUB_TOKEN = "{{ env.MISE_GITHUB_TOKEN }}"
+run = "pinact run"
+tools.pinact = "latest"
+```
+
+之后通过 `mise run` ​运行命令，就能看到命令行里面将 actions 都固定到最新 tag 的 hash，并且标记 hash 对应的版本号。后续再运行这个任务，就能将 actions 更新到最新版本。
+
+pinact 支持配置文件，能够全局配置以及项目配置，相关文档见：[pinact/docs/config.md 在分支 main · suzuki-shunsuke/pinact](https://github.com/suzuki-shunsuke/pinact/blob/main/docs/config.md)，能够通过配置文件忽略某些 actions，或者调整更新前的等待时间。具体的配置项详见官方说明。
+
+并且，pinact 提供了 GitHub Actions 版本（[suzuki-shunsuke/pinact-action: GitHub Actions to pin GitHub Actions by pinact](https://github.com/suzuki-shunsuke/pinact-action)），能够在 GitHub Actions 中定期检查版本更新，并且发起 Pull Request，但是需要单独的 access token，并且授予进行修改的权限。
