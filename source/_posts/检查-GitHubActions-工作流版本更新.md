@@ -1,7 +1,7 @@
 ---
 title: 检查GitHub Actions工作流版本更新
 date: '2026-04-12 15:01:08'
-updated: '2026-06-16 20:03:39'
+updated: '2026-06-16 20:31:59'
 tags:
   - GitHub
 permalink: /post/2026/04/check-for-github-actions-workflow-version-updates-z1udlzv.html
@@ -85,8 +85,32 @@ run = "pinact run -u"
 tools.pinact = "latest"
 ```
 
-之后通过 `mise run` ​运行命令，就能看到命令行里面将 actions 都固定到最新 tag 的 hash，并且标记 hash 对应的版本号。后续再运行这个任务，就能将 actions 更新到最新版本。
+之后通过 `mise run`​ 运行命令，就能看到命令行里面将 actions 都固定到最新 tag 的 hash，并且标记 hash 对应的版本号。后续再运行这个任务，就能将 actions 更新到最新版本。这里注意，调用 `pinact run` ​是将 tag 改写成 hash，调用 `pinact run --update` ​或 `pinact run -u` ​是更新到最新标签的 hash。
 
 pinact 支持配置文件，能够全局配置以及项目配置，相关文档见：[pinact/docs/config.md 在分支 main · suzuki-shunsuke/pinact](https://github.com/suzuki-shunsuke/pinact/blob/main/docs/config.md)，能够通过配置文件忽略某些 actions，或者调整更新前的等待时间。具体的配置项详见官方说明。
 
 并且，pinact 提供了 GitHub Actions 版本（[suzuki-shunsuke/pinact-action: GitHub Actions to pin GitHub Actions by pinact](https://github.com/suzuki-shunsuke/pinact-action)），能够在 GitHub Actions 中定期检查版本更新，并且发起 Pull Request，但是需要单独的 access token，并且授予进行修改的权限。
+
+## GitHub 官方工具
+
+GitHub 官方提供一个 Dependabot 工具，可以检查各种包管理器的依赖更新，其中就包括 GitHub Actions。如何创建 Dependabot 见 [Dependabot 快速入门指南 - GitHub 文档](https://docs.github.com/zh/code-security/tutorials/secure-your-dependencies/dependabot-quickstart)。
+
+配置文档见 [Dependabot 支持的生态系统和存储库 - GitHub 文档](https://docs.github.com/zh/code-security/reference/supply-chain-security/supported-ecosystems-and-repositories#github-actions)、[使用 Dependabot 保持操作的最新状态 - GitHub 文档](https://docs.github.com/zh/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/auto-update-actions)
+
+在 `.github/dependabot.yml` ​中填入以下内容：
+
+```toml
+# Set update schedule for GitHub Actions
+
+version: 2
+updates:
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      # Check for updates to GitHub Actions every week
+      interval: "weekly"
+
+```
+
+之后 Dependabot 就会每周检查 actions 的版本更新，并且发起 Pull Request。
