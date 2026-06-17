@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-02-14 14:47:22'
+updated: '2026-06-18 01:13:03'
 tags:
   - Windows
   - macOS
@@ -13,11 +13,11 @@ toc: true
 
 
 
-# 切换到 mise 的原因
+## 切换到 mise 的原因
 
 因为 [Volta](https://github.com/volta-cli/volta) 上次发版还是 24 年 2 月的事情，最近又宣布停更，在 README 里面写了建议更换到 [mise](https://github.com/jdx/mise)；电脑上安装有多个版本的 Java，但是没有靠谱的 Java 版本管理器，干脆不设置 `JAVA_HOME` ​环境变量，直接在 VSCode 配置多个 Java 包的位置，但仍有局限；目前使用 miniconda 管理 Python 环境，但是不知道哪里有问题，`conda activate` ​之后永远无法通过 `conda deactivate` ​返回 `base`，怎么都是报错；以上种种原因导致我想要找到一个靠谱的运行时管理器，但是怎么对比都没有觉得能够完美满足需求的运行时，之前的想法都是为每个语言找到自己的运行时管理器，现在来试试一个管理器管理多语言。
 
-# mise 和现有管理器的比较
+## mise 和现有管理器的比较
 
 根据 AI 总结的结果，我大致比较了 mise 和现用的管理器的差别
 
@@ -30,11 +30,11 @@ toc: true
    1. mise 建议直接管理 Python 版本自身，pip 的全局支持未知，同一个 Python 版本在不同项目中的环境靠 `venv` 控制；实际测试中发现对 pip 支持存在问题，Python 支持不够完整，期待后续修复
    2. miniconda 可以创建不同环境，在不同环境中可以安装相同、不同的 Python 版本，不同环境是相互独立的，可以在不同项目中切换不同环境
 
-# 配置 mise
+## 配置 mise
 
-## 安装 mise
+### 安装 mise
 
-根据[入门 | mise-en-place](https://mise.jdx.dev/getting-started.html) 文档，进行安装操作。
+根据[入门 | mise-en-place](https://mise.en.dev/getting-started.html) 文档，进行安装操作。
 
 1. 首先配置环境变量 `MISE_DATA_DIR`，配置到预期存储 mise 数据的地方
 2. 根据使用的系统包管理器安装 mise，比如通过 winget 安装 mise
@@ -71,9 +71,9 @@ toc: true
    mise install node@24
    ```
 
-## 使用 mise 配置 Node.js
+### 使用 mise 配置 Node.js
 
-文档：[Node | mise-en-place](https://mise.jdx.dev/lang/node.html)，[Node.JS 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/node/)
+文档：[Node | mise-en-place](https://mise.en.dev/lang/node.html)，[Node.JS 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/node/)
 
 前面已经安装好了 Node.js 24 版本，后续进行其他配置。
 
@@ -96,7 +96,7 @@ toc: true
    mise use -g npm:prettier
    ```
 
-根据 [npm 后端 | mise-en-place](https://mise.jdx.dev/dev-tools/backends/npm.html) 文档，如需安装或使用 pnpm 可以通过以下命令进行：
+根据 [npm 后端 | mise-en-place](https://mise.en.dev/dev-tools/backends/npm.html) 文档，如需安装或使用 pnpm 可以通过以下命令进行：
 
 ```powershell
 mise use -g pnpm
@@ -110,9 +110,9 @@ mise x npm:pnpm -- pnpm --version
 
 这会自动通过 npm 安装 pnpm。也可自行决定使用需要设置为全局可用。但是需要特别注意，两种方法安装的 pnpm 使用的安装源不一样，前者是通过 aqua 安装的，后者是通过 npm 安装的，需要自行决定。
 
-## 使用 mise 配置 GoLang
+### 使用 mise 配置 GoLang
 
-文档：[Go | mise-en-place](https://mise.jdx.dev/lang/go.html)，[Go 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/golang/)
+文档：[Go | mise-en-place](https://mise.en.dev/lang/go.html)，[Go 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/golang/)
 
 使用 mise 配置 Go 非常简单，直接使用以下命令就能在本地获取 Go：
 
@@ -138,11 +138,11 @@ mise config set settings.go_download_mirror https://mirrors.aliyun.com/golang/
 mise config set settings.go_skip_checksum true
 ```
 
-## 使用 mise 配置 Python
+### 使用 mise 配置 Python
 
-### core:python
+#### core:python
 
-文档：[Python | mise-en-place](https://mise.jdx.dev/lang/python.html)，[Python 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/python/)
+文档：[Python | mise-en-place](https://mise.en.dev/lang/python.html)，[Python 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/python/)
 
 需要注意，默认情况下 mise 安装的是预编译的 Python 包，如果想要本地编译 Python 包，可以添加以下设置：
 
@@ -166,7 +166,7 @@ mise i python@3.13
 python -m ensurepip --upgrade --default-pip
 ```
 
-配置预安装的 pip 包，需要在 `$HOME/.default-python-packages` ​文件中写入需要安装的包，详见 [Python | mise-en-place](https://mise.jdx.dev/lang/python.html#default-python-packages) 文档。或者通过环境变量设置这个文件的路径。
+配置预安装的 pip 包，需要在 `$HOME/.default-python-packages`​ 文件中写入需要安装的包，详见 [Python | mise-en-place](https://mise.en.dev/lang/python.html#default-python-packages) 文档。或者通过环境变量设置这个文件的路径。
 
 > [!IMPORTANT] ❗ 
 > 需要注意的是，在 mise 版本 2025.12.12 中，存在无法在 Python 安装完成之后自动安装 pip 包的问题，并且同时也存在未创建 python3 别名、pip 别名、pip3 别名等问题。详见[在 Windows 11 上通过 mise 安装 Python 后无法运行 pip · jdx/mise · 讨论 #3821](https://github.com/jdx/mise/discussions/3821)。对于在命令行中输入 python、python3 会打开应用商店的问题，可以在 Windows 设置 > 应用 > 应用执行别名里面关掉 Python 解决。对于无法使用 pip 问题，可以将 Scripts 添加到 PATH 解决。
@@ -216,11 +216,11 @@ mise run venv
 mise run install
 ```
 
-### uv:python
+#### uv:python
 
 这个方案并不是使用 uv 作为后端安装 Python，而是使用 mise 安装 uv 之后通过 uv 安装 Python。具体的区别请注意。直接通过 mise 运行此命令是无效的。
 
-文档：[uv - Astral 文档](https://docs.astral.org.cn/uv/)，[uv 中文文档](https://uv.doczh.com/)，[rft: devcontainer 从 conda 迁移至 mise/uv · 拉取请求 #15251](https://github.com/MaaAssistantArknights/MaaAssistantArknights/pull/15251)，[Mise + Python Cookbook | mise-en-place](https://mise.jdx.dev/mise-cookbook/python.html)
+文档：[uv - Astral 文档](https://docs.astral.org.cn/uv/)，[uv 中文文档](https://uv.doczh.com/)，[rft: devcontainer 从 conda 迁移至 mise/uv · 拉取请求 #15251](https://github.com/MaaAssistantArknights/MaaAssistantArknights/pull/15251)，[Mise + Python Cookbook | mise-en-place](https://mise.en.dev/mise-cookbook/python.html)
 
 首先通过 mise 安装 uv：
 
@@ -255,9 +255,9 @@ run = [
 ]
 ```
 
-## 使用 mise 配置 Java
+### 使用 mise 配置 Java
 
-文档：[Java | mise-en-place](https://mise.jdx.dev/lang/java.html)，[Java 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/java/)，[Settings | mise-en-place](https://mise.jdx.dev/configuration/settings.html#java.shorthand_vendor)
+文档：[Java | mise-en-place](https://mise.en.dev/lang/java.html)，[Java 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/java/)，[Settings | mise-en-place](https://mise.en.dev/configuration/settings.html#java.shorthand_vendor)
 
 默认情况下版本号的简写指向 OpenJDK，可以通过前缀指向其他供应商。具体可以安装的 Java 版本可通过 `mise ls-remote java` ​查看。通过以下命令可以获取或安装 Java：
 
@@ -295,7 +295,7 @@ mise i java@zulu-8
 
 经测试 PCL2 不能识别 mise 安装的 Java，但是可以手动添加。看起来 `mise use`​ 设定 Java 版本对非命令行程序有一定的问题，但是可以通过手动指定其他环境变量以避免设置 `JAVA_HOME`​，例如可以设置 `EXE4J_JAVA_HOME`​ 或 `HMCL_JAVA_HOME`​ 这些。Windows 下环境变量似乎不能运行某些程序，但是在 Linux 等系统下应该可以指定 `JAVA_HOME`​ 为 mise 输出的全局 Java 地址，如 `mise where java`。
 
-## 使用 mise 配置 Flutter
+### 使用 mise 配置 Flutter
 
 文档：[flutter | mise versions](https://mise-versions.jdx.dev/tools/flutter)
 
@@ -312,13 +312,13 @@ mise i java@zulu-8
 
 操作相当繁琐，并且当时失败了好多次，没能成功安装，所以就没写。现在成功了就写上来。
 
-## 确认可用的后端
+### 确认可用的后端
 
 可以通过 `mise doctor`​ 打印出信息，然后从中找到 `backends`​ 这部分，确认可用的后端。或者直接使用 `mise backends` ​命令打印所有后端。
 
-详见[后端架构 | mise-en-place](https://mise.jdx.dev/dev-tools/backend_architecture.html)、[后端 | mise-en-place](https://mise.jdx.dev/dev-tools/backends/) 文档。
+详见[后端架构 | mise-en-place](https://mise.en.dev/dev-tools/backend_architecture.html)、[后端 | mise-en-place](https://mise.en.dev/dev-tools/backends/) 文档。
 
-可以通过 `mise registry TOOL_NAME`​ 查看工具所支持的后端，比如 `mise registry node`​ 可以看到后端为 core，`mise registry prettier`​ 可以看到后端为 `npm`​。对于存在多个后端的工具，比如 pnpm，最靠前的后端是默认使用的后端，其他后端可以通过指定的方式使用。例如 `mise i pnpm`​ 是直接安装 pnpm 程序，`mise i npm:pnpm`​ 是通过 npm 安装 pnpm 包。但是 mise 做了防止不同后端重复安装工具的限制，如果是团队合作，我推荐项目的工具只写工具不写后端，具体通过什么后端安装由本地通过 tool_alias 指定。详见 [Tool Aliases | mise-en-place](https://mise.jdx.dev/dev-tools/aliases.html)。
+可以通过 `mise registry TOOL_NAME`​ 查看工具所支持的后端，比如 `mise registry node`​ 可以看到后端为 core，`mise registry prettier`​ 可以看到后端为 `npm`​。对于存在多个后端的工具，比如 pnpm，最靠前的后端是默认使用的后端，其他后端可以通过指定的方式使用。例如 `mise i pnpm`​ 是直接安装 pnpm 程序，`mise i npm:pnpm`​ 是通过 npm 安装 pnpm 包。但是 mise 做了防止不同后端重复安装工具的限制，如果是团队合作，我推荐项目的工具只写工具不写后端，具体通过什么后端安装由本地通过 tool_alias 指定。详见 [Tool Aliases | mise-en-place](https://mise.en.dev/dev-tools/aliases.html)。
 
 在测试了几天下来，发现 tool_alias 或许还存在一些局限，平时指定工具别名或许就够用了，但是 lockfile（`mise lock`​）会锁定工具使用的版本和后端，比如 Java 就可能出现 `21.0.0` ​和 `oracle-21.0.0` ​这些版本，如果遵守锁定文件就会出现版本冲突，但是 tool-alias 确实将 `mise.toml` ​里使用的 `java@21` ​指向了 `oracle-21`​，这时候这种冲突怎么办？或许就需要通过 `mise.local.toml` ​指定使用 `java@oracle-21`​（如果直接使用 `java@21` ​无效的话），后续再生成锁文件（`mise lock --local`​）就能得到 `mise.local.lock`，这时候遵照本地配置覆盖的原则就能确定使用的版本。
 
@@ -336,13 +336,13 @@ pnpm = "latest"
 pnpm = "npm:pnpm"
 ```
 
-## 可视化配置
+### 可视化配置
 
-可以通过 mise 的 VSCode 扩展可视化修改配置，并且能够选择配置保存到哪个文件，见 [IDE Integration | mise-en-place](https://mise.jdx.dev/ide-integration.html#vscode-plugin) 文档。
+可以通过 mise 的 VSCode 扩展可视化修改配置，并且能够选择配置保存到哪个文件，见 [IDE Integration | mise-en-place](https://mise.en.dev/ide-integration.html#vscode-plugin) 文档。
 
 在 VSCode 中，通过插件添加的按钮、命令打开设置面板，之后点击右边的编辑按钮，输入、选择要设置的值，然后保存配置到项目的配置文件中，就能修改项目设置。
 
-## 配置 VSCode 环境
+### 配置 VSCode 环境
 
 文档：[mise VS Code | mise | VSCode](https://hverlin.github.io/mise-vscode/)
 
@@ -352,13 +352,13 @@ pnpm = "npm:pnpm"
 
 使用 mise 的 VSCode 扩展配置的环境会在工作区中生成 VSCode settings 文件，可以按需添加到 git 系统中或排除。
 
-# mise 的常用命令
+## mise 的常用命令
 
 这里只对前面未提及的命令进行补充。
 
-## 查看社区支持的包的插件
+### 查看社区支持的包的插件
 
-文档：[注册表 | mise-en-place](https://mise.jdx.dev/registry.html)
+文档：[注册表 | mise-en-place](https://mise.en.dev/registry.html)
 
 对于官方没有提供支持，由社区提供支持的运行时，可以通过 `registry` ​查看它的插件，例如 flutter：
 
@@ -376,7 +376,7 @@ vfox:mise-plugins/vfox-flutter
 
 直接运行 `mise regisrty` ​会输出全部可以直接安装的包，以及提供支持的后端。
 
-## 如何安装由插件提供支持的包
+### 如何安装由插件提供支持的包
 
 首先，需要了解有什么插件，可以通过以下命令获取可用插件（前述方法也行）
 
@@ -400,9 +400,9 @@ mise ls-remote flutter
 
 对于有插件提供支持的语言，显示远程可用版本会自动安装缺失的插件，安装好之后会打印可用的版本。之后自行安装即可。
 
-## `settings`​ 和 `config`
+### `settings`​ 和 `config`
 
-在测试中，`settings`​ 会自动写入全局配置文件，`config`​ 可以写入项目配置文件，在 `config`​ 中通过 `settings.xxx`​ 可以覆写配置文件。具体区别详见：[mise settings | mise-en-place](https://mise.jdx.dev/cli/settings.html) 和 [mise config | mise-en-place](https://mise.jdx.dev/cli/config.html)。
+在测试中，`settings`​ 会自动写入全局配置文件，`config`​ 可以写入项目配置文件，在 `config`​ 中通过 `settings.xxx`​ 可以覆写配置文件。具体区别详见：[mise settings | mise-en-place](https://mise.en.dev/cli/settings.html) 和 [mise config | mise-en-place](https://mise.en.dev/cli/config.html)。
 
 在 config 中覆写 settings 的语法如下：
 
@@ -412,9 +412,9 @@ xxx = "xxx"
 xxx.xxx = "xxx"
 ```
 
-## 常用设置
+### 常用设置
 
-目前在 Windows 上，在 `mise.toml` ​的 `[tasks]` ​中定义的 `run` ​命令一般是用 `cmd` ​执行的，见 [Settings | mise-en-place](https://mise.jdx.dev/configuration/settings.html#windows_default_inline_shell_args)。在实际使用中遇到过一些问题，因此最好覆写为 PowerShell，根据设备上使用的是 PowerShell 5.1 还是 PowerShell 7 来运行下方的命令。
+目前在 Windows 上，在 `mise.toml`​ 的 `[tasks]`​ 中定义的 `run`​ 命令一般是用 `cmd`​ 执行的，见 [Settings | mise-en-place](https://mise.en.dev/configuration/settings.html#windows_default_inline_shell_args)。在实际使用中遇到过一些问题，因此最好覆写为 PowerShell，根据设备上使用的是 PowerShell 5.1 还是 PowerShell 7 来运行下方的命令。
 
 ```powershell
 # PowerShell 5.1
@@ -427,7 +427,7 @@ mise settings set windows_default_file_shell_args "pwsh -f"
 
 ---
 
-在 Windows 上无法直接通过 mise 安装 pipx，手动安装需要使用 scoop，如果不使用 scoop 就无法安装 pipx。因此可以使用 uvx 作为后端代替 pipx，详见 [Settings | mise-en-place](https://mise.jdx.dev/configuration/settings.html#pipx.uvx "Settings | mise-en-place")。可以通过以下命令在 Windows 上使用 uvx 安装全局 pip 包，例如：
+在 Windows 上无法直接通过 mise 安装 pipx，手动安装需要使用 scoop，如果不使用 scoop 就无法安装 pipx。因此可以使用 uvx 作为后端代替 pipx，详见 [Settings | mise-en-place](https://mise.en.dev/configuration/settings.html#pipx.uvx "Settings | mise-en-place")。可以通过以下命令在 Windows 上使用 uvx 安装全局 pip 包，例如：
 
 ```powershell
 mise use -g uv
@@ -437,15 +437,15 @@ mise use -g pipx:yapf
 
 首先安装 uv，然后开启后端替换，之后就能使用 uvx 安装 pipx 包，并且在 Linux、macOS 上正常使用 `mise i pipx:yapf` 也不会有问题。
 
-## 添加本地工具版本到 mise
+### 添加本地工具版本到 mise
 
-文档：[mise link | mise-en-place](https://mise.jdx.dev/cli/link.html)
+文档：[mise link | mise-en-place](https://mise.en.dev/cli/link.html)
 
 根据文档，可以使用 `mise link` ​将外部工具添加到 mise 中，比如 Java 的 Oracle 8 版本，mise 不提供下载，但是可以手动下载到本地并链接到 mise 中，比如 `mise link java@8 /path/to/java`，具体的版本号可能写详细一点比较好，在示例中 Node.js 的版本号精确到了 20.0.0，但是 Java 的版本号比较难确定。
 
-## 设置别名
+### 设置别名
 
-文档：[Tool Aliases | mise-en-place](https://mise.jdx.dev/dev-tools/aliases.html)，[mise tool-alias | mise-en-place](https://mise.jdx.dev/cli/tool-alias.html)
+文档：[Tool Aliases | mise-en-place](https://mise.en.dev/dev-tools/aliases.html)，[mise tool-alias | mise-en-place](https://mise.en.dev/cli/tool-alias.html)
 
 根据文档，使用 `mise tool-alias java 25 oracle-25` ​可以将 25 指向 oracle-25，使用这个方法可以设置全局的别名。在设置了别名之后查看全局设置，观察到以下设置项：
 
@@ -464,9 +464,9 @@ mise use -g pipx:yapf
 
 因此可以手动往 `mise.local.toml` ​添加这个格式以指定别名，这样可以实现在项目中指定 tools 为 java@25，本地使用 Oracle、OpenJDK 或 Dragonwell 之类的不同架构。使用 `mise.local.toml` ​也可以为不同的项目使用不同的 Java，比如项目 A 使用 Oracle，项目 B 使用 OpenJDK 这样的。详见 [Make ](https://github.com/jdx/mise/discussions/6266)​[`mise use java@21`](https://github.com/jdx/mise/discussions/6266)​[ use _any_ version 21 that is installed · jdx/mise · Discussion #6266](https://github.com/jdx/mise/discussions/6266)。
 
-## 创建垫片（shims）
+### 创建垫片（shims）
 
-文档：[Shims | mise-en-place](https://mise.jdx.dev/dev-tools/shims.html)，[Settings | mise-en-place](https://mise.jdx.dev/configuration/settings.html#windows_shim_mode)
+文档：[Shims | mise-en-place](https://mise.en.dev/dev-tools/shims.html)，[Settings | mise-en-place](https://mise.en.dev/configuration/settings.html#windows_shim_mode)
 
 默认情况下，在 Windows 中使用 mise 需要使用 shim。在首次安装 mise 之后，立即运行 `mise doctor` ​会看到一条报错信息，是说 shim 目录没有在 path 中，需要添加到 path。操作方法就是在系统变量或者用户变量的 path 里加上 `%MISE_DATA_DIR%/shims` ​目录。之后重启终端再运行 `mise doctor` ​就不会报这个错误了。
 
@@ -484,4 +484,11 @@ mise use -g pipx:yapf
 > New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\uvw.exe -Target $env:MISE_DATA_DIR\shims\uvw.exe
 > New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\bun.exe -Target $env:MISE_DATA_DIR\shims\bun.exe
 > ```
+>
 > 运行命令之前需要先删除或重命名原有的文件，并且退出 Cherry Studio。推荐将原有的文件重命名为 xx.bak，等操作完成后启动 Cherry Studio 确认可用后再删除。如果因为 Cherry Studio 占用文件导致 `mise reshim` 运行失败，推荐回到原本的复制文件方法。我推荐写好复制文件脚本，在更新全局版本后运行脚本复制文件。在使用 Cherry Studio v1.7.18 版本时，发现会优先使用全局的 uv 和 bun 安装，不管 Cherry Studio 目录里的 bin 文件夹有没有 uv 和 bun 都是优先使用全局的，这会导致涉及 mise、uv 与 bun 的版本切换操作失败，比如 WinGet 更新 mise、mise 更新 uv、bun 等。目前文档没写这个修改，更新日志里好像也没看到。
+
+### Windows 适配
+
+实际上 `mise activate` ​命令对 Windows 也是可用的，虽然在 FAQ 里面写的 Windows 需要未来支持（[FAQs | mise-en-place](https://mise.en.dev/faq.html#windows-support)），但是链接里面给出了 PowerShell 7 的脚本（[\[Archived Issue #3451\] PowerShell Support · jdx/mise · Discussion #6733](https://github.com/jdx/mise/discussions/6733)），将链接里面的脚本加入到 `$profile` ​里面就能在启动时激活 mise。根据描述，只使用 shims 时，通过 mise 设置的环境变量只有通过 mise 调用时才会生效，激活 mise 时，通过 mise 设置的环境变量会加载到终端，具体差异详细描述见官方文档。
+
+通常而言，通过 `code $profile` ​能够快速编辑启动配置，没这个文件的时候能不能行我不太确定，可以先 `echo "" >> $profile` ​创建文件再用文本编辑器打开。
