@@ -2,7 +2,7 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "npm@11.13.0",
+  "packageManager": "npm@11.16.0",
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
@@ -15,15 +15,19 @@
   "dependencies": {
     "chalk": "^5.6.2",
     "hexo": "^8.1.2",
-    "hexo-filter-mathjax": "^0.9.1",
+    "hexo-filter-mathjax": "^0.10.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-index": "^4.0.0",
     "hexo-generator-tag": "^2.0.0",
     "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-marked": "^7.0.0",
+    "hexo-renderer-marked": "^7.0.1",
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-theme-inside": "^2.7.2"
+  },
+  "allowScripts": {
+    "hexo-util@3.3.0": true,
+    "hexo-util@4.0.0": true
   }
 }

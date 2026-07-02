@@ -38,7 +38,7 @@ jobs:
             ${{ runner.OS }}-npm-cache
 
       - name: Install Dependencies
-        run: npm install
+        run: npm install --registry=https://registry.npmjs.org/
 
       - name: Build
         run: npm run build
@@ -98,5 +98,5 @@ jobs:
           cdn_type: eo
           eo_zone: ${{ secrets.TCLOUD_EO_ZONE }}
           local_path: public
-          remote_path: ''
+          remote_path: ""
           clean: true
