@@ -1,7 +1,7 @@
 ---
 title: 使用 mise 管理运行时
 date: '2025-12-28 13:54:31'
-updated: '2026-06-18 01:13:03'
+updated: '2026-07-11 19:31:10'
 tags:
   - Windows
   - macOS
@@ -489,6 +489,8 @@ mise use -g pipx:yapf
 
 ### Windows 适配
 
-实际上 `mise activate` ​命令对 Windows 也是可用的，虽然在 FAQ 里面写的 Windows 需要未来支持（[FAQs | mise-en-place](https://mise.en.dev/faq.html#windows-support)），但是链接里面给出了 PowerShell 7 的脚本（[\[Archived Issue #3451\] PowerShell Support · jdx/mise · Discussion #6733](https://github.com/jdx/mise/discussions/6733)），将链接里面的脚本加入到 `$profile` ​里面就能在启动时激活 mise。根据描述，只使用 shims 时，通过 mise 设置的环境变量只有通过 mise 调用时才会生效，激活 mise 时，通过 mise 设置的环境变量会加载到终端，具体差异详细描述见官方文档。
+实际上 `mise activate`​ 命令对 Windows 也是可用的，虽然在 FAQ 里面写的 Windows 需要未来支持（[FAQs | mise-en-place](https://mise.en.dev/faq.html#windows-support)），但是链接里面给出了 PowerShell 7 的脚本（[\[Archived Issue #3451\] PowerShell Support · jdx/mise · Discussion #6733](https://github.com/jdx/mise/discussions/6733)），将链接里面的脚本加入到 `$profile`​ 里面就能在启动时激活 mise。根据描述，只使用 shims 时，通过 mise 设置的环境变量只有通过 mise 调用时才会生效，激活 mise 时，通过 mise 设置的环境变量会加载到终端，具体差异详细描述见官方文档。在激活之后，`mise doctor` ​能够看到当前的 shell 类型。
 
-通常而言，通过 `code $profile` ​能够快速编辑启动配置，没这个文件的时候能不能行我不太确定，可以先 `echo "" >> $profile` ​创建文件再用文本编辑器打开。
+通常而言，通过 `code $profile`​ 能够快速编辑启动配置，没这个文件的时候能不能行我不太确定，可以先 `echo "" >> $profile` 创建文件再用文本编辑器打开。
+
+在 PowerShell 中，可能会由 PowerShell 消费掉 `--` ​输入，这时，在使用 `mise x tool -- command` ​时可能出现 `missing <COMMAND>` ​错误。解决方案是转义 `--` ​输入，比如 `"--"` ​或 `` `-- ``​，详见[\[UX/Windows\] PowerShell 会在 mise exec 中吞掉双连字符，导致出现令人困惑的“缺少<COMMAND>”错误 · jdx/mise · 讨论 #9743](https://github.com/jdx/mise/discussions/9743)
