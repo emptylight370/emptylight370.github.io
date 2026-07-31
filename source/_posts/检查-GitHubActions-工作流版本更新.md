@@ -1,7 +1,7 @@
 ---
 title: 检查GitHub Actions工作流版本更新
 date: '2026-04-12 15:01:08'
-updated: '2026-06-16 20:31:59'
+updated: '2026-07-31 14:12:35'
 tags:
   - GitHub
 permalink: /post/2026/04/check-for-github-actions-workflow-version-updates-z1udlzv.html
@@ -26,9 +26,9 @@ run = "ghacu"
 tools."github:fabasoad/ghacu" = "latest"
 ```
 
-任务的名称与别名可以自行配置，不过因为直接使用 `mise run` ​运行任务更快，这里的任务叫什么、用什么别名都无关紧要了。在任务中定义需要使用的工具，使用 mise 的 GitHub 后端（[GitHub Backend | mise-en-place](https://mise.jdx.dev/dev-tools/backends/github.html)）直接进行工具安装，不需要在具体项目中添加依赖项。不过仅在任务中使用的工具会被列为可清理的工具，在运行 `mise prune` ​时会显示，如果不想遇到这种情况可以添加到全局的工具列表中。
+任务的名称与别名可以自行配置，不过因为直接使用 `mise run`​ 运行任务更快，这里的任务叫什么、用什么别名都无关紧要了。在任务中定义需要使用的工具，使用 mise 的 GitHub 后端（[GitHub Backend | mise-en-place](https://mise.en.dev/dev-tools/backends/github.html)）直接进行工具安装，不需要在具体项目中添加依赖项。不过仅在任务中使用的工具会被列为可清理的工具，在运行 `mise prune` 时会显示，如果不想遇到这种情况可以添加到全局的工具列表中。
 
-ghacu 工具在没有提供 GitHub token 时会以未认证用户身份请求，可能遇到访问限制，可以设置环境变量 `GHACU_GITHUB_TOKEN` ​提供 token 以避开限制。这里可以直接填写具体的 token，也可以引用 mise 的 token，下面就是引用 mise 的 token，具体见 [GitHub Tokens | mise-en-place](https://mise.jdx.dev/dev-tools/github-tokens.html)。
+ghacu 工具在没有提供 GitHub token 时会以未认证用户身份请求，可能遇到访问限制，可以设置环境变量 `GHACU_GITHUB_TOKEN`​ 提供 token 以避开限制。这里可以直接填写具体的 token，也可以引用 mise 的 token，下面就是引用 mise 的 token，具体见 [GitHub Tokens | mise-en-place](https://mise.en.dev/dev-tools/github-tokens.html)。
 
 ```toml
 [tasks.github_actions_detect]
@@ -40,7 +40,7 @@ run = "ghacu"
 tools."github:fabasoad/ghacu" = "latest"
 ```
 
-这里使用的 `{{}}` ​语法是 tera 模板，详见 [Task Templates | mise-en-place](https://mise.jdx.dev/tasks/templates.html#tera-templating)、[Templates | mise-en-place](https://mise.jdx.dev/templates.html) 与 [Task Configuration | mise-en-place](https://mise.jdx.dev/tasks/task-configuration.html#env)。在定义了 `MISE_GITHUB_TOKEN` ​环境变量之后，就能直接使用这个环境变量，例如：
+这里使用的 `{{}}`​ 语法是 tera 模板，详见 [Task Templates | mise-en-place](https://mise.en.dev/tasks/templates.html#tera-templating)、[Templates | mise-en-place](https://mise.en.dev/templates.html) 与 [Task Configuration | mise-en-place](https://mise.en.dev/tasks/task-configuration.html#env)。在定义了 `MISE_GITHUB_TOKEN` 环境变量之后，就能直接使用这个环境变量，例如：
 
 ```toml
 [env]
