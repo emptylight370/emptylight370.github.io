@@ -1,7 +1,7 @@
 ---
 title: 检查GitHub Actions工作流版本更新
 date: '2026-04-12 15:01:08'
-updated: '2026-07-31 14:12:35'
+updated: '2026-07-31 14:43:06'
 tags:
   - GitHub
 permalink: /post/2026/04/check-for-github-actions-workflow-version-updates-z1udlzv.html
@@ -99,7 +99,7 @@ GitHub 官方提供一个 Dependabot 工具，可以检查各种包管理器的�
 
 在 `.github/dependabot.yml` ​中填入以下内容：
 
-```toml
+```yaml
 # Set update schedule for GitHub Actions
 
 version: 2
