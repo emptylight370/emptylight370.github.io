@@ -2,7 +2,6 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "npm@11.17.0",
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
@@ -11,6 +10,16 @@
   },
   "hexo": {
     "version": "8.1.2"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=24.0.0"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": ">=11.3.0"
+    }
   },
   "dependencies": {
     "chalk": "^6.0.0",
