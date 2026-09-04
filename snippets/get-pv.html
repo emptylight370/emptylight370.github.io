@@ -29,13 +29,18 @@
         action: "batch_inc",
         requests: [{ target: target }],
       }),
-    }).catch(function (error) {
-      // 上报失败不阻塞后续读取
-      console.error("OpenKounter increment error:", error);
-    });
+    })
+      .catch(function (error) {
+        // 上报失败不阻塞后续读取
+        console.error("OpenKounter increment error:", error);
+      })
 
-    // 2. 读取当前路由 PV
-    fetch(API_SERVER + "/api/counter?target=" + encodeURIComponent(target))
+      // 2. 读取当前路由 PV
+      .then(function () {
+        return fetch(
+          API_SERVER + "/api/counter?target=" + encodeURIComponent(target),
+        );
+      })
       .then(function (resp) {
         if (!resp.ok) throw new Error("HTTP " + resp.status);
         return resp.json();
