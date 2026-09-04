@@ -1,0 +1,59 @@
+<!-- post-log.html : Inside 主题文章/页面 PV 插件（OpenKounter 适配版） -->
+<script>
+  (function (window, document) {
+    "use strict";
+
+    // ===== 配置（硬编码）=====
+    var API_SERVER = "https://open-pv.emptylight.cn";
+    var IGNORE_LOCAL = false; // 本地开发环境（localhost 等）不计数
+
+    if (
+      IGNORE_LOCAL &&
+      ["localhost", "127.0.0.1", "[::1]"].indexOf(window.location.hostname) !==
+        -1
+    ) {
+      return;
+    }
+
+    // 当前路由归一化，如 '/post/inside-theme-showcase/' -> 'post/inside-theme-showcase'
+    var target =
+      decodeURI(window.location.pathname).replace(/\/*(index\.html)?$/, "") ||
+      "/";
+    var key = target.replace(/^\//, "");
+
+    // 1. 上报当前路由 PV
+    fetch(API_SERVER + "/api/counter", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "batch_inc",
+        requests: [{ target: target }],
+      }),
+    }).catch(function (error) {
+      // 上报失败不阻塞后续读取
+      console.error("OpenKounter increment error:", error);
+    });
+
+    // 2. 读取当前路由 PV
+    fetch(API_SERVER + "/api/counter?target=" + encodeURIComponent(target))
+      .then(function (resp) {
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
+        return resp.json();
+      })
+      .then(function (res) {
+        if (res.code !== 0) throw new Error(res.message || "Unknown error");
+        // 3. 展示
+        document.dispatchEvent(
+          new CustomEvent("inside", {
+            detail: {
+              type: "pv",
+              data: { [key]: res.data.time || 0 },
+            },
+          }),
+        );
+      })
+      .catch(function (error) {
+        console.error("OpenKounter PV error:", error);
+      });
+  })(window, document);
+</script>

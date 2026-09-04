@@ -468,3 +468,6 @@ plugins:
           }
         });
       </script>
+
+  - position: [post, "page"]
+    template: snippets/get-pv.html
