@@ -20,7 +20,7 @@ toc: true
 
 ### 在文件管理器中打开
 
-![在资源管理器中打开](https://res.emptylight.cn/share/img/2026/239361afc1b4e59b4253f77a472e548d.png)
+![在资源管理器中打开](https://res.emptylight.cn/share/img/2026/153b6306268d56612b28f0fc906807a4.png)
 
 点击会在 Windows 的文件管理器中打开当前文件夹。从默认的菜单工具栏找到这个按钮，复制出来单独放着方便使用。
 
@@ -30,7 +30,7 @@ toc: true
 
 ### 在记事本中打开
 
-![在记事本中打开](https://res.emptylight.cn/share/img/2026/b6789a89b6a63014448000a3e3eb9585.png)
+![在记事本中打开](https://res.emptylight.cn/share/img/2026/84b284a6cac504dba4a402ba0c435448.png)
 
 默认在系统自带的记事本中打开文本文件。在卸载旧版记事本后系统无法自动调用新版记事本，故提供新版记事本打开方法。仅在选择 txt、json、yml、bat、ps1、conf 等文本文件时显示，可自行编辑修改。但是我现在几乎只用 VSCode 打开了，这个动作已经不用了。
 
@@ -52,7 +52,7 @@ toc: true
 
 实现了两个下拉菜单分别显示非 Windows 应用添加的菜单和 Windows 应用添加的菜单。相当于是 Windows 11 默认的折叠菜单和展开菜单。因为加载完整的 Windows 右键菜单需要花较长时间，所以分开显示，一个菜单只显示自带功能，一个菜单只显示应用功能，再做成下拉菜单就能用左键触发，并且不会因为加载菜单卡住 dopus。
 
-![PixPin_2026-01-19_23-10-48](https://res.emptylight.cn/share/img/2026/378eafc8cf478fb57afdc4127fa52669.png)
+![PixPin_2026-01-19_23-10-48](https://res.emptylight.cn/share/img/2026/20222162ed61e64f384d70c123043c12.png)
 
 这是左边的 DOpus 菜单：
 
@@ -90,7 +90,7 @@ toc: true
 
 ### 发送到菜单
 
-![PixPin_2026-01-19_23-16-42](https://res.emptylight.cn/share/img/2026/aeb2ace729057afefba7d7479c5bd04b.png)
+![PixPin_2026-01-19_23-16-42](https://res.emptylight.cn/share/img/2026/1a9cbe9d105db3837365714ab87e1697.png)
 
 这个菜单哪里来的我忘了，有可能是自己写的。用途是显示系统的发送菜单，和 Windows 11 新加的分享菜单不是同一个，是旧的那个。点击展开下拉列表显示菜单。
 
@@ -109,7 +109,7 @@ toc: true
 
 ### 打开方式
 
-![PixPin_2026-01-19_23-18-49](https://res.emptylight.cn/share/img/2026/02b2c98f61ebfb3bfe8251d9efab8eb2.png)
+![PixPin_2026-01-19_23-18-49](https://res.emptylight.cn/share/img/2026/cc9a546958864ef24b20dd5443f8fc4a.png)
 
 点击能够显示系统的打开方式选择菜单，也有可能是自己写的。
 
@@ -127,11 +127,40 @@ toc: true
 </button>
 ```
 
+### 调用指定右键菜单
+
+![PixPin_2026-09-23_15-29-08](https://res.emptylight.cn/share/img/2026/45693cabfc2b1d427d92addd0aaa0c35.png)
+
+对特定类型文件显示并调用特定的右键菜单。此处以对安装文件调用 Revo 记录安装为例。
+
+需要做一些操作：
+
+1. 打开首选项，查看系统扩展
+2. 在右侧搜索框中搜索想要调用的右键菜单名关键词，比如 revo，得到一个右键菜单项，产品名称为 Revo Uninstaller Pro Extension
+
+   需要注意，部分应用是通过一个文件注册多个右键菜单，其名称可能不含搜索关键词，在搜索时采用关键词方法命中结果，例如此处选用 revo 作为关键词，找到 Revo Uninstaller Pro Extension 右键菜单，其所有右键菜单通过这个 dll 注册
+3. 右键复制 CLSID，填充到​ `{REPLACEHERE}` ​部分，应得到​ `CONTEXTMENU={xxx}` ​结果
+
+   这个 ID 是应用自行生成注册的还是系统安装后注册的未知，前者由应用自行管理，不同设备上 ID 一致，后者由系统管理，不同设备上 ID 不一致，建议自行复制，确保在本设备上有效
+4. 此处使用​ `@hidenosel` ​在未选择指定类型文件时隐藏按钮
+
+```xml
+<?xml version="1.0"?>
+<button backcol="none" display="both" label_pos="right" textcol="none">
+	<label>使用Revo安装</label>
+	<icon1>#select</icon1>
+	<function type="normal">
+		<instruction>@hidenosel:type=*.(exe|msi|com)</instruction>
+		<instruction>FileType CONTEXTFORCE CONTEXTMENU={REPLACEHERE}</instruction>
+	</function>
+</button>
+```
+
 ## 地址栏按钮
 
 这部分的按钮我放在地址栏，就是显示文件夹路径的那个地方。这部分只显示图标就够了，平时还要按条件隐藏。
 
-![PixPin_2026-01-19_23-22-47](https://res.emptylight.cn/share/img/2026/823af756b317d1a0ae8d5b8d513f86eb.png)
+![PixPin_2026-01-19_23-22-47](https://res.emptylight.cn/share/img/2026/d1486fefd0b5931ddb7c446fd5be5ca1.png)
 
 ### 选择上一个
 
@@ -236,9 +265,9 @@ toc: true
 
 在工具栏上面右键打开自定义窗口，然后切换到自定义页签。
 
-![PixPin_2026-01-20_21-18-51](https://res.emptylight.cn/share/img/2026/0113e884c63767182f93d804785724a0.png)
+![PixPin_2026-01-20_21-18-51](https://res.emptylight.cn/share/img/2026/efb83505db52840056af825692690f4e.png)
 
-![PixPin_2026-01-20_21-19-26](https://res.emptylight.cn/share/img/2026/f2a5f279a3793a1c84868d82fdf0f1e4.png)
+![PixPin_2026-01-20_21-19-26](https://res.emptylight.cn/share/img/2026/261f9573719996ed73cbfcc965fc181e.png)
 
 # 文件信息列
 
