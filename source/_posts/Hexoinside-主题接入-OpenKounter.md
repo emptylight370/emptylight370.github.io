@@ -1,11 +1,12 @@
 ---
 title: Hexo inside主题接入Open Kounter
 date: '2026-09-05 00:26:00'
-updated: '2026-09-05 01:30:38'
+updated: '2026-10-03 15:52:26'
 tags:
   - GitHub
   - EdgeOne
   - TencentCloud
+  - Browser
 permalink: /post/2026/09/hexo-inside-theme-connects-to-open-kounter-z1nfd8r.html
 comments: true
 toc: true
@@ -61,80 +62,13 @@ Inside 主题的 GitHub 页面是这个：[ikeq/hexo-theme-inside](https://githu
 1. [open-kounter/client/adapter.js at main · Mintimate/open-kounter](https://github.com/Mintimate/open-kounter/blob/main/client/adapter.js)
 2. [ikeq/hexo-theme-inside#344](https://github.com/ikeq/hexo-theme-inside/issues/344)
 
-现在，把这两个文档交给 coding copilot，让它生成一个脚本，并在主题中配置。此处有几个坑：一是 js 脚本是适配 Fluid 主题的，Inside 主题没有全局 CONFIG 这种东西，API_SERVER 需要硬编码；二是 Inside 主题在 plugin 中引用 html 文件，是需要从 Hexo 项目根目录开始写相对路径，参考 [https://blog.oniuo.com/theme-inside/docs/plugins#dynamic-html-injection](https://blog.oniuo.com/theme-inside/docs/plugins#dynamic-html-injection)。三是这个 HTML 脚本文件不需要考虑 Hexo 编译问题，倒不如说这个脚本正常就是不会编译进结果里面的。
+现在，把这两个文档交给 coding copilot，让它生成一个脚本，并在主题中配置。此处有几个坑：一是 js 脚本是适配 Fluid 主题的，Inside 主题没有全局 CONFIG 这种东西，API_SERVER 需要硬编码；二是 Inside 主题能够引用 js 文件，但是需要放置在 source 目录下，并且排除渲染用作脚本的 js 文件，因此推荐在 source 目录下新建一个文件夹用于存放脚本，并且排除此文件夹的渲染。
 
-好的，你应该成功生成了脚本文件，现在，在本地运行一下 hexo 服务器，看看文章页面中有没有意外显示的 post-log.html 或刚生成的文件名，如有，则说明脚本没有正确引用。如果没有，则在开发者工具中搜一下​ `/api/counter`，看脚本有没有正确编译进页面。如有，则成功。
+好的，你应该成功生成了脚本文件，现在，在本地运行一下 Hexo 服务器，看看 body 中有没有引用脚本文件，如有，则说明主题侧已经正确引用脚本。然后继续检查此​ `<script>` ​标签指向的链接是否正确访问，如正确获取脚本，则说明 hexo 侧已经正确配置排除，如脚本显示 404，则说明 Hexo 将脚本作为文章渲染，需要检查排除配置。
 
 现在，你应该只剩下两件事，把 AI 预留的​ `API_SERVER` ​地址替换成你配置的自定义域名，以及部署博客。
 
-如果你搞不定这个脚本，我在这里贴一份示例，文件名是​ `snippets/get-pv.html`。文件在项目根目录的 snippets 文件夹下，不在 source 下。这个是 AI 生成的，理论上你的 copilot 或者 agent 也能做到。
-
-```html
-<!-- post-log.html : Inside 主题文章/页面 PV 插件（OpenKounter 适配版） -->
-<script>
-  (function (window, document) {
-    "use strict";
-
-    // ===== 配置（硬编码）=====
-    var API_SERVER = "REPLACE_WITH_YOUR_SERVER";
-    var IGNORE_LOCAL = true; // 本地开发环境（localhost 等）不计数
-
-    if (
-      IGNORE_LOCAL &&
-      ["localhost", "127.0.0.1", "[::1]"].indexOf(window.location.hostname) !==
-        -1
-    ) {
-      return;
-    }
-
-    // 当前路由归一化，如 '/post/inside-theme-showcase/' -> 'post/inside-theme-showcase'
-    var target =
-      decodeURI(window.location.pathname).replace(/\/*(index\.html)?$/, "") ||
-      "/";
-    var key = target.replace(/^\//, "");
-
-    // 1. 上报当前路由 PV
-    fetch(API_SERVER + "/api/counter", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        action: "batch_inc",
-        requests: [{ target: target }],
-      }),
-    })
-      .catch(function (error) {
-        // 上报失败不阻塞后续读取
-        console.error("OpenKounter increment error:", error);
-      })
-
-      // 2. 读取当前路由 PV
-      .then(function () {
-        return fetch(
-          API_SERVER + "/api/counter?target=" + encodeURIComponent(target),
-        );
-      })
-      .then(function (resp) {
-        if (!resp.ok) throw new Error("HTTP " + resp.status);
-        return resp.json();
-      })
-      .then(function (res) {
-        if (res.code !== 0) throw new Error(res.message || "Unknown error");
-        // 3. 展示
-        document.dispatchEvent(
-          new CustomEvent("inside", {
-            detail: {
-              type: "pv",
-              data: { [key]: res.data.time || 0 },
-            },
-          }),
-        );
-      })
-      .catch(function (error) {
-        console.error("OpenKounter PV error:", error);
-      });
-  })(window, document);
-</script>
-```
+如果你搞不定这个脚本，访问 [get-pv.js](https://github.com/emptylight370/emptylight370.github.io/blob/main/source/snippets/get-pv.js) 以查看示例，注意同时配置主题和 Hexo。这个是 AI 生成的，理论上你的 copilot 或者 agent 也能做到。
 
 ### 验证实际效果
 
