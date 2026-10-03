@@ -1,5 +1,4 @@
-<!-- 在页面加载后读取颜色偏好，并切换 -->
-<script>
+// 在页面加载后读取颜色偏好，并切换
   window.addEventListener("load", () => {
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const color = window.__inside__.color;
@@ -17,4 +16,3 @@
       button.click();
     }
   });
-</script>

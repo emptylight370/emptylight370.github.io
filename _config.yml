@@ -30,6 +30,9 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  # 避免 .js 被 Hexo 内置 plain 渲染器当作 Page 处理，
+  # 否则 Inside 主题生成器无法为其产出路由（且会生成 undefined/index.html）
+  - snippets/*.js
 
 # Writing
 new_post_name: :title.md # File name of new posts

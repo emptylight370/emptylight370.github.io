@@ -440,6 +440,8 @@ plugins:
   # In general, script or style depends on their ext name.
   # - xxx.css
   # - xxx.jss
+  - snippets/switch-theme.js
+  - snippets/get-pv.js
 
   # Dynamic inject html snippet
   # - position: # sidebar | post | page | comments | avatar | head_begin | head_end | body_begin | body_end
@@ -449,9 +451,3 @@ plugins:
   # template: snippets/snippet-1.html
   - position: head_end
     template: <meta name="darkreader-lock">
-
-  - position: head_end
-    template: snippets/switch-theme.html
-
-  - position: head_end
-    template: snippets/get-pv.html
