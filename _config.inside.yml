@@ -451,23 +451,7 @@ plugins:
     template: <meta name="darkreader-lock">
 
   - position: head_end
-    template: |
-      <script>
-        window.addEventListener("load",()=>{
-          const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          const color = window.__inside__.color;
-          let currentColor;
-          if (color.length === 1) {
-            currentColor = "day";
-          } else if (color.length === 2) {
-            currentColor = "night";
-          }
-          const button = document.querySelector("i.φda");
-          if (isDark && currentColor === "day" || !isDark && currentColor === "night") {
-            button.click();
-          }
-        });
-      </script>
+    template: snippets/switch-theme.html
 
-  - position: [post, "page"]
+  - position: head_end
     template: snippets/get-pv.html
