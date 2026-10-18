@@ -25,23 +25,21 @@ jobs:
         # submodules: recursive
 
       - name: Use mise
-        uses: jdx/mise-action@v4
+        uses: jdx/mise-action@v5
 
-      - name: Cache NPM dependencies
+      - name: Cache pnpm store
         uses: actions/cache@v6
         with:
-          path: |
-            ~/.npm
-            node_modules
-          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('package.json','package-lock.json') }}
+          path: ~/.local/share/pnpm/store
+          key: pnpm-cache-${{ runner.OS }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.OS }}-npm-cache
+            pnpm-cache-${{ runner.OS }}-${{ runner.arch }}-
 
       - name: Install Dependencies
-        run: npm install --registry=https://registry.npmjs.org/
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
@@ -53,6 +51,9 @@ jobs:
         with:
           name: cos-file
           path: ./public
+
+      - name: Clean up pnpm store
+        run: pnpm store prune
 
   deploy:
     needs: build
