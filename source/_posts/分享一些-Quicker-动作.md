@@ -17,17 +17,17 @@ toc: true
 
 以下是部分自制的 Quicker 动作，分享倒是次要的，主要目的是想赚积分了。如果能够帮上你们当然很好。动作分享有点久远，大部分都是 V1 动作，具体版本见动作详情页。
 
-## 1 动作
+## 动作
 
-### 1.1 通用
+### 通用
 
-#### 1.1.1 打开链接
+#### 打开链接
 
 动作地址：[打开链接 - by Emptylight - 动作信息 - Quicker](https://getquicker.net/Sharedaction?code=83e4eac5-91d6-412d-e392-08dcf5ac8d55&fromMyShare=true)
 
 可以通过选中若干链接的方式在默认浏览器中打开这些链接。这个动作最开始是微信（不记得是 3.0 版本还是 4.0 内测版）不能通过右键链接在默认浏览器中打开时写的，当时因为一些链接需要通过微信内置浏览器鉴权，另一些链接在默认浏览器中打开更舒适，所以写了这个动作。现在因为微信已经支持对链接右键之后选择在默认浏览器中打开，脚本的主要使用场景只剩下在没有对网址链接文本自动生成链接的地方快速打开网页了。
 
-#### 1.1.2 复制链接
+#### 复制链接
 
 动作地址：[复制链接 - by Emptylight - 动作信息 - Quicker](https://getquicker.net/Sharedaction?code=6b1fd060-c133-4198-8601-08dd7678ed04&fromMyShare=true)
 
@@ -35,19 +35,19 @@ toc: true
 
 本文中的动作地址都是通过脚本复制得到的 Markdown 链接。
 
-#### 1.1.3 左键计数
+#### 左键计数
 
 动作地址：[左键计数 - by Emptylight - 动作信息 - Quicker](https://getquicker.net/Sharedaction?code=a3d1c272-8578-4dc8-8384-08dd3791bd3b&fromMyShare=true)
 
 因为在不支持通过自动化方式处理的地方有统计需求，所以写了这个动作。通过左键进行计数，可以统计左键按下的次数。除了鼠标左键之外还可以通过键盘的 <kbd>+</kbd> ​键进行计数。这个我也不知道你们有什么使用场景，不过脚本支持自己修改，需要什么按键自己自定义吧。
 
-### 1.2 特定应用
+### 特定应用
 
 以下的动作必须和对应的应用一起使用。
 
-#### 1.2.1 VSCode
+#### VSCode
 
-##### 1.2.1.1 在 VSCode 中打开
+##### 在 VSCode 中打开
 
 动作地址：[在 VSCode 中打开 - by Emptylight - 动作信息 - Quicker](https://getquicker.net/Sharedaction?code=4a2f5662-f17c-4eb4-fad0-08dcf4b7eea3&fromMyShare=true)
 
@@ -55,15 +55,15 @@ toc: true
 
 动作内可以对搜索到的文件夹历史进行修改，如果某些地址不想出现在 Quicker 动作的搜索结果中，可以在动作右键菜单中编辑并删除。也可以自行打开 VSCode 的缓存路径自行排查删除。VSCode 里面能不能删除文件夹历史我还没试过。
 
-#### 1.2.2 Pot 翻译
+#### Pot 翻译
 
-##### 1.2.2.1 划词翻译
+##### 划词翻译
 
 动作地址：[POT 划词翻译 - by Emptylight - 动作信息 - Quicker](https://getquicker.net/Sharedaction?code=3fffafc4-5347-4600-85e4-08dcf8c7ad5e&fromMyShare=true)
 
 在划选内容之后，弹出一个翻译按钮。点击即可触发 Pot 的划词翻译。这个动作内置了 API 触发和快捷键触发方式。默认情况下是通过 Pot 的默认端口触发划词翻译。
 
-##### 1.2.2.2 划词翻译（新）
+##### 划词翻译（新）
 
 动作地址：[POT 划词翻译 - by Emptylight - 动作信息 - Quicker](https://getquicker.net/Sharedaction?code=1c141b89-95b1-48dd-9857-77efb8d9ed38&fromMyShare=true)
 
@@ -71,15 +71,15 @@ toc: true
 
 需要添加动作到选中文本工具条并启用此功能。该功能基于 Quicker 2.0 测试，1.0 是否存在类似功能未测试。
 
-#### 1.2.3 思源笔记
+#### 思源笔记
 
-##### 1.2.3.1 灵感
+##### 灵感
 
 动作地址：[灵感 - by Emptylight - 动作信息 - Quicker](https://getquicker.net/Sharedaction?code=32d4e10a-e395-4f0c-9acc-08dd5c97ad3b&fromMyShare=true)
 
 改自 [utools 一键添加灵感到思源笔记 - 链滴](https://ld246.com/article/1741314053776)，在配置好后可以通过文本框将记录的灵感发送到特定文档。
 
-##### 1.2.3.2 思源工具箱
+##### 思源工具箱
 
 动作地址：[思源工具箱 - by Emptylight - 动作信息 - Quicker](https://getquicker.net/Sharedaction?code=da24bc48-a6c3-4b53-eb24-08ddcb62c590&fromMyShare=true)
 
@@ -100,15 +100,15 @@ toc: true
 
 修改标题层级：模拟思源默认的修改标题层级快捷键，即 <kbd>CTRL</kbd>​+<kbd>ALT</kbd>​+<kbd>1</kbd> ​之类，可以修改光标所在行的标题层级。除了每次触发动作时可以选择一次，还做了单独的菜单可以手动关闭。
 
-## 2 子程序
+## 子程序
 
-### 2.1 特定应用
+### 特定应用
 
 以下的子程序必须和对应的应用一起使用。
 
-#### 2.1.1 企业微信
+#### 企业微信
 
-##### 2.1.1.1 企业微信消息推送
+##### 企业微信消息推送
 
 动作地址：[企业微信消息推送（子程序） - 子程序信息 - Quicker](https://getquicker.net/SubProgram?id=ef578220-c4d2-4d9b-92d7-96a09ec2162f)
 
