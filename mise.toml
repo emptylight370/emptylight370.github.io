@@ -1,6 +1,6 @@
 [tools]
-node = "24"
+node = "26"
 "npm:hexo-cli" = "latest"
 pnpm = "latest"
 
-[deps.npm]
+[deps.pnpm]
