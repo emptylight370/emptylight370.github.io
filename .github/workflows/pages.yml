@@ -18,17 +18,17 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         # with:
         # token: ${{ secrets.GITHUB_TOKEN }}
         # If your repository depends on submodule, please see: https://github.com/actions/checkout
         # submodules: recursive
 
       - name: Use mise
-        uses: jdx/mise-action@v5
+        uses: jdx/mise-action@90f833d396d0cc3674b631d2d225e306476c303a # v5.2.10
 
       - name: Cache pnpm store
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.local/share/pnpm/store
           key: pnpm-cache-${{ runner.OS }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml') }}
@@ -42,12 +42,12 @@ jobs:
         run: pnpm run build
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: ./public
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: cos-file
           path: ./public
@@ -71,7 +71,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
 
   sendCOS:
     needs: build
@@ -82,13 +82,13 @@ jobs:
 
     steps:
       - name: Download the only Artifact
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: cos-file
           path: ./public
 
       - name: Upload to COS
-        uses: sylingd/tencent-cos-and-cdn-action@v1
+        uses: sylingd/tencent-cos-and-cdn-action@f5d399ae58dd887f06964ad88bf854d219ffc4c8 # v1.5.2
         with:
           secret_id: ${{ secrets.TCLOUD_ID }}
           secret_key: ${{ secrets.TCLOUD_KEY }}
