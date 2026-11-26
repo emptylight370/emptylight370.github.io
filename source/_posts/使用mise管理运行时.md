@@ -25,11 +25,9 @@ toc: true
 根据 AI 总结的结果，我大致比较了 mise 和现用的管理器的差别
 
 1. mise 和 Volta 比较
-
    1. mise 可以管理 Node.js 版本，对 npm 的全局支持未知，说是可以将 npm 安装的包在配置文件中确定版本，但 npm 自身的版本未说明；实际测试中可以将 npm 包全局安装，npm 包使用的是安装时的 Node.js 还是全局 Node.js 版本未说明，但是 npm 自身应该是随全局 Node.js 切换
    2. Volta 能够管理 Node.js 版本，可以单独管理 npm、pnpm 版本，能够接管全局安装的 npm 包并且固定包版本和运行时版本
 2. mise 和 miniconda 比较
-
    1. mise 建议直接管理 Python 版本自身，pip 的全局支持未知，同一个 Python 版本在不同项目中的环境靠 `venv` 控制；实际测试中发现对 pip 支持存在问题，Python 支持不够完整，期待后续修复
    2. miniconda 可以创建不同环境，在不同环境中可以安装相同、不同的 Python 版本，不同环境是相互独立的，可以在不同项目中切换不同环境
 
@@ -40,6 +38,7 @@ toc: true
 根据[入门 | mise-en-place](https://mise.jdx.dev/getting-started.html) 文档，进行安装操作。
 
 1. 首先配置环境变量 `MISE_DATA_DIR`，配置到预期存储 mise 数据的地方
+
 2. 根据使用的系统包管理器安装 mise，比如通过 winget 安装 mise
 
    ```powershell
@@ -47,6 +46,14 @@ toc: true
    ```
 
    此处安装 mise 的路径应为 winget 默认安装软件位置，后续 mise 数据会存储到先前配置的地方
+
+   因为 winget 上的 mise 更新缓慢且不支持自行更新，mise 文档也推荐使用 mise 提供的安装命令进行安装，需要配置临时环境变量​ `MISE_INSTALL_PATH` ​来指定 mise 的安装位置，如不指定会安装到默认位置（文档见 [Installing mise | mise-en-place](https://mise.jdx.dev/installing-mise.html#windows)）
+
+   ```powershell
+   $env:MISE_INSTALL_PATH="C:/path/to/install/mise.exe"
+   irm https://mise.run/powershell | iex
+   ```
+
 3. 安装完成之后，重启终端运行以下任意命令，应能正确输出 mise 版本
 
    ```powershell
@@ -54,24 +61,30 @@ toc: true
    mise version
    mise v
    ```
+
 4. 运行 `mise doctor`，检查是否存在问题，并修复
+
 5. 通过以下命令安装 Node.js，并输出 Node.js 版本
 
    ```powershell
-   mise x node@24 -- node -v
    mise exec node@24 -- node -v
+   mise x node@24 -- node -v
+   # mise x 是 mise exec 命令的别名
    ```
+
 6. 现在应能在 mise 中看到安装的 Node.js 版本，并且如未安装其他 Node.js 版本管理器，直接运行 `node -v` ​是无结果的
 
    ```powershell
    mise ls
    mise list
    ```
+
 7. 如需安装其他内容，可以通过以下命令运行
 
    ```powershell
-   mise i node@24
    mise install node@24
+   mise i node@24
+   # mise i 是 mise install 命令的别名
    ```
 
 ### 使用 mise 配置 Node.js
@@ -80,21 +93,24 @@ toc: true
 
 前面已经安装好了 Node.js 24 版本，后续进行其他配置。
 
-1. 设置一个全局版本，为免版本变动，指定刚才安装的确切版本
-
+1. 设置一个全局版本，为免版本变动，指定刚才安装的确切版本（也可以指定大版本或​ `lts`）
    ```powershell
    mise use -g node@24.12.0
    # 在Windows下不需要加 -g 参数也能全局启用，详见文档
+   mise use -g node@24  # 指定特定大版本
+   mise use -g node@lts # 最新长期支持版本
+   mise use -g node@lts-krypton # 特定长期支持版本
    ```
 2. 现在可以直接通过 `node` 运行这个版本
-3. 对于 npm 包，可以通过以下方法进行安装或直接运行
-
+3. 对于 npm 包，可以通过以下方法进行安装或直接运行（实际上 Prettier 可以直接使用 prettier 指定，不需要 npm 前缀）
    ```powershell
    mise x npm:prettier -- prettier --version
    mise i npm:prettier
+
+   mise x prettier -- prettier --version
+   mise i prettier
    ```
 4. 设置 Prettier 全局启用，这里没有设置版本，默认的版本号为 `latest`，如果不事先安装，直接运行这个命令也能自动安装
-
    ```powershell
    mise use -g npm:prettier
    ```
@@ -111,7 +127,7 @@ mise i npm:pnpm
 mise x npm:pnpm -- pnpm --version
 ```
 
-这会自动通过 npm 安装 pnpm。也可自行决定使用需要设置为全局可用。但是需要特别注意，两种方法安装的 pnpm 使用的安装源不一样，前者是通过 aqua 安装的，后者是通过 npm 安装的，需要自行决定。
+这会自动安装 pnpm。也可自行决定使用需要设置为全局可用。但是需要特别注意，两种方法安装的 pnpm 使用的安装源不一样，前者是通过 aqua 安装的，后者是通过 npm 安装的，需要自行决定。确认安装所用后端方法详见下文【确认可用的后端】。
 
 ### 使用 mise 配置 GoLang
 
@@ -147,7 +163,7 @@ mise config set settings.go_skip_checksum true
 
 文档：[Python | mise-en-place](https://mise.jdx.dev/lang/python.html)，[Python 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/python/)
 
-需要注意，默认情况下 mise 安装的是预编译的 Python 包，如果想要本地编译 Python 包，可以添加以下设置：
+需要注意，默认情况下 mise 安装的是预编译的 Python 包，如果想要本地编译 Python 包，可以添加以下设置：（需要所在平台支持本地编译）
 
 ```powershell
 mise settings python.compile=1
@@ -161,7 +177,7 @@ mise x python@3.13 -- python --version
 mise i python@3.13
 ```
 
-但是需要注意，安装的 Python 在部分情况下默认是没有 pip 的，因为 pip 在某版本之后变成了可选组件，因此需要手动安装，或者配置预安装的 pip 包让 mise 自动安装。
+但是需要注意，安装的 Python 在部分情况下默认是没有 pip 的，因为 pip 在某版本之后变成了可选组件，因此需要手动安装，或者配置预安装的 pip 包让 mise 自动安装。新版本 mise 会为 pip 创建 shim，可直接调用对应版本 Python 运行 pip 命令。
 
 手动安装命令如下：
 
@@ -223,7 +239,7 @@ mise run install
 
 这个方案并不是使用 uv 作为后端安装 Python，而是使用 mise 安装 uv 之后通过 uv 安装 Python。具体的区别请注意。直接通过 mise 运行此命令是无效的。
 
-文档：[uv - Astral 文档](https://docs.astral.org.cn/uv/)，[uv 中文文档](https://uv.doczh.com/)，[rft: devcontainer 从 conda 迁移至 mise/uv · 拉取请求 #15251](https://github.com/MaaAssistantArknights/MaaAssistantArknights/pull/15251)，[Mise + Python Cookbook | mise-en-place](https://mise.jdx.dev/mise-cookbook/python.html)
+文档：[uv - Astral 文档](https://docs.astral.org.cn/uv/)，[uv 文档](https://docs.astral.sh/uv/)，[rft: devcontainer 从 conda 迁移至 mise/uv · 拉取请求 #15251](https://github.com/MaaAssistantArknights/MaaAssistantArknights/pull/15251)，[Mise + Python Cookbook | mise-en-place](https://mise.jdx.dev/mise-cookbook/python.html)
 
 首先通过 mise 安装 uv：
 
@@ -241,7 +257,7 @@ uv venv --python 3.12 # 创建特定Python版本的虚拟环境
 uv python install python3.12 # 安装特定版本Python？
 ```
 
-后续的命令还请自行探索，没用过实在是不知道怎么回事，但是看起来比直接用 mise 管理 Python 要好，实际上孰优孰劣还请自行测试。
+后续的命令还请自行探索，没用过实在是不知道怎么回事，但是看起来比直接用 mise 管理 Python 要好，实际上孰优孰劣还请自行测试。目前我个人是选择禁用 uv 的 Python 下载功能，由 mise 为 uv 提供 Python。禁用 uv 下载 Python 的命令为：​`mise set UV_PYTHON_DOWNLOADS=never`。
 
 可以在全局的配置文件中添加以下任务，来为当前项目创建 venv 环境，使用时只需在项目根目录运行 `mise run venv` ​即可。
 
@@ -262,7 +278,7 @@ run = [
 
 文档：[Java | mise-en-place](https://mise.jdx.dev/lang/java.html)，[Java 设置 | mise | VSCode](https://hverlin.github.io/mise-vscode/guides/java/)，[Settings | mise-en-place](https://mise.jdx.dev/configuration/settings.html#java.shorthand_vendor)
 
-默认情况下版本号的简写指向 OpenJDK，可以通过前缀指向其他供应商。具体可以安装的 Java 版本可通过 `mise ls-remote java` ​查看。通过以下命令可以获取或安装 Java：
+~~默认情况下版本号的简写指向 OpenJDK~~ 新版本已经换成 Temurin，可以通过前缀指向其他供应商。具体可以安装的 Java 版本可通过 ​`mise ls-remote java` 查看。通过以下命令可以获取或安装 Java：
 
 ```powershell
 mise use -g java@25
@@ -292,11 +308,13 @@ mise i java@zulu-8
 >
 > 这个方法使用 mise 提供的功能添加本地安装，详见后文介绍
 
-使用 `java@25`​ 安装的 Java 默认是 OpenJDK 的，可通过设置别名方式指向其他发行版，详见下文标题。在 2026.2.12 版本中新加了设置项 `java.shorthand_vendor`​，可以指定版本号缩写使用的发行版，默认为 `openjdk`，详见上方链接。
+使用 ​`java@25`​ 安装的 Java 默认是 Temurin 的，可通过设置别名方式指向其他发行版，详见下文标题。在 2026.2.12 版本中新加了设置项 ​`java.shorthand_vendor`​，可以指定版本号缩写使用的发行版，默认为 ​`temurin`，详见上方链接。
 
 对于 `JAVA_HOME`​，没有进行过实际测试，通过 `mise use -g java@25`​ 设置的 Java 25 版本可以在命令行中直接调用，但是无法被 EXE4J 编译的应用直接调用，需要设置 `EXE4J_JAVA_HOME`。在 VSCode 中使用 mise 安装的 Java 请见下方标题。
 
-经测试 PCL2 不能识别 mise 安装的 Java，但是可以手动添加。看起来 `mise use`​ 设定 Java 版本对非命令行程序有一定的问题，但是可以通过手动指定其他环境变量以避免设置 `JAVA_HOME`​，例如可以设置 `EXE4J_JAVA_HOME`​ 或 `HMCL_JAVA_HOME`​ 这些。Windows 下环境变量似乎不能运行某些程序，但是在 Linux 等系统下应该可以指定 `JAVA_HOME`​ 为 mise 输出的全局 Java 地址，如 `mise where java`。
+经测试 PCL2 不能识别 mise 安装的 Java，但是可以手动添加。看起来 ​`mise use`​ 设定 Java 版本对非命令行程序有一定的问题，但是可以通过手动指定其他环境变量以避免设置 ​`JAVA_HOME`​，例如可以设置 ​`EXE4J_JAVA_HOME`​ 或 ​`HMCL_JAVA_HOME`​ 这些。Windows 下环境变量似乎不能运行某些程序，但是在 Linux 等系统下应该可以指定 ​`JAVA_HOME`​ 为 mise 输出的全局 Java 地址，如 ​`mise where java`。
+
+新版本 mise 会为全局工具提供一个 global 文件夹，可通过此文件夹配置​ `JAVA_HOME`​。大致为​ `$env:MISE_DATA_DIR\installs\java\global\bin`。
 
 ### 使用 mise 配置 Flutter
 
@@ -306,7 +324,6 @@ mise i java@zulu-8
 
 1. 在 `/mise/plugins/flutter` ​里面找到地址然后修改为国内镜像站的网址
 2. 自行安装改为国内镜像站的 vfox 插件用作后端：[chen3/vfox-flutter-cn: Flutter plugin for vfox](https://github.com/chen3/vfox-flutter-cn)
-
    ```powershell
    mise p i flutter https://github.com/chen3/vfox-flutter-cn
    mise i flutter
@@ -421,11 +438,11 @@ xxx.xxx = "xxx"
 
 ```powershell
 # PowerShell 5.1
-mise settings set windows_default_inline_shell_args "powershell -c"
-mise settings set windows_default_file_shell_args "powershell -f"
+mise settings set windows_default_inline_shell_args "powershell.exe -NoProfile -Command"
+mise settings set windows_default_file_shell_args "powershell -NoProfile -File"
 # PowerShell 7
-mise settings set windows_default_inline_shell_args "pwsh -c"
-mise settings set windows_default_file_shell_args "pwsh -f"
+mise settings set windows_default_inline_shell_args "pwsh.exe -NoProfile -Command"
+mise settings set windows_default_file_shell_args "pwsh -NoProfile -File"
 ```
 
 ---
@@ -488,14 +505,14 @@ mise use -g pipx:yapf
 > New-Item -ItemType SymbolicLink -Path $env:USERPROFILE\.cherrystudio\bin\bun.exe -Target $env:MISE_DATA_DIR\shims\bun.exe
 > ```
 >
-> 运行命令之前需要先删除或重命名原有的文件，并且退出 Cherry Studio。推荐将原有的文件重命名为 xx.bak，等操作完成后启动 Cherry Studio 确认可用后再删除。如果因为 Cherry Studio 占用文件导致 `mise reshim` 运行失败，推荐回到原本的复制文件方法。我推荐写好复制文件脚本，在更新全局版本后运行脚本复制文件。在使用 Cherry Studio v1.7.18 版本时，发现会优先使用全局的 uv 和 bun 安装，不管 Cherry Studio 目录里的 bin 文件夹有没有 uv 和 bun 都是优先使用全局的，这会导致涉及 mise、uv 与 bun 的版本切换操作失败，比如 WinGet 更新 mise、mise 更新 uv、bun 等。目前文档没写这个修改，更新日志里好像也没看到。
+> 运行命令之前需要先删除或重命名原有的文件，并且退出 Cherry Studio。推荐将原有的文件重命名为 xx.bak，等操作完成后启动 Cherry Studio 确认可用后再删除。如果因为 Cherry Studio 占用文件导致 ​`mise reshim` 运行失败，推荐回到原本的复制文件方法。我推荐写好复制文件脚本，在更新全局版本后运行脚本复制文件。在使用 Cherry Studio v1.7.18 版本时，发现会优先使用全局的 uv 和 bun 安装，不管 Cherry Studio 目录里的 bin 文件夹有没有 uv 和 bun 都是优先使用全局的，这会导致涉及 mise、uv 与 bun 的版本切换操作失败，比如 WinGet 更新 mise、mise 更新 uv、bun 等。目前文档没写这个修改，更新日志里好像也没看到。
+>
+> 注：新版本 Cherry Studio 内置一个 mise 管理环境，可能不遵循 mise 全局配置。
 
 ### Windows 适配
 
-实际上 `mise activate`​ 命令对 Windows 也是可用的，虽然在 FAQ 里面写的 Windows 需要未来支持（[FAQs | mise-en-place](https://mise.jdx.dev/faq.html#windows-support)），但是链接里面给出了 PowerShell 7 的脚本（[\[Archived Issue #3451\] PowerShell Support · jdx/mise · Discussion #6733](https://github.com/jdx/mise/discussions/6733)），将链接里面的脚本加入到 `$profile`​ 里面就能在启动时激活 mise。根据描述，只使用 shims 时，通过 mise 设置的环境变量只有通过 mise 调用时才会生效，激活 mise 时，通过 mise 设置的环境变量会加载到终端，具体差异详细描述见官方文档。在激活之后，`mise doctor` ​能够看到当前的 shell 类型。
+实际上 ​`mise activate`​ 命令对 Windows 也是可用的，详见文档（[Activate mise in your shell | mise-en-place](https://mise.jdx.dev/shell-setup.html#powershell)）。根据描述，只使用 shims 时，通过 mise 设置的环境变量只有通过 mise 调用时才会生效，激活 mise 时，通过 mise 设置的环境变量会加载到终端，具体差异详细描述见官方文档。在激活之后，​`mise doctor` 能够看到当前的 shell 类型。
 
 通常而言，通过 `code $profile`​ 能够快速编辑启动配置，没这个文件的时候能不能行我不太确定，可以先 `echo "" >> $profile` 创建文件再用文本编辑器打开。
 
-在 PowerShell 中，可能会由 PowerShell 消费掉 `--` ​输入，这时，在使用 `mise x tool -- command` ​时可能出现 `missing <COMMAND>` ​错误。解决方案是转义 `--` ​输入，比如 `"--"` ​或 `` `-- ``​，详见[\[UX/Windows\] PowerShell 会在 mise exec 中吞掉双连字符，导致出现令人困惑的“缺少<COMMAND>”错误 · jdx/mise · 讨论 #9743](https://github.com/jdx/mise/discussions/9743)
-
-‍
+在 PowerShell 中，可能会由 PowerShell 消费掉 ​`--`​ 输入，这时，在使用 ​`mise x tool -- command`​ 时可能出现 ​`missing <COMMAND>`​ 错误。解决方案是转义 ​`--`​ 输入，比如 ​`"--"`​ 或 ​`` `-- ``​，详见[\[UX/Windows\] PowerShell 会在 mise exec 中吞掉双连字符，导致出现令人困惑的“缺少<COMMAND>”错误 · jdx/mise · 讨论 #9743](https://github.com/jdx/mise/discussions/9743)。如果直接使用​ `mise x tool -- command` ​时不报错就不需要转义。
